@@ -1,0 +1,7 @@
+code,label,note,table
+1,Collision occurred within 5km of casualties home postcode,field introduced in 2023,casualty
+2,Collision occurred between 5.001 and 10km of casualties home postcode,field introduced in 2023,casualty
+3,Collision occurred between 10.001 and 20km of casualties home postcode,field introduced in 2023,casualty
+4,Collision occurred between 20.001 and 100km of casualties home postcode,field introduced in 2023,casualty
+5,Collision occurred over 100km of casualties home postcode,field introduced in 2023,casualty
+-1,Data missing or out of range,field introduced in 2023,casualty

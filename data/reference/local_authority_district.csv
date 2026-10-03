@@ -1,0 +1,533 @@
+code,label,note,table
+1,Westminster,,collision
+2,Camden,,collision
+3,Islington,,collision
+4,Hackney,,collision
+5,Tower Hamlets,,collision
+6,Greenwich,,collision
+7,Lewisham,,collision
+8,Southwark,,collision
+9,Lambeth,,collision
+10,Wandsworth,,collision
+11,Hammersmith and Fulham,,collision
+12,Kensington and Chelsea,,collision
+13,Waltham Forest,,collision
+14,Redbridge,,collision
+15,Havering,,collision
+16,Barking and Dagenham,,collision
+17,Newham,,collision
+18,Bexley,,collision
+19,Bromley,,collision
+20,Croydon,,collision
+21,Sutton,,collision
+22,Merton,,collision
+23,Kingston upon Thames,,collision
+24,Richmond upon Thames,,collision
+25,Hounslow,,collision
+26,Hillingdon,,collision
+27,Ealing,,collision
+28,Brent,,collision
+29,Harrow,,collision
+30,Barnet,,collision
+31,Haringey,,collision
+32,Enfield,,collision
+33,Hertsmere,,collision
+38,Epsom and Ewell,,collision
+40,Spelthorne,,collision
+57,London Airport (Heathrow),,collision
+60,Allerdale,,collision
+61,Barrow-in-Furness,,collision
+62,Carlisle,,collision
+63,Copeland,,collision
+64,Eden,,collision
+65,South Lakeland,,collision
+70,Blackburn with Darwen,,collision
+71,Blackpool,,collision
+72,Burnley,,collision
+73,Chorley,,collision
+74,Fylde,,collision
+75,Hyndburn,,collision
+76,Lancaster,,collision
+77,Pendle,,collision
+79,Preston,,collision
+80,Ribble Valley,,collision
+82,Rossendale,,collision
+83,South Ribble,,collision
+84,West Lancashire,,collision
+85,Wyre,,collision
+90,Knowsley,,collision
+91,Liverpool,,collision
+92,St. Helens,,collision
+93,Sefton,,collision
+95,Wirral,,collision
+100,Bolton,,collision
+101,Bury,,collision
+102,Manchester,,collision
+104,Oldham,,collision
+106,Rochdale,,collision
+107,Salford,,collision
+109,Stockport,,collision
+110,Tameside,,collision
+112,Trafford,,collision
+114,Wigan,,collision
+120,Chester,,collision
+121,Congleton,,collision
+122,Crewe and Nantwich,,collision
+123,Ellesmere Port and Neston,,collision
+124,Halton,,collision
+126,Macclesfield,,collision
+127,Vale Royal,,collision
+128,Warrington,,collision
+129,Cheshire East,,collision
+130,Cheshire West and Chester,,collision
+139,Northumberland,,collision
+140,Alnwick,,collision
+141,Berwick-upon-Tweed,,collision
+142,Blyth Valley,,collision
+143,Castle Morpeth,,collision
+144,Tynedale,,collision
+145,Wansbeck,,collision
+146,Gateshead,,collision
+147,Newcastle upon Tyne,,collision
+148,North Tyneside,,collision
+149,South Tyneside,,collision
+150,Sunderland,,collision
+160,Chester-le-Street,,collision
+161,Darlington,,collision
+162,Derwentside,,collision
+163,Durham,,collision
+164,Easington,,collision
+165,Sedgefield,,collision
+166,Teesdale,,collision
+168,Wear Valley,,collision
+169,County Durham,,collision
+180,Craven,,collision
+181,Hambleton,,collision
+182,Harrogate,,collision
+184,Richmondshire,,collision
+185,Ryedale,,collision
+186,Scarborough,,collision
+187,Selby,,collision
+189,York,,collision
+200,Bradford,,collision
+202,Calderdale,,collision
+203,Kirklees,,collision
+204,Leeds,,collision
+206,Wakefield,,collision
+210,Barnsley,,collision
+211,Doncaster,,collision
+213,Rotherham,,collision
+215,Sheffield,,collision
+220,Beverley,,collision
+221,Boothferry,,collision
+224,Cleethorpes,,collision
+225,Glanford,,collision
+226,Grimsby,,collision
+227,Holderness,,collision
+228,"Kingston upon Hull, City of",,collision
+229,East Yorkshire,,collision
+230,Scunthorpe,,collision
+231,East Riding of Yorkshire,,collision
+232,North Lincolnshire,,collision
+233,North East Lincolnshire,,collision
+240,Hartlepool,,collision
+241,Redcar and Cleveland,,collision
+243,Middlesbrough,,collision
+245,Stockton-on-Tees,,collision
+250,Cannock Chase,,collision
+251,East Staffordshire,,collision
+252,Lichfield,,collision
+253,Newcastle-under-Lyme,,collision
+254,South Staffordshire,,collision
+255,Stafford,,collision
+256,Staffordshire Moorlands,,collision
+257,Stoke-on-Trent,,collision
+258,Tamworth,,collision
+270,Bromsgrove,,collision
+271,Hereford,,collision
+272,Leominster,,collision
+273,Malvern Hills,,collision
+274,Redditch,,collision
+275,South Herefordshire,,collision
+276,Worcester,,collision
+277,Wychavon,,collision
+278,Wyre Forest,,collision
+279,Bridgnorth,,collision
+280,North Shropshire,,collision
+281,Oswestry,,collision
+282,Shrewsbury and Atcham,,collision
+283,South Shropshire,,collision
+284,Telford and Wrekin,,collision
+285,"Herefordshire, County of",,collision
+286,Shropshire,,collision
+290,North Warwickshire,,collision
+291,Nuneaton and Bedworth,,collision
+292,Rugby,,collision
+293,Stratford-upon-Avon,,collision
+294,Warwick,,collision
+300,Birmingham,,collision
+302,Coventry,,collision
+303,Dudley,,collision
+305,Sandwell,,collision
+306,Solihull,,collision
+307,Walsall,,collision
+309,Wolverhampton,,collision
+320,Amber Valley,,collision
+321,Bolsover,,collision
+322,Chesterfield,,collision
+323,Derby,,collision
+324,Erewash,,collision
+325,High Peak,,collision
+327,North East Derbyshire,,collision
+328,South Derbyshire,,collision
+329,Derbyshire Dales,,collision
+340,Ashfield,,collision
+341,Bassetlaw,,collision
+342,Broxtowe,,collision
+343,Gedling,,collision
+344,Mansfield,,collision
+345,Newark and Sherwood,,collision
+346,Nottingham,,collision
+347,Rushcliffe,,collision
+350,Boston,,collision
+351,East Lindsey,,collision
+352,Lincoln,,collision
+353,North Kesteven,,collision
+354,South Holland,,collision
+355,South Kesteven,,collision
+356,West Lindsey,,collision
+360,Blaby,,collision
+361,Hinckley and Bosworth,,collision
+362,Charnwood,,collision
+363,Harborough,,collision
+364,Leicester,,collision
+365,Melton,,collision
+366,North West Leicestershire,,collision
+367,Oadby and Wigston,,collision
+368,Rutland,,collision
+380,Corby,,collision
+381,Daventry,,collision
+382,East Northamptonshire,,collision
+383,Kettering,,collision
+384,Northampton,,collision
+385,South Northamptonshire,,collision
+386,Wellingborough,,collision
+390,Cambridge,,collision
+391,East Cambridgeshire,,collision
+392,Fenland,,collision
+393,Huntingdonshire,,collision
+394,Peterborough,,collision
+395,South Cambridgeshire,,collision
+400,Breckland,,collision
+401,Broadland,,collision
+402,Great Yarmouth,,collision
+404,Norwich,,collision
+405,North Norfolk,,collision
+406,South Norfolk,,collision
+407,King's Lynn and West Norfolk,,collision
+410,Babergh,,collision
+411,Forest Heath,,collision
+412,Ipswich,,collision
+413,Mid Suffolk,,collision
+414,St. Edmundsbury,,collision
+415,Suffolk Coastal,,collision
+416,Waveney,,collision
+420,Bedford,,collision
+421,Luton,,collision
+422,Mid Bedfordshire,,collision
+423,South Bedfordshire,,collision
+424,Central Bedfordshire,,collision
+430,Broxbourne,,collision
+431,Dacorum,,collision
+432,East Hertfordshire,,collision
+433,North Hertfordshire,,collision
+434,St. Albans,,collision
+435,Stevenage,,collision
+436,Three Rivers,,collision
+437,Watford,,collision
+438,Welwyn Hatfield,,collision
+450,Basildon,,collision
+451,Braintree,,collision
+452,Brentwood,,collision
+453,Castle Point,,collision
+454,Chelmsford,,collision
+455,Colchester,,collision
+456,Epping Forest,,collision
+457,Harlow,,collision
+458,Maldon,,collision
+459,Rochford,,collision
+460,Southend-on-Sea,,collision
+461,Tendring,,collision
+462,Thurrock,,collision
+463,Uttlesford,,collision
+470,Bracknell Forest,,collision
+471,West Berkshire,,collision
+472,Reading,,collision
+473,Slough,,collision
+474,Windsor and Maidenhead,,collision
+475,Wokingham,,collision
+476,Aylesbury Vale,,collision
+477,South Bucks,,collision
+478,Chiltern,,collision
+479,Milton Keynes,,collision
+480,Wycombe,,collision
+481,Cherwell,,collision
+482,Oxford,,collision
+483,Vale of White Horse,,collision
+484,South Oxfordshire,,collision
+485,West Oxfordshire,,collision
+490,Basingstoke and Deane,,collision
+491,Eastleigh,,collision
+492,Fareham,,collision
+493,Gosport,,collision
+494,Hart,,collision
+495,Havant,,collision
+496,New Forest,,collision
+497,East Hampshire,,collision
+498,Portsmouth,,collision
+499,Rushmoor,,collision
+500,Southampton,,collision
+501,Test Valley,,collision
+502,Winchester,,collision
+503,Medina,,collision
+504,South Wight,,collision
+505,Isle of Wight,,collision
+510,Elmbridge,,collision
+511,Guildford,,collision
+512,Mole Valley,,collision
+513,Reigate and Banstead,,collision
+514,Runnymede,,collision
+515,Surrey Heath,,collision
+516,Tandridge,,collision
+517,Waverley,,collision
+518,Woking,,collision
+530,Ashford,,collision
+531,Canterbury,,collision
+532,Dartford,,collision
+533,Dover,,collision
+534,Gillingham,,collision
+535,Gravesham,,collision
+536,Maidstone,,collision
+537,Rochester,,collision
+538,Sevenoaks,,collision
+539,Shepway,,collision
+540,Swale,,collision
+541,Thanet,,collision
+542,Tonbridge and Malling,,collision
+543,Tunbridge Wells,,collision
+544,Medway,,collision
+550,Brighton,,collision
+551,Eastbourne,,collision
+552,Hastings,,collision
+553,Hove,,collision
+554,Lewes,,collision
+555,Rother,,collision
+556,Wealden,,collision
+557,Adur,,collision
+558,Arun,,collision
+559,Chichester,,collision
+560,Crawley,,collision
+562,Horsham,,collision
+563,Mid Sussex,,collision
+564,Worthing,,collision
+565,Brighton and Hove,,collision
+570,City of London,,collision
+580,East Devon,,collision
+581,Exeter,,collision
+582,North Devon,,collision
+583,Plymouth,,collision
+584,South Hams,,collision
+585,Teignbridge,,collision
+586,Mid Devon,,collision
+587,Torbay,,collision
+588,Torridge,,collision
+589,West Devon,,collision
+590,Caradon,,collision
+591,Carrick,,collision
+592,Kerrier,,collision
+593,North Cornwall,,collision
+594,Penwith,,collision
+595,Restormel,,collision
+596,Cornwall,,collision
+599,Isles of Scilly,,collision
+600,Bath,,collision
+601,"Bristol, City of",,collision
+602,Kingswood,,collision
+603,Northavon,,collision
+604,Wansdyke,,collision
+605,North Somerset,,collision
+606,Mendip,,collision
+607,Sedgemoor,,collision
+608,Taunton Deane,,collision
+609,West Somerset,,collision
+610,South Somerset,,collision
+611,Bath and North East Somerset,,collision
+612,South Gloucestershire,,collision
+620,Cheltenham,,collision
+621,Cotswold,,collision
+622,Forest of Dean,,collision
+623,Gloucester,,collision
+624,Stroud,,collision
+625,Tewkesbury,,collision
+630,Kennet,,collision
+631,North Wiltshire,,collision
+632,Salisbury,,collision
+633,Swindon,,collision
+634,West Wiltshire,,collision
+635,Wiltshire,,collision
+640,Bournemouth,,collision
+641,Christchurch,,collision
+642,North Dorset,,collision
+643,Poole,,collision
+644,Purbeck,,collision
+645,West Dorset,,collision
+646,Weymouth and Portland,,collision
+647,East Dorset,,collision
+660,Aberconwy,,collision
+661,Arfon,,collision
+662,Dwyfor,,collision
+663,Meirionnydd,,collision
+664,Ynys Mon - Isle of Anglesey,,collision
+665,Alyn-Deeside,,collision
+666,Colwyn,,collision
+667,Delwyn,,collision
+668,Glyndwr,,collision
+669,Rhuddlan,,collision
+670,Wrexham Maelor,,collision
+680,Blaenau Gwent,,collision
+682,Islwyn,,collision
+683,Monmouth,,collision
+684,Newport,,collision
+685,Torfaen,,collision
+690,Cynon Valley,,collision
+692,Merthyr Tydfil,,collision
+694,Ogwr,,collision
+695,Rhondda,,collision
+696,Rhymney Valley,,collision
+698,Taff-Ely,,collision
+699,Cardiff,,collision
+701,Vale of Glamorgan,,collision
+702,Afan,,collision
+703,Lliw Valley,,collision
+704,Neath,,collision
+705,Swansea,,collision
+710,Carmarthen,,collision
+711,Ceredigion,,collision
+712,Dinefwr,,collision
+713,Llanelli,,collision
+714,Preseli,,collision
+715,South Pembrokeshire,,collision
+716,Brecknock,,collision
+717,Montgomery,,collision
+718,Radnor,,collision
+720,Isle of Anglesey,,collision
+721,Conwy,,collision
+722,Gwynedd,,collision
+723,Denbighshire,,collision
+724,Flintshire,,collision
+725,Wrexham,,collision
+730,Blaenau Gwent,,collision
+731,Caerphilly,,collision
+732,Monmouthshire,,collision
+733,Newport,,collision
+734,Torfaen,,collision
+740,Bridgend,,collision
+741,Cardiff,,collision
+742,Merthyr Tydfil,,collision
+743,Neath Port Talbot,,collision
+744,"Rhondda, Cynon, Taff",,collision
+745,Swansea,,collision
+746,The Vale of Glamorgan,,collision
+750,Ceredigion,,collision
+751,Carmarthenshire,,collision
+752,Pembrokeshire,,collision
+753,Powys,,collision
+801,Orkney,,collision
+802,Shetland,,collision
+803,Western Isles,,collision
+804,Caithness,,collision
+805,Sutherland,,collision
+806,Ross and Cromarty,,collision
+807,Skye and Lochalsh,,collision
+808,Lochaber,,collision
+809,Inverness,,collision
+810,Badenoch and Strathspey,,collision
+811,Nairn,,collision
+812,Aberdeen (City of),,collision
+813,Moray,,collision
+814,Banff and Buchan,,collision
+815,Gordon,,collision
+816,Kincardine and Deeside,,collision
+817,Dundee (City of),,collision
+818,Angus,,collision
+819,Perth and Kinross,,collision
+821,Kirkcaldy,,collision
+822,North East Fife,,collision
+823,Dunfermline,,collision
+824,Edinburgh (City of),,collision
+825,West Lothian,,collision
+826,Midlothian,,collision
+827,East Lothian,,collision
+828,Tweeddale,,collision
+829,Ettrick and Lauderdale,,collision
+830,Roxburgh,,collision
+831,Berwickshire,,collision
+833,Clackmannan,,collision
+834,Stirling,,collision
+835,Falkirk,,collision
+836,Glasgow (City of),,collision
+837,Argyll and Bute,,collision
+838,Dumbarton,,collision
+839,Clydebank,,collision
+840,Bearsden and Milngavie,,collision
+841,Strathkelvin,,collision
+842,Cumbernauld and Kilsyth,,collision
+843,Monklands,,collision
+844,Motherwell,,collision
+845,Hamilton,,collision
+846,East Kilbride,,collision
+847,Eastwood,,collision
+848,Lanark,,collision
+849,Renfrew,,collision
+850,Inverclyde,,collision
+851,Cunninghame,,collision
+852,Kilmarnock and Loudoun,,collision
+853,Kyle and Carrick,,collision
+854,Cumnock and Doon Valley,,collision
+856,Wigtown,,collision
+857,Stewartry,,collision
+858,Nithsdale,,collision
+859,Annandale and Eskdale,,collision
+910,Aberdeen City,,collision
+911,Aberdeenshire,,collision
+912,Angus,,collision
+913,Argyll and Bute,,collision
+914,Scottish Borders,,collision
+915,Clackmannanshire,,collision
+916,West Dunbartonshire,,collision
+917,Dumfries and Galloway,,collision
+918,Dundee City,,collision
+919,East Ayrshire,,collision
+920,East Dunbartonshire,,collision
+921,East Lothian,,collision
+922,East Renfrewshire,,collision
+923,"Edinburgh, City of",,collision
+924,Falkirk,,collision
+925,Fife,,collision
+926,Glasgow City,,collision
+927,Highland,,collision
+928,Inverclyde,,collision
+929,Midlothian,,collision
+930,Moray,,collision
+931,North Ayrshire,,collision
+932,North Lanarkshire,,collision
+933,Orkney Islands,,collision
+934,Perth and Kinross,,collision
+935,Renfrewshire,,collision
+936,Shetland Islands,,collision
+937,South Ayrshire,,collision
+938,South Lanarkshire,,collision
+939,Stirling,,collision
+940,West Lothian,,collision
+941,Western Isles,,collision
+-1,Code deprecated,,collision

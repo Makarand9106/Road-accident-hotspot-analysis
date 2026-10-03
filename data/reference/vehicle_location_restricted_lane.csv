@@ -1,0 +1,10 @@
+code,label,note,table
+0,On main carriageway (not in restricted lane),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+1,Tram or Light rail track,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+2,Bus lane or Busway,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+4,Cycle lane (on main carriageway),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+5,Cycleway or shared use footway (not part of main carriageway),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+6,Lay-by or hard shoulder,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+9,Footway (pavement),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+99,unknown (self reported),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+-1,Data missing or out of range,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle

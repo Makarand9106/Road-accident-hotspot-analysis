@@ -1,0 +1,21 @@
+hotspot_id,district_name,risk_score,risk_level,collisions_2024,collisions_2025,absolute_collision_increase,pct_increase
+65,Unknown / Unassigned,76.63,High,88,133,45,51.14
+104,Unknown / Unassigned,58.33,Medium,193,225,32,16.58
+113,Unknown / Unassigned,96.24,High,44,66,22,50.00
+27,Unknown / Unassigned,78.34,High,592,614,22,3.72
+53,Unknown / Unassigned,62.76,High,79,98,19,24.05
+4,Unknown / Unassigned,92.33,High,89,107,18,20.22
+170,Unknown / Unassigned,83.93,High,38,56,18,47.37
+167,Unknown / Unassigned,55.82,Medium,82,100,18,21.95
+200,Unknown / Unassigned,88.49,High,51,68,17,33.33
+41,Unknown / Unassigned,56.23,Medium,47,64,17,36.17
+86,Unknown / Unassigned,53.41,Medium,62,78,16,25.81
+180,Unknown / Unassigned,49.20,Low,27,43,16,59.26
+94,Unknown / Unassigned,87.05,High,28,43,15,53.57
+115,Unknown / Unassigned,63.45,High,22,37,15,68.18
+194,Unknown / Unassigned,96.45,High,32,46,14,43.75
+173,Unknown / Unassigned,56.72,Medium,59,73,14,23.73
+435,Unknown / Unassigned,55.66,Medium,4,18,14,350.00
+35,Unknown / Unassigned,52.08,Medium,49,63,14,28.57
+44,Unknown / Unassigned,52.06,Medium,32,46,14,43.75
+288,Unknown / Unassigned,71.40,High,14,26,12,85.71

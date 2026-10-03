@@ -1,0 +1,11 @@
+code,label,note,table
+0,None,,collision
+1,Auto traffic signal - out,,collision
+2,Auto signal part defective,,collision
+3,Road sign or marking defective or obscured,,collision
+4,Roadworks,,collision
+5,Road surface defective,,collision
+6,Oil or diesel,,collision
+7,Mud,,collision
+-1,Data missing or out of range,,collision
+9,unknown (self reported),,collision

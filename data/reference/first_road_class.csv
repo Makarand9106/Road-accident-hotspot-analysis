@@ -1,0 +1,8 @@
+code,label,note,table
+1,Motorway,,collision
+2,A(M),,collision
+3,A,,collision
+4,B,,collision
+5,C,,collision
+6,Unclassified,,collision
+-1,Data missing or out of range,,collision

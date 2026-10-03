@@ -1,0 +1,20 @@
+code,label,note,table
+1,Reversing,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+2,Parked,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+3,Waiting to go ahead,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+4,Slowing or stopping,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+5,Moving off,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+6,U-turn,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+7,Turning left,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+8,Waiting to turn left,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+9,Turning right,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+10,Waiting to turn right,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+11,Changing lane to left,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+12,Changing lane to right,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+13,Over taking moving vehicle on its offside,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+14,Overtaking stationary vehicle on its offside,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+15,Overtaking on nearside (passengers side nearest kerb),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+19,Going ahead,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+20,Parking,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+99,unknown (self reported),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle
+-1,Data missing or out of range,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,vehicle

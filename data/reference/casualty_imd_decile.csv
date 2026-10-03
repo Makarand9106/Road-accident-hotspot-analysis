@@ -1,0 +1,12 @@
+code,label,note,table
+1,Most deprived 10%,field introduced in 2016,casualty
+2,More deprived 10-20%,field introduced in 2016,casualty
+3,More deprived 20-30%,field introduced in 2016,casualty
+4,More deprived 30-40%,field introduced in 2016,casualty
+5,More deprived 40-50%,field introduced in 2016,casualty
+6,Less deprived 40-50%,field introduced in 2016,casualty
+7,Less deprived 30-40%,field introduced in 2016,casualty
+8,Less deprived 20-30%,field introduced in 2016,casualty
+9,Less deprived 10-20%,field introduced in 2016,casualty
+10,Least deprived 10%,field introduced in 2016,casualty
+-1,Data missing or out of range,field introduced in 2016,casualty

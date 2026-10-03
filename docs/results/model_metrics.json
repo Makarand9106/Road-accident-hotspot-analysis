@@ -1,0 +1,118 @@
+{
+  "dataset": "UK DfT STATS19 (2021-2025)",
+  "target": "is_severe",
+  "training_severe_rate": 0.24205186843129622,
+  "test_sample_count": 102761,
+  "models": {
+    "Dummy Baseline": {
+      "accuracy": 0.7579529198820564,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "roc_auc": 0.5,
+      "pr_auc": 0.24204708011794357,
+      "brier_score": 0.1834602911472493,
+      "confusion_matrix": [
+        [
+          77888,
+          0
+        ],
+        [
+          24873,
+          0
+        ]
+      ]
+    },
+    "Logistic Regression": {
+      "accuracy": 0.6011035314954117,
+      "precision": 0.32279343858568976,
+      "recall": 0.5901982068910063,
+      "f1_score": 0.417335929837529,
+      "roc_auc": 0.6401949194946484,
+      "pr_auc": 0.3668771358165736,
+      "brier_score": 0.23445565656067638,
+      "confusion_matrix": [
+        [
+          47090,
+          30798
+        ],
+        [
+          10193,
+          14680
+        ]
+      ]
+    },
+    "Decision Tree": {
+      "accuracy": 0.6043343291715729,
+      "precision": 0.3245766102146953,
+      "recall": 0.587142684838982,
+      "f1_score": 0.41805144059427196,
+      "roc_auc": 0.6399942265975742,
+      "pr_auc": 0.352038564141387,
+      "brier_score": 0.2327028092608247,
+      "confusion_matrix": [
+        [
+          47498,
+          30390
+        ],
+        [
+          10269,
+          14604
+        ]
+      ]
+    },
+    "Random Forest": {
+      "accuracy": 0.6199433637274842,
+      "precision": 0.34350033105274774,
+      "recall": 0.6257387528645519,
+      "f1_score": 0.443526210050867,
+      "roc_auc": 0.6701498434355484,
+      "pr_auc": 0.39433660335208875,
+      "brier_score": 0.22916141407569954,
+      "confusion_matrix": [
+        [
+          48142,
+          29746
+        ],
+        [
+          9309,
+          15564
+        ]
+      ]
+    }
+  },
+  "risk_tier_calibration": {
+    "Low": {
+      "count": 2933,
+      "pct_of_test_set": 2.8541956578857737,
+      "observed_severe_count": 290,
+      "observed_severe_rate": 0.09887487214456188,
+      "mean_predicted_probability": 0.17785636415673195
+    },
+    "Medium": {
+      "count": 48469,
+      "pct_of_test_set": 47.16672667646286,
+      "observed_severe_count": 8482,
+      "observed_severe_rate": 0.1749984526191999,
+      "mean_predicted_probability": 0.4016189875363079
+    },
+    "High": {
+      "count": 51359,
+      "pct_of_test_set": 49.97907766565137,
+      "observed_severe_count": 16101,
+      "observed_severe_rate": 0.31349909460853986,
+      "mean_predicted_probability": 0.579187556262075
+    }
+  },
+  "temporal_holdout_2025": {
+    "train_years": "2021-2024",
+    "test_year": "2025",
+    "train_samples": 412276,
+    "test_samples": 101525,
+    "roc_auc": 0.6273989389291551,
+    "pr_auc": 0.3806233416216604,
+    "f1_score": 0.42659318137757224,
+    "recall": 0.5781038883050593,
+    "precision": 0.3380074610489357
+  }
+}

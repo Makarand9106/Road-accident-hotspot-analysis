@@ -1,0 +1,5 @@
+code,label,note,table
+1,Yes,,collision
+2,No,,collision
+3,No - accident was reported using a self completion  form (self rep only),,collision
+-1,Data missing or out of range,,collision

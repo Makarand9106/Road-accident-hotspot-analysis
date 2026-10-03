@@ -1,0 +1,8 @@
+day_of_week_iso,day_of_week_name,day_category,total_collisions,severe_collisions,severe_percentage,total_casualties,avg_casualties_per_collision
+1,Monday,Weekday,70677,16692,23.62,89329,1.26
+2,Tuesday,Weekday,74829,17121,22.88,92735,1.24
+3,Wednesday,Weekday,76671,17834,23.26,94970,1.24
+4,Thursday,Weekday,77954,18168,23.31,96550,1.24
+5,Friday,Weekday,85311,20278,23.77,108104,1.27
+6,Saturday,Weekend,70578,18587,26.34,93624,1.33
+7,Sunday,Weekend,57781,15686,27.15,77509,1.34

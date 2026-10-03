@@ -1,0 +1,12 @@
+code,label,note,table
+0,Not at junction or within 20 metres,data collected in the 2011 STATS19 specification (or earlier),collision
+1,Roundabout,data collected in the 2011 STATS19 specification (or earlier),collision
+2,Mini-roundabout,data collected in the 2011 STATS19 specification (or earlier),collision
+3,T or staggered junction,data collected in the 2011 STATS19 specification (or earlier),collision
+5,Slip road,data collected in the 2011 STATS19 specification (or earlier),collision
+6,Crossroads,data collected in the 2011 STATS19 specification (or earlier),collision
+7,More than 4 arms (not roundabout),data collected in the 2011 STATS19 specification (or earlier),collision
+8,Private drive or entrance,data collected in the 2011 STATS19 specification (or earlier),collision
+9,Other junction,data collected in the 2011 STATS19 specification (or earlier),collision
+99,unknown (self reported),data collected in the 2011 STATS19 specification (or earlier),collision
+-1,Data missing or out of range,data collected in the 2011 STATS19 specification (or earlier),collision

@@ -1,0 +1,8 @@
+code,label,note,table
+0,Did not impact,,vehicle
+1,Front,,vehicle
+2,Back,,vehicle
+3,Offside,,vehicle
+4,Nearside,,vehicle
+9,unknown (self reported),,vehicle
+-1,Data missing or out of range,,vehicle

@@ -1,0 +1,33 @@
+code,label,note,table
+0,Pedestrian,,casualty
+1,Cyclist,,casualty
+2,Motorcycle 50cc and under rider or passenger,,casualty
+3,Motorcycle 125cc and under rider or passenger,introduced in 1999 specification,casualty
+4,Motorcycle over 125cc and up to 500cc rider or  passenger,introduced in 2005 specification,casualty
+5,Motorcycle over 500cc rider or passenger,introduced in 2005 specification,casualty
+8,Taxi/Private hire car occupant,introduced in 2005 specification,casualty
+9,Car occupant,introduced in 2005 specification,casualty
+10,Minibus (8 - 16 passenger seats) occupant,introduced in 1999 specification,casualty
+11,Bus or coach occupant (17 or more pass seats),,casualty
+16,Horse rider,introduced in 1999 specification,casualty
+17,Agricultural vehicle occupant,introduced in 1999 specification,casualty
+18,Tram occupant,introduced in 1999 specification,casualty
+19,Van / Goods vehicle (3.5 tonnes mgw or under) occupant,,casualty
+20,Goods vehicle (over 3.5t. and under 7.5t.) occupant,introduced in 1999 specification,casualty
+21,Goods vehicle (7.5 tonnes mgw and over) occupant,introduced in 1999 specification,casualty
+22,Mobility scooter rider,introduced in 2011 specification,casualty
+23,Electric motorcycle rider or passenger,introduced in 2011 specification,casualty
+90,Other vehicle occupant,introduced in 2011 specification,casualty
+97,Motorcycle - unknown cc rider or passenger,introduced in 2011 specification,casualty
+98,Goods vehicle (unknown weight) occupant,introduced in 2011 specification,casualty
+99,Unknown vehicle type (self rep only),introduced in 2011 specification,casualty
+103,Motorcycle - Scooter (1979-1998),dropped in 1999 specification,casualty
+104,Motorcycle (1979-1998),dropped in 1999 specification,casualty
+105,Motorcycle - Combination (1979-1998),dropped in 1999 specification,casualty
+106,Motorcycle over 125cc (1999-2004),dropped in 2005 specification,casualty
+108,Taxi (excluding private hire cars) (1979-2004),dropped in 2005 specification,casualty
+109,Car (including private hire cars) (1979-2004),dropped in 2005 specification,casualty
+110,Minibus/Motor caravan (1979-1998),dropped in 1999 specification,casualty
+113,Goods over 3.5 tonnes (1979-1998),dropped in 1999 specification,casualty
+-1,Data missing or out of range,,casualty
+33,Powered personal transporter,introduced in recent DfT specification,casualty

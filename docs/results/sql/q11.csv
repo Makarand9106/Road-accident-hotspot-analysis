@@ -1,0 +1,16 @@
+police_force_id,police_force_name,location_total_collisions,location_severe_collisions,location_severe_percentage,national_baseline_percentage,excess_severe_percentage_points
+99,Police Scotland,20530,8732,42.53,24.21,18.33
+11,Durham,2969,1089,36.68,24.21,12.47
+60,North Wales,3415,1243,36.40,24.21,12.19
+63,Dyfed-Powys,5075,1819,35.84,24.21,11.64
+14,South Yorkshire,10495,3506,33.41,24.21,9.20
+4,Lancashire,13696,4517,32.98,24.21,8.78
+53,Gloucestershire,4642,1510,32.53,24.21,8.32
+61,Gwent,2847,915,32.14,24.21,7.93
+3,Cumbria,4035,1265,31.35,24.21,7.15
+22,West Mercia,7662,2364,30.85,24.21,6.65
+48,City of London,871,265,30.42,24.21,6.22
+6,Greater Manchester,13846,4153,29.99,24.21,5.79
+36,Norfolk,7616,2213,29.06,24.21,4.85
+13,West Yorkshire,20485,5938,28.99,24.21,4.78
+47,Sussex,16939,4831,28.52,24.21,4.31

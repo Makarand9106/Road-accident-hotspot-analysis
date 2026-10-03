@@ -1,0 +1,14 @@
+code,label,note,table
+1,Petrol,,vehicle
+2,Heavy oil,,vehicle
+3,Electric,,vehicle
+4,Steam,,vehicle
+5,Gas,,vehicle
+6,Petrol/Gas (LPG),,vehicle
+7,Gas/Bi-fuel,,vehicle
+8,Hybrid electric,,vehicle
+9,Gas Diesel,,vehicle
+10,New fuel technology,,vehicle
+11,Fuel cells,,vehicle
+12,Electric diesel,,vehicle
+-1,Undefined,,vehicle

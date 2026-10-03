@@ -1,0 +1,4 @@
+code,label,note,table
+1,Trunk (Roads managed by Highways England),,collision
+2,Non-trunk,,collision
+-1,Data missing or out of range,,collision

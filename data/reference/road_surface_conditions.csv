@@ -1,0 +1,10 @@
+code,label,note,table
+1,Dry,,collision
+2,Wet or damp,,collision
+3,Snow,,collision
+4,Frost or ice,,collision
+5,Flood over 3cm. deep,,collision
+6,Oil or diesel,,collision
+7,Mud,,collision
+-1,Data missing or out of range,,collision
+9,unknown (self reported),,collision

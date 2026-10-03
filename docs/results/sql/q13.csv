@@ -1,0 +1,9 @@
+area_type,light_condition,total_collisions,severe_collisions,severe_percentage,avg_casualties_per_collision
+Rural,Darkness - no lighting,24884,8860,35.61,1.49
+Rural,Darkness - lights unlit,1260,413,32.78,1.44
+Rural,Daylight,122845,35008,28.50,1.41
+Rural,Darkness - lights lit,17013,4593,27.00,1.38
+Urban,Darkness - no lighting,2551,728,28.54,1.28
+Urban,Darkness - lights unlit,2446,667,27.27,1.21
+Urban,Darkness - lights lit,88811,21981,24.75,1.23
+Urban,Daylight,245304,50381,20.54,1.19

@@ -1,0 +1,8 @@
+code,label,note,table
+0,Not a bus or coach passenger,,casualty
+1,Boarding,,casualty
+2,Alighting,,casualty
+3,Standing passenger,,casualty
+4,Seated passenger,,casualty
+9,unknown (self reported),,casualty
+-1,Data missing or out of range,,casualty

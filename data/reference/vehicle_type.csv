@@ -1,0 +1,32 @@
+code,label,note,table
+1,Pedal cycle,,vehicle
+2,Motorcycle 50cc and under,,vehicle
+3,Motorcycle 125cc and under,category introduced in 1999 specification,vehicle
+4,Motorcycle over 125cc and up to 500cc,category introduced in 2005 specification,vehicle
+5,Motorcycle over 500cc,category introduced in 2005 specification,vehicle
+8,Taxi/Private hire car,category introduced in 2005 specification,vehicle
+9,Car,category introduced in 2005 specification,vehicle
+10,Minibus (8 - 16 passenger seats),category introduced in 1999 specification,vehicle
+11,Bus or coach (17 or more pass seats),,vehicle
+16,Ridden horse,category introduced in 1999 specification,vehicle
+17,Agricultural vehicle,category introduced in 1999 specification,vehicle
+18,Tram,category introduced in 1999 specification,vehicle
+19,Van / Goods 3.5 tonnes mgw or under,,vehicle
+20,Goods over 3.5t. and under 7.5t,category introduced in 1999 specification,vehicle
+21,Goods 7.5 tonnes mgw and over,category introduced in 1999 specification,vehicle
+22,Mobility scooter,cateogry introduced in 2011 specification,vehicle
+23,Electric motorcycle,cateogry introduced in 2011 specification,vehicle
+33,Personal powered transporter,cateogry introduced in 2024 specification,vehicle
+90,Other vehicle,cateogry introduced in 2011 specification,vehicle
+97,Motorcycle - unknown cc,cateogry introduced in 2011 specification,vehicle
+98,Goods vehicle - unknown weight,cateogry introduced in 2011 specification,vehicle
+99,Unknown vehicle type (self rep only),cateogry introduced in 2011 specification,vehicle
+103,Motorcycle - Scooter (1979-1998),cateogory discontinued in 1999 specification,vehicle
+104,Motorcycle (1979-1998),cateogory discontinued in 1999 specification,vehicle
+105,Motorcycle - Combination (1979-1998),cateogory discontinued in 1999 specification,vehicle
+106,Motorcycle over 125cc (1999-2004),cateogory discontinued in 2005 specification,vehicle
+108,Taxi (excluding private hire cars) (1979-2004),cateogory discontinued in 2005 specification,vehicle
+109,Car (including private hire cars) (1979-2004),cateogory discontinued in 2005 specification,vehicle
+110,Minibus/Motor caravan (1979-1998),cateogory discontinued in 1999 specification,vehicle
+113,Goods over 3.5 tonnes (1979-1998),cateogory discontinued in 1999 specification,vehicle
+-1,Data missing or out of range,,vehicle

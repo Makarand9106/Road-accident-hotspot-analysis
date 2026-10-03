@@ -1,0 +1,12 @@
+code,label,note,table
+0,Parked,both vehicle_direction_from and vehicle_direction_to should be 0,vehicle
+1,North,,vehicle
+2,North East,,vehicle
+3,East,,vehicle
+4,South East,,vehicle
+5,South,,vehicle
+6,South West,,vehicle
+7,West,,vehicle
+8,North West,,vehicle
+9,unknown (self reported),both vehicle_direction_from and vehicle_direction_to should be 9,vehicle
+-1,Data missing or out of range,,vehicle

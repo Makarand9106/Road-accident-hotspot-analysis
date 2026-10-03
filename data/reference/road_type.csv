@@ -1,0 +1,9 @@
+code,label,note,table
+1,Roundabout,,collision
+2,One way street,,collision
+3,Dual carriageway,,collision
+6,Single carriageway,,collision
+7,Slip road,,collision
+9,Unknown,,collision
+12,One way street/Slip road,,collision
+-1,Data missing or out of range,,collision

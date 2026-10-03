@@ -1,0 +1,11 @@
+code,label,note,table
+0,No physical crossing facility within 50m,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+11,Human crossing control by school crossing patrol,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+12,Human crossing control by other authorised person,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+13,Zebra crossing,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+14,Pedestrian light crossing (pelican or puffin or toucan or similar),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+15,Pedestrian phase at traffic signal,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+16,Footbridge or subway,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+17,Central refuge - no other controls,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+99,unknown (self reported),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+-1,Data missing or out of range,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision

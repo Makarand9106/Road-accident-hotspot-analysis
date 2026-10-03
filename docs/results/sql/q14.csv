@@ -1,0 +1,5 @@
+district_id,district_name,police_force_name,district_total_accidents,district_fatal_accidents,district_fatal_pct,parent_police_force_fatal_pct
+476,Aylesbury Vale,Thames Valley,14,1,7.14,1.61
+240,Hartlepool,Cleveland,25,1,4.00,1.66
+243,Middlesbrough,Cleveland,27,1,3.70,1.66
+241,Redcar and Cleveland,Cleveland,32,1,3.13,1.66

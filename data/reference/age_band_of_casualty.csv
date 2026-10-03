@@ -1,0 +1,13 @@
+code,label,note,table
+1,0 - 5,,casualty
+2,6 - 10,,casualty
+3,11 - 15,,casualty
+4,16 - 20,,casualty
+5,21 - 25,,casualty
+6,26 - 35,,casualty
+7,36 - 45,,casualty
+8,46 - 55,,casualty
+9,56 - 65,,casualty
+10,66 - 75,,casualty
+11,Over 75,,casualty
+-1,Data missing or out of range,,casualty

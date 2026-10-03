@@ -1,0 +1,53 @@
+code,label,note,table
+1,Metropolitan Police,,collision
+3,Cumbria,,collision
+4,Lancashire,,collision
+5,Merseyside,,collision
+6,Greater Manchester,,collision
+7,Cheshire,,collision
+10,Northumbria,,collision
+11,Durham,,collision
+12,North Yorkshire,,collision
+13,West Yorkshire,,collision
+14,South Yorkshire,,collision
+16,Humberside,,collision
+17,Cleveland,,collision
+20,West Midlands,,collision
+21,Staffordshire,,collision
+22,West Mercia,,collision
+23,Warwickshire,,collision
+30,Derbyshire,,collision
+31,Nottinghamshire,,collision
+32,Lincolnshire,,collision
+33,Leicestershire,,collision
+34,Northamptonshire,,collision
+35,Cambridgeshire,,collision
+36,Norfolk,,collision
+37,Suffolk,,collision
+40,Bedfordshire,,collision
+41,Hertfordshire,,collision
+42,Essex,,collision
+43,Thames Valley,,collision
+44,Hampshire,,collision
+45,Surrey,,collision
+46,Kent,,collision
+47,Sussex,,collision
+48,City of London,,collision
+50,Devon and Cornwall,,collision
+52,Avon and Somerset,,collision
+53,Gloucestershire,,collision
+54,Wiltshire,,collision
+55,Dorset,,collision
+60,North Wales,,collision
+61,Gwent,,collision
+62,South Wales,,collision
+63,Dyfed-Powys,,collision
+91,Northern,category discontinued in 2019,collision
+92,Grampian,category discontinued in 2019,collision
+93,Tayside,category discontinued in 2019,collision
+94,Fife,category discontinued in 2019,collision
+95,Lothian and Borders,category discontinued in 2019,collision
+96,Central,category discontinued in 2019,collision
+97,Strathclyde,category discontinued in 2019,collision
+98,Dumfries and Galloway,category discontinued in 2019,collision
+99,Police Scotland,category introduced in 2019,collision

@@ -1,0 +1,82 @@
+{
+  "timestamp": "2026-10-03T17:41:33Z",
+  "years": {
+    "years_present": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "collision_years": {
+      "2021": 101087,
+      "2022": 106004,
+      "2023": 104258,
+      "2024": 100927,
+      "2025": 101525
+    },
+    "casualty_years": {
+      "2021": 128209,
+      "2022": 135480,
+      "2023": 132977,
+      "2024": 128272,
+      "2025": 127883
+    },
+    "vehicle_years": {
+      "2021": 186443,
+      "2022": 193545,
+      "2023": 189815,
+      "2024": 183514,
+      "2025": 183948
+    },
+    "totals": {
+      "collisions": 513801,
+      "casualties": 652821,
+      "vehicles": 937265
+    }
+  },
+  "primary_keys_and_integrity": {
+    "primary_key": "collision_index",
+    "total_collisions": 513801,
+    "unique_pks": 513801,
+    "duplicate_pks": 0,
+    "orphan_casualty_rows": 0,
+    "orphan_vehicle_rows": 0
+  },
+  "geospatial": {
+    "lat_missing": 53,
+    "lon_missing": 53,
+    "lat_min": 49.91221,
+    "lat_max": 60.500008,
+    "lon_min": -7.486852,
+    "lon_max": 1.759829,
+    "out_of_bounds_count": 0,
+    "valid_spatial_count": 513748
+  },
+  "temporal": {
+    "min_date": "2021-01-01",
+    "max_date": "2025-12-31",
+    "date_missing": 0,
+    "time_missing": 0,
+    "time_invalid": 0
+  },
+  "severity": {
+    "severity_counts": {
+      "1": 7553,
+      "2": 116813,
+      "3": 389435
+    },
+    "is_severe_positive": 124366,
+    "is_severe_positive_pct": 24.21,
+    "is_severe_negative": 389435,
+    "is_severe_negative_pct": 75.79
+  },
+  "unmapped_codes": {},
+  "suitability": {
+    "go_or_no_go": "GO",
+    "volume_assessment": "513,801 collisions, 652,821 casualties, 937,265 vehicles over 5 full years.",
+    "spatial_quality": "513,748 rows (99.99%) with valid British National Grid and WGS84 coordinates.",
+    "target_balance": "24.21% severe vs 75.79% slight (ideal for binary logistic regression).",
+    "relational_quality": "100% foreign key integrity; 0 orphan casualty rows and 0 orphan vehicle rows."
+  }
+}

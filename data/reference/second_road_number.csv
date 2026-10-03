@@ -1,0 +1,4 @@
+code,label,note,table
+1 to 9999,Number range,,collision
+-1,Unknown,,collision
+0,first_road_class is C or Unclassified. These roads do not have official numbers so recorded as zero,,collision

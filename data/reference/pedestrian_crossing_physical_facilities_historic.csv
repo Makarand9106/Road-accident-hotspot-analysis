@@ -1,0 +1,9 @@
+code,label,note,table
+0,No physical crossing facilities within 50 metres,data collected in the 2011 STATS19 specification (or earlier),collision
+1,Zebra,data collected in the 2011 STATS19 specification (or earlier),collision
+4,"Pelican, puffin, toucan or similar non-junction pedestrian light crossing",data collected in the 2011 STATS19 specification (or earlier),collision
+5,Pedestrian phase at traffic signal junction,data collected in the 2011 STATS19 specification (or earlier),collision
+7,Footbridge or subway,data collected in the 2011 STATS19 specification (or earlier),collision
+8,Central refuge,data collected in the 2011 STATS19 specification (or earlier),collision
+-1,Data missing or out of range,data collected in the 2011 STATS19 specification (or earlier),collision
+9,unknown (self reported),data collected in the 2011 STATS19 specification (or earlier),collision

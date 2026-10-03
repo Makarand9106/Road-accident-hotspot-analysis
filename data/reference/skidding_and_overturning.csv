@@ -1,0 +1,9 @@
+code,label,note,table
+0,None,,vehicle
+1,Skidded,,vehicle
+2,Skidded and overturned,,vehicle
+3,Jackknifed,,vehicle
+4,Jackknifed and overturned,,vehicle
+5,Overturned,,vehicle
+9,unknown (self reported),,vehicle
+-1,Data missing or out of range,,vehicle

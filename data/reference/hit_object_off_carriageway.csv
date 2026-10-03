@@ -1,0 +1,15 @@
+code,label,note,table
+0,None,,vehicle
+1,Road sign or traffic signal,,vehicle
+2,Lamp post,,vehicle
+3,Telegraph or electricity pole,,vehicle
+4,Tree,,vehicle
+5,Bus stop or bus shelter,,vehicle
+6,Central crash barrier,,vehicle
+7,Near/Offside crash barrier,,vehicle
+8,Submerged in water,,vehicle
+9,Entered ditch,,vehicle
+10,Other permanent object,,vehicle
+11,Wall or fence,,vehicle
+99,unknown (self reported),,vehicle
+-1,Data missing or out of range,,vehicle

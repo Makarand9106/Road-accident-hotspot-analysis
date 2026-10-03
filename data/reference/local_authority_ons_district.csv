@@ -1,0 +1,423 @@
+code,label,note,table
+E06000001,Hartlepool,,collision
+E06000002,Middlesbrough,,collision
+E06000003,Redcar and Cleveland,,collision
+E06000004,Stockton-on-Tees,,collision
+E06000005,Darlington,,collision
+E06000006,Halton,,collision
+E06000007,Warrington,,collision
+E06000008,Blackburn with Darwen,,collision
+E06000009,Blackpool,,collision
+E06000010,"Kingston upon Hull, City of",,collision
+E06000011,East Riding of Yorkshire,,collision
+E06000012,North East Lincolnshire,,collision
+E06000013,North Lincolnshire,,collision
+E06000014,York,,collision
+E06000015,Derby,,collision
+E06000016,Leicester,,collision
+E06000017,Rutland,,collision
+E06000018,Nottingham,,collision
+E06000019,"Herefordshire, County of",,collision
+E06000020,Telford and Wrekin,,collision
+E06000021,Stoke-on-Trent,,collision
+E06000022,Bath and North East Somerset,,collision
+E06000023,"Bristol, City of",,collision
+E06000024,North Somerset,,collision
+E06000025,South Gloucestershire,,collision
+E06000026,Plymouth,,collision
+E06000027,Torbay,,collision
+E06000028,Bournemouth,,collision
+E06000029,Poole,,collision
+E06000030,Swindon,,collision
+E06000031,Peterborough,,collision
+E06000032,Luton,,collision
+E06000033,Southend-on-Sea,,collision
+E06000034,Thurrock,,collision
+E06000035,Medway,,collision
+E06000036,Bracknell Forest,,collision
+E06000037,West Berkshire,,collision
+E06000038,Reading,,collision
+E06000039,Slough,,collision
+E06000040,Windsor and Maidenhead,,collision
+E06000041,Wokingham,,collision
+E06000042,Milton Keynes,,collision
+E06000043,Brighton and Hove,,collision
+E06000044,Portsmouth,,collision
+E06000045,Southampton,,collision
+E06000046,Isle of Wight,,collision
+E06000047,County Durham,,collision
+E06000048,Northumberland,,collision
+E06000049,Cheshire East,,collision
+E06000050,Cheshire West and Chester,,collision
+E06000051,Shropshire,,collision
+E06000052,Cornwall,,collision
+E06000053,Isles of Scilly,,collision
+E06000054,Wiltshire,,collision
+E06000055,Bedford,,collision
+E06000056,Central Bedfordshire,,collision
+E06000057,Northumberland,,collision
+E06000058,"Bournemouth, Christchurch and Poole",,collision
+E06000059,Dorset (excluding Christchurch),,collision
+E06000060,Buckinghamshire,,collision
+E06000061,North Northamptonshire,,collision
+E06000062,West Northamptonshire,,collision
+E06000063,Cumberland,,collision
+E06000064,Westmorland and Furness,,collision
+E06000065,North Yorkshire,,collision
+E06000066,Somerset,,collision
+E07000001,Mid Bedfordshire,,collision
+E07000002,Bedford,,collision
+E07000003,South Bedfordshire,,collision
+E07000004,Aylesbury Vale,,collision
+E07000005,Chiltern,,collision
+E07000006,South Bucks,,collision
+E07000007,Wycombe,,collision
+E07000008,Cambridge,,collision
+E07000009,East Cambridgeshire,,collision
+E07000010,Fenland,,collision
+E07000011,Huntingdonshire,,collision
+E07000012,South Cambridgeshire,,collision
+E07000019,Caradon,,collision
+E07000020,Carrick,,collision
+E07000021,Kerrier,,collision
+E07000022,North Cornwall,,collision
+E07000023,Penwith,,collision
+E07000024,Restormel,,collision
+E07000026,Allerdale,,collision
+E07000027,Barrow-in-Furness,,collision
+E07000028,Carlisle,,collision
+E07000029,Copeland,,collision
+E07000030,Eden,,collision
+E07000031,South Lakeland,,collision
+E07000032,Amber Valley,,collision
+E07000033,Bolsover,,collision
+E07000034,Chesterfield,,collision
+E07000035,Derbyshire Dales,,collision
+E07000036,Erewash,,collision
+E07000037,High Peak,,collision
+E07000038,North East Derbyshire,,collision
+E07000039,South Derbyshire,,collision
+E07000040,East Devon,,collision
+E07000041,Exeter,,collision
+E07000042,Mid Devon,,collision
+E07000043,North Devon,,collision
+E07000044,South Hams,,collision
+E07000045,Teignbridge,,collision
+E07000046,Torridge,,collision
+E07000047,West Devon,,collision
+E07000048,Christchurch,,collision
+E07000049,East Dorset,,collision
+E07000050,North Dorset,,collision
+E07000051,Purbeck,,collision
+E07000052,West Dorset,,collision
+E07000053,Weymouth and Portland,,collision
+E07000054,Chester-le-Street,,collision
+E07000055,Derwentside,,collision
+E07000056,Durham,,collision
+E07000057,Easington,,collision
+E07000058,Sedgefield,,collision
+E07000059,Teesdale,,collision
+E07000060,Wear Valley,,collision
+E07000061,Eastbourne,,collision
+E07000062,Hastings,,collision
+E07000063,Lewes,,collision
+E07000064,Rother,,collision
+E07000065,Wealden,,collision
+E07000066,Basildon,,collision
+E07000067,Braintree,,collision
+E07000068,Brentwood,,collision
+E07000069,Castle Point,,collision
+E07000070,Chelmsford,,collision
+E07000071,Colchester,,collision
+E07000072,Epping Forest,,collision
+E07000073,Harlow,,collision
+E07000074,Maldon,,collision
+E07000075,Rochford,,collision
+E07000076,Tendring,,collision
+E07000077,Uttlesford,,collision
+E07000078,Cheltenham,,collision
+E07000079,Cotswold,,collision
+E07000080,Forest of Dean,,collision
+E07000081,Gloucester,,collision
+E07000082,Stroud,,collision
+E07000083,Tewkesbury,,collision
+E07000084,Basingstoke and Deane,,collision
+E07000085,East Hampshire,,collision
+E07000086,Eastleigh,,collision
+E07000087,Fareham,,collision
+E07000088,Gosport,,collision
+E07000089,Hart,,collision
+E07000090,Havant,,collision
+E07000091,New Forest,,collision
+E07000092,Rushmoor,,collision
+E07000093,Test Valley,,collision
+E07000094,Winchester,,collision
+E07000095,Broxbourne,,collision
+E07000096,Dacorum,,collision
+E07000097,East Hertfordshire,,collision
+E07000098,Hertsmere,,collision
+E07000099,North Hertfordshire,,collision
+E07000100,St Albans,,collision
+E07000101,Stevenage,,collision
+E07000102,Three Rivers,,collision
+E07000103,Watford,,collision
+E07000104,Welwyn Hatfield,,collision
+E07000105,Ashford,,collision
+E07000106,Canterbury,,collision
+E07000107,Dartford,,collision
+E07000108,Dover,,collision
+E07000109,Gravesham,,collision
+E07000110,Maidstone,,collision
+E07000111,Sevenoaks,,collision
+E07000112,Shepway,,collision
+E07000113,Swale,,collision
+E07000114,Thanet,,collision
+E07000115,Tonbridge and Malling,,collision
+E07000116,Tunbridge Wells,,collision
+E07000117,Burnley,,collision
+E07000118,Chorley,,collision
+E07000119,Fylde,,collision
+E07000120,Hyndburn,,collision
+E07000121,Lancaster,,collision
+E07000122,Pendle,,collision
+E07000123,Preston,,collision
+E07000124,Ribble Valley,,collision
+E07000125,Rossendale,,collision
+E07000126,South Ribble,,collision
+E07000127,West Lancashire,,collision
+E07000128,Wyre,,collision
+E07000129,Blaby,,collision
+E07000130,Charnwood,,collision
+E07000131,Harborough,,collision
+E07000132,Hinckley and Bosworth,,collision
+E07000133,Melton,,collision
+E07000134,North West Leicestershire,,collision
+E07000135,Oadby and Wigston,,collision
+E07000136,Boston,,collision
+E07000137,East Lindsey,,collision
+E07000138,Lincoln,,collision
+E07000139,North Kesteven,,collision
+E07000140,South Holland,,collision
+E07000141,South Kesteven,,collision
+E07000142,West Lindsey,,collision
+E07000143,Breckland,,collision
+E07000144,Broadland,,collision
+E07000145,Great Yarmouth,,collision
+E07000146,King's Lynn and West Norfolk,,collision
+E07000147,North Norfolk,,collision
+E07000148,Norwich,,collision
+E07000149,South Norfolk,,collision
+E07000150,Corby,,collision
+E07000151,Daventry,,collision
+E07000152,East Northamptonshire,,collision
+E07000153,Kettering,,collision
+E07000154,Northampton,,collision
+E07000155,South Northamptonshire,,collision
+E07000156,Wellingborough,,collision
+E07000163,Craven,,collision
+E07000164,Hambleton,,collision
+E07000165,Harrogate,,collision
+E07000166,Richmondshire,,collision
+E07000167,Ryedale,,collision
+E07000168,Scarborough,,collision
+E07000169,Selby,,collision
+E07000170,Ashfield,,collision
+E07000171,Bassetlaw,,collision
+E07000172,Broxtowe,,collision
+E07000173,Gedling,,collision
+E07000174,Mansfield,,collision
+E07000175,Newark and Sherwood,,collision
+E07000176,Rushcliffe,,collision
+E07000177,Cherwell,,collision
+E07000178,Oxford,,collision
+E07000179,South Oxfordshire,,collision
+E07000180,Vale of White Horse,,collision
+E07000181,West Oxfordshire,,collision
+E07000187,Mendip,,collision
+E07000188,Sedgemoor,,collision
+E07000189,South Somerset,,collision
+E07000190,Taunton Deane,,collision
+E07000191,West Somerset,,collision
+E07000192,Cannock Chase,,collision
+E07000193,East Staffordshire,,collision
+E07000194,Lichfield,,collision
+E07000195,Newcastle-under-Lyme,,collision
+E07000196,South Staffordshire,,collision
+E07000197,Stafford,,collision
+E07000198,Staffordshire Moorlands,,collision
+E07000199,Tamworth,,collision
+E07000200,Babergh,,collision
+E07000201,Forest Heath,,collision
+E07000202,Ipswich,,collision
+E07000203,Mid Suffolk,,collision
+E07000204,St Edmundsbury,,collision
+E07000205,Suffolk Coastal,,collision
+E07000206,Waveney,,collision
+E07000207,Elmbridge,,collision
+E07000208,Epsom and Ewell,,collision
+E07000209,Guildford,,collision
+E07000210,Mole Valley,,collision
+E07000211,Reigate and Banstead,,collision
+E07000212,Runnymede,,collision
+E07000213,Spelthorne,,collision
+E07000214,Surrey Heath,,collision
+E07000215,Tandridge,,collision
+E07000216,Waverley,,collision
+E07000217,Woking,,collision
+E07000218,North Warwickshire,,collision
+E07000219,Nuneaton and Bedworth,,collision
+E07000220,Rugby,,collision
+E07000221,Stratford-on-Avon,,collision
+E07000222,Warwick,,collision
+E07000223,Adur,,collision
+E07000224,Arun,,collision
+E07000225,Chichester,,collision
+E07000226,Crawley,,collision
+E07000227,Horsham,,collision
+E07000228,Mid Sussex,,collision
+E07000229,Worthing,,collision
+E07000234,Bromsgrove,,collision
+E07000235,Malvern Hills,,collision
+E07000236,Redditch,,collision
+E07000237,Worcester,,collision
+E07000238,Wychavon,,collision
+E07000239,Wyre Forest,,collision
+E07000240,St Albans,,collision
+E07000241,Welwyn Hatfield,,collision
+E07000242,East Hertfordshire,,collision
+E07000243,Stevenage,,collision
+E07000244,East Suffolk,,collision
+E07000245,West Suffolk,,collision
+E08000001,Bolton,,collision
+E08000002,Bury,,collision
+E08000003,Manchester,,collision
+E08000004,Oldham,,collision
+E08000005,Rochdale,,collision
+E08000006,Salford,,collision
+E08000007,Stockport,,collision
+E08000008,Tameside,,collision
+E08000009,Trafford,,collision
+E08000010,Wigan,,collision
+E08000011,Knowsley,,collision
+E08000012,Liverpool,,collision
+E08000013,St. Helens,,collision
+E08000014,Sefton,,collision
+E08000015,Wirral,,collision
+E08000016,Barnsley,,collision
+E08000017,Doncaster,,collision
+E08000018,Rotherham,,collision
+E08000019,Sheffield,,collision
+E08000020,Gateshead,,collision
+E08000021,Newcastle upon Tyne,,collision
+E08000022,North Tyneside,,collision
+E08000023,South Tyneside,,collision
+E08000024,Sunderland,,collision
+E08000025,Birmingham,,collision
+E08000026,Coventry,,collision
+E08000027,Dudley,,collision
+E08000028,Sandwell,,collision
+E08000029,Solihull,,collision
+E08000030,Walsall,,collision
+E08000031,Wolverhampton,,collision
+E08000032,Bradford,,collision
+E08000033,Calderdale,,collision
+E08000034,Kirklees,,collision
+E08000035,Leeds,,collision
+E08000037,Gateshead,,collision
+E08000036,Wakefield,,collision
+E09000001,City of London,,collision
+E09000002,Barking and Dagenham,,collision
+E09000003,Barnet,,collision
+E09000004,Bexley,,collision
+E09000005,Brent,,collision
+E09000006,Bromley,,collision
+E09000007,Camden,,collision
+E09000008,Croydon,,collision
+E09000009,Ealing,,collision
+E09000010,Enfield,,collision
+E09000011,Greenwich,,collision
+E09000012,Hackney,,collision
+E09000013,Hammersmith and Fulham,,collision
+E09000014,Haringey,,collision
+E09000015,Harrow,,collision
+E09000016,Havering,,collision
+E09000017,Hillingdon,,collision
+E09000018,Hounslow,,collision
+E09000019,Islington,,collision
+E09000020,Kensington and Chelsea,,collision
+E09000021,Kingston upon Thames,,collision
+E09000022,Lambeth,,collision
+E09000023,Lewisham,,collision
+E09000024,Merton,,collision
+E09000025,Newham,,collision
+E09000026,Redbridge,,collision
+E09000027,Richmond upon Thames,,collision
+E09000028,Southwark,,collision
+E09000029,Sutton,,collision
+E09000030,Tower Hamlets,,collision
+E09000031,Waltham Forest,,collision
+E09000032,Wandsworth,,collision
+E09000033,Westminster,,collision
+E10000004,Cheshire,,collision
+EHEATHROW,London Airport (Heathrow),,collision
+S12000005,Clackmannanshire,,collision
+S12000006,Dumfries and Galloway,,collision
+S12000008,East Ayrshire,,collision
+S12000009,East Dunbartonshire,,collision
+S12000010,East Lothian,,collision
+S12000011,East Renfrewshire,,collision
+S12000013,Comhairle nan Eilean Siar,,collision
+S12000014,Falkirk,,collision
+S12000015,Fife,,collision
+S12000017,Highland,,collision
+S12000018,Inverclyde,,collision
+S12000019,Midlothian,,collision
+S12000020,Moray,,collision
+S12000021,North Ayrshire,,collision
+S12000023,Orkney Islands,,collision
+S12000024,Perth and Kinross,,collision
+S12000026,Scottish Borders,,collision
+S12000027,Shetland Islands,,collision
+S12000028,South Ayrshire,,collision
+S12000029,South Lanarkshire,,collision
+S12000030,Stirling,,collision
+S12000033,Aberdeen City,,collision
+S12000034,Aberdeenshire,,collision
+S12000035,Argyll and Bute,,collision
+S12000036,City of Edinburgh,,collision
+S12000038,Renfrewshire,,collision
+S12000039,West Dunbartonshire,,collision
+S12000040,West Lothian,,collision
+S12000041,Angus,,collision
+S12000042,Dundee City,,collision
+S12000043,Glasgow City,,collision
+S12000044,North Lanarkshire,,collision
+S12000045,East Dunbartonshire,,collision
+S12000046,Glasgow City,,collision
+S12000047,Fife,,collision
+S12000048,Perth and Kinross,,collision
+S12000049,Glasgow City,,collision
+S12000050,North Lanarkshire,,collision
+W06000001,Isle of Anglesey,,collision
+W06000002,Gwynedd,,collision
+W06000003,Conwy,,collision
+W06000004,Denbighshire,,collision
+W06000005,Flintshire,,collision
+W06000006,Wrexham,,collision
+W06000008,Ceredigion,,collision
+W06000009,Pembrokeshire,,collision
+W06000010,Carmarthenshire,,collision
+W06000011,Swansea,,collision
+W06000012,Neath Port Talbot,,collision
+W06000013,Bridgend,,collision
+W06000014,Vale of Glamorgan,,collision
+W06000015,Cardiff,,collision
+W06000016,Rhondda Cynon Taf,,collision
+W06000018,Caerphilly,,collision
+W06000019,Blaenau Gwent,,collision
+W06000020,Torfaen,,collision
+W06000021,Monmouthshire,,collision
+W06000022,Newport,,collision
+W06000023,Powys,,collision
+W06000024,Merthyr Tydfil,,collision
+-1,Record predates use of local_authority_ons_district,,collision

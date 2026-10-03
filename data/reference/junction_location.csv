@@ -1,0 +1,12 @@
+code,label,note,table
+0,Not at or within 20 metres of junction,,vehicle
+1,Approaching junction or waiting/parked at junction approach,,vehicle
+2,Cleared junction or waiting/parked at junction exit,,vehicle
+3,Leaving roundabout,,vehicle
+4,Entering roundabout,,vehicle
+5,Leaving main road,,vehicle
+6,Entering main road,,vehicle
+7,Entering from slip road,,vehicle
+8,Mid Junction - on roundabout or on main road,,vehicle
+9,unknown (self reported),,vehicle
+-1,Data missing or out of range,,vehicle

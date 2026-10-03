@@ -1,0 +1,3 @@
+spatial_zone,total_collisions,pct_of_national_collisions,severe_collisions,pct_of_national_severe,zone_severe_percentage,fatal_collisions,serious_collisions,avg_casualties_per_collision
+Outside Hotspot (Dispersed),449922,87.57,113538,91.29,25.24,7311,106227,1.288
+Inside DBSCAN Hotspot,63879,12.43,10828,8.71,16.95,242,10586,1.145

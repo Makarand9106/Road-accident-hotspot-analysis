@@ -1,0 +1,12 @@
+code,label,note,table
+0,Not a Pedestrian,,casualty
+1,Crossing from driver's nearside,,casualty
+2,Crossing from nearside - masked by parked or stationary vehicle,,casualty
+3,Crossing from driver's offside,,casualty
+4,Crossing from offside - masked by  parked or stationary vehicle,,casualty
+5,"In carriageway, stationary - not crossing  (standing or playing)",,casualty
+6,"In carriageway, stationary - not crossing  (standing or playing) - masked by parked or stationary vehicle",,casualty
+7,"Walking along in carriageway, facing traffic",,casualty
+8,"Walking along in carriageway, back to traffic",,casualty
+9,Unknown or other,,casualty
+-1,Data missing or out of range,,casualty

@@ -1,0 +1,430 @@
+{
+  "metadata": {
+    "model_name": "Logistic Regression Severity Risk Predictor",
+    "model_version": "1.0.0",
+    "framework": "scikit-learn Pipeline (exported for Node.js in-memory scoring)",
+    "created_at": "2026-10-03T19:02:28Z",
+    "target": "is_severe",
+    "target_classes": {
+      "0": "Slight",
+      "1": "Severe (Fatal or Serious)"
+    }
+  },
+  "formula": {
+    "description": "Probability p = 1 / (1 + exp(-(intercept + sum(w_i * x_i))))",
+    "intercept": -0.2914445453586808,
+    "ordered_features": [
+      "time_period_Daytime",
+      "time_period_Evening",
+      "time_period_Evening Peak",
+      "time_period_Morning Peak",
+      "time_period_Night",
+      "day_of_week_name_Friday",
+      "day_of_week_name_Monday",
+      "day_of_week_name_Saturday",
+      "day_of_week_name_Sunday",
+      "day_of_week_name_Thursday",
+      "day_of_week_name_Tuesday",
+      "day_of_week_name_Wednesday",
+      "weather_condition_name_Fine + high winds",
+      "weather_condition_name_Fine no high winds",
+      "weather_condition_name_Fog or mist",
+      "weather_condition_name_Other",
+      "weather_condition_name_Raining + high winds",
+      "weather_condition_name_Raining no high winds",
+      "weather_condition_name_Snowing + high winds",
+      "weather_condition_name_Snowing no high winds",
+      "weather_condition_name_Unknown",
+      "road_surface_condition_name_Dry",
+      "road_surface_condition_name_Flood over 3cm. deep",
+      "road_surface_condition_name_Frost or ice",
+      "road_surface_condition_name_Snow",
+      "road_surface_condition_name_Unknown",
+      "road_surface_condition_name_Wet or damp",
+      "light_condition_name_Darkness - lights lit",
+      "light_condition_name_Darkness - lights unlit",
+      "light_condition_name_Darkness - no lighting",
+      "light_condition_name_Daylight",
+      "light_condition_name_Unknown",
+      "road_type_name_Dual carriageway",
+      "road_type_name_One way street",
+      "road_type_name_Roundabout",
+      "road_type_name_Single carriageway",
+      "road_type_name_Slip road",
+      "road_type_name_Unknown",
+      "road_class_name_A",
+      "road_class_name_A(M)",
+      "road_class_name_B",
+      "road_class_name_C",
+      "road_class_name_Motorway",
+      "road_class_name_Unclassified",
+      "road_class_name_Unknown",
+      "junction_detail_name_Crossroads",
+      "junction_detail_name_Junction with more than four arms (not roundabout)",
+      "junction_detail_name_Not at junction or within 20 metres",
+      "junction_detail_name_Other junction",
+      "junction_detail_name_T or staggered junction",
+      "junction_detail_name_Unknown",
+      "junction_detail_name_Using private drive or entrance",
+      "junction_control_name_Authorised person",
+      "junction_control_name_Auto traffic signal",
+      "junction_control_name_Give way or uncontrolled",
+      "junction_control_name_Stop sign",
+      "junction_control_name_Unknown",
+      "urban_rural_name_Rural",
+      "urban_rural_name_Unknown",
+      "urban_rural_name_Urban",
+      "hour",
+      "month",
+      "speed_limit",
+      "number_of_vehicles",
+      "is_weekend",
+      "involves_motorcycle",
+      "involves_hgv",
+      "involves_cyclist"
+    ],
+    "weights": {
+      "time_period_Daytime": -0.07710129844846306,
+      "time_period_Evening": -0.00014709376166919863,
+      "time_period_Evening Peak": -0.11410628342544392,
+      "time_period_Morning Peak": -0.216350487196999,
+      "time_period_Night": 0.11689320862027193,
+      "day_of_week_name_Friday": -0.05251438413351807,
+      "day_of_week_name_Monday": -0.043903755630551634,
+      "day_of_week_name_Saturday": 0.015008542066390485,
+      "day_of_week_name_Sunday": 0.02008592911766672,
+      "day_of_week_name_Thursday": -0.06687908703932445,
+      "day_of_week_name_Tuesday": -0.09442677955084218,
+      "day_of_week_name_Wednesday": -0.06818241904220308,
+      "weather_condition_name_Fine + high winds": 0.19917940698046738,
+      "weather_condition_name_Fine no high winds": 0.05605309734354202,
+      "weather_condition_name_Fog or mist": -0.016715245904671484,
+      "weather_condition_name_Other": -0.1363265172976093,
+      "weather_condition_name_Raining + high winds": 0.03250146658031056,
+      "weather_condition_name_Raining no high winds": -0.03483422735750606,
+      "weather_condition_name_Snowing + high winds": -0.026314271319553276,
+      "weather_condition_name_Snowing no high winds": 0.025604360708359766,
+      "weather_condition_name_Unknown": -0.38996002394555623,
+      "road_surface_condition_name_Dry": 0.13940971687780193,
+      "road_surface_condition_name_Flood over 3cm. deep": -0.019472150331473915,
+      "road_surface_condition_name_Frost or ice": -0.0816594500579284,
+      "road_surface_condition_name_Snow": 0.022355676500363287,
+      "road_surface_condition_name_Unknown": -0.5450933641196727,
+      "road_surface_condition_name_Wet or damp": 0.1936476169185515,
+      "light_condition_name_Darkness - lights lit": -0.01123347716736189,
+      "light_condition_name_Darkness - lights unlit": 0.09943634965283331,
+      "light_condition_name_Darkness - no lighting": -0.0067577737818113595,
+      "light_condition_name_Daylight": -0.15785433224657172,
+      "light_condition_name_Unknown": -0.21440272066916366,
+      "road_type_name_Dual carriageway": 0.11128555552201273,
+      "road_type_name_One way street": -0.00967708875968218,
+      "road_type_name_Roundabout": -0.035596006670695575,
+      "road_type_name_Single carriageway": 0.32783691889995775,
+      "road_type_name_Slip road": -0.07864879811402542,
+      "road_type_name_Unknown": -0.606012535089523,
+      "road_class_name_A": 0.0244699091125758,
+      "road_class_name_A(M)": 0.009392213906974768,
+      "road_class_name_B": 0.09811081222357347,
+      "road_class_name_C": -0.19093095415586286,
+      "road_class_name_Motorway": -0.2763343778891558,
+      "road_class_name_Unclassified": 0.04700441507699387,
+      "road_class_name_Unknown": -0.0025239724874962332,
+      "junction_detail_name_Crossroads": 0.08507016436121807,
+      "junction_detail_name_Junction with more than four arms (not roundabout)": 0.10900043866133922,
+      "junction_detail_name_Not at junction or within 20 metres": -0.0725469710955387,
+      "junction_detail_name_Other junction": 0.07845738139791211,
+      "junction_detail_name_T or staggered junction": 0.004904183674433403,
+      "junction_detail_name_Unknown": -0.4596186756239584,
+      "junction_detail_name_Using private drive or entrance": -0.036078475587486246,
+      "junction_control_name_Authorised person": -0.13364213085210452,
+      "junction_control_name_Auto traffic signal": -0.16582994028996778,
+      "junction_control_name_Give way or uncontrolled": -0.02318349215161755,
+      "junction_control_name_Stop sign": -0.10560362665414008,
+      "junction_control_name_Unknown": 0.13744723573584314,
+      "urban_rural_name_Rural": -0.07016989074200346,
+      "urban_rural_name_Unknown": 0.01038893300748462,
+      "urban_rural_name_Urban": -0.2310309964775284,
+      "hour": -0.011812880896346632,
+      "month": 0.012733104790701789,
+      "speed_limit": 0.1921528504418863,
+      "number_of_vehicles": -0.197798453280935,
+      "is_weekend": 0.03509447118401338,
+      "involves_motorcycle": 0.767969936535061,
+      "involves_hgv": 0.251642538607305,
+      "involves_cyclist": 0.5094593421727449
+    },
+    "weights_array": [
+      -0.07710129844846306,
+      -0.00014709376166919863,
+      -0.11410628342544392,
+      -0.216350487196999,
+      0.11689320862027193,
+      -0.05251438413351807,
+      -0.043903755630551634,
+      0.015008542066390485,
+      0.02008592911766672,
+      -0.06687908703932445,
+      -0.09442677955084218,
+      -0.06818241904220308,
+      0.19917940698046738,
+      0.05605309734354202,
+      -0.016715245904671484,
+      -0.1363265172976093,
+      0.03250146658031056,
+      -0.03483422735750606,
+      -0.026314271319553276,
+      0.025604360708359766,
+      -0.38996002394555623,
+      0.13940971687780193,
+      -0.019472150331473915,
+      -0.0816594500579284,
+      0.022355676500363287,
+      -0.5450933641196727,
+      0.1936476169185515,
+      -0.01123347716736189,
+      0.09943634965283331,
+      -0.0067577737818113595,
+      -0.15785433224657172,
+      -0.21440272066916366,
+      0.11128555552201273,
+      -0.00967708875968218,
+      -0.035596006670695575,
+      0.32783691889995775,
+      -0.07864879811402542,
+      -0.606012535089523,
+      0.0244699091125758,
+      0.009392213906974768,
+      0.09811081222357347,
+      -0.19093095415586286,
+      -0.2763343778891558,
+      0.04700441507699387,
+      -0.0025239724874962332,
+      0.08507016436121807,
+      0.10900043866133922,
+      -0.0725469710955387,
+      0.07845738139791211,
+      0.004904183674433403,
+      -0.4596186756239584,
+      -0.036078475587486246,
+      -0.13364213085210452,
+      -0.16582994028996778,
+      -0.02318349215161755,
+      -0.10560362665414008,
+      0.13744723573584314,
+      -0.07016989074200346,
+      0.01038893300748462,
+      -0.2310309964775284,
+      -0.011812880896346632,
+      0.012733104790701789,
+      0.1921528504418863,
+      -0.197798453280935,
+      0.03509447118401338,
+      0.767969936535061,
+      0.251642538607305,
+      0.5094593421727449
+    ]
+  },
+  "feature_schema": {
+    "categorical_features": {
+      "time_period": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Daytime",
+          "Evening",
+          "Evening Peak",
+          "Morning Peak",
+          "Night"
+        ],
+        "default": "Unknown"
+      },
+      "day_of_week_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Friday",
+          "Monday",
+          "Saturday",
+          "Sunday",
+          "Thursday",
+          "Tuesday",
+          "Wednesday"
+        ],
+        "default": "Unknown"
+      },
+      "weather_condition_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Fine + high winds",
+          "Fine no high winds",
+          "Fog or mist",
+          "Other",
+          "Raining + high winds",
+          "Raining no high winds",
+          "Snowing + high winds",
+          "Snowing no high winds",
+          "Unknown"
+        ],
+        "default": "Unknown"
+      },
+      "road_surface_condition_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Dry",
+          "Flood over 3cm. deep",
+          "Frost or ice",
+          "Snow",
+          "Unknown",
+          "Wet or damp"
+        ],
+        "default": "Unknown"
+      },
+      "light_condition_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Darkness - lights lit",
+          "Darkness - lights unlit",
+          "Darkness - no lighting",
+          "Daylight",
+          "Unknown"
+        ],
+        "default": "Unknown"
+      },
+      "road_type_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Dual carriageway",
+          "One way street",
+          "Roundabout",
+          "Single carriageway",
+          "Slip road",
+          "Unknown"
+        ],
+        "default": "Unknown"
+      },
+      "road_class_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "A",
+          "A(M)",
+          "B",
+          "C",
+          "Motorway",
+          "Unclassified",
+          "Unknown"
+        ],
+        "default": "Unknown"
+      },
+      "junction_detail_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Crossroads",
+          "Junction with more than four arms (not roundabout)",
+          "Not at junction or within 20 metres",
+          "Other junction",
+          "T or staggered junction",
+          "Unknown",
+          "Using private drive or entrance"
+        ],
+        "default": "Unknown"
+      },
+      "junction_control_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Authorised person",
+          "Auto traffic signal",
+          "Give way or uncontrolled",
+          "Stop sign",
+          "Unknown"
+        ],
+        "default": "Unknown"
+      },
+      "urban_rural_name": {
+        "type": "categorical",
+        "allowed_categories": [
+          "Rural",
+          "Unknown",
+          "Urban"
+        ],
+        "default": "Unknown"
+      }
+    },
+    "numerical_features": {
+      "hour": {
+        "type": "numerical",
+        "mean": 13.747627968080966,
+        "scale": 5.147924520294814,
+        "default_median": 13.747627968080966
+      },
+      "month": {
+        "type": "numerical",
+        "mean": 6.6703946087971975,
+        "scale": 3.3917043443186894,
+        "default_median": 6.6703946087971975
+      },
+      "speed_limit": {
+        "type": "numerical",
+        "mean": 35.88937816270923,
+        "scale": 14.360514688416908,
+        "default_median": 35.88937816270923
+      },
+      "number_of_vehicles": {
+        "type": "numerical",
+        "mean": 1.8229977617750097,
+        "scale": 0.6865519971556531,
+        "default_median": 1.8229977617750097
+      }
+    },
+    "binary_features": {
+      "is_weekend": {
+        "type": "binary",
+        "allowed_values": [
+          0,
+          1
+        ],
+        "default": 0
+      },
+      "involves_motorcycle": {
+        "type": "binary",
+        "allowed_values": [
+          0,
+          1
+        ],
+        "default": 0
+      },
+      "involves_hgv": {
+        "type": "binary",
+        "allowed_values": [
+          0,
+          1
+        ],
+        "default": 0
+      },
+      "involves_cyclist": {
+        "type": "binary",
+        "allowed_values": [
+          0,
+          1
+        ],
+        "default": 0
+      }
+    }
+  },
+  "risk_classification": {
+    "baseline_training_severe_rate": 0.24205186843129622,
+    "low_threshold": 0.24205186843129622,
+    "high_threshold": 0.48410373686259245,
+    "tier_rules": {
+      "Low": "p < 0.2421 (Below historical baseline)",
+      "Medium": "0.2421 <= p < 0.4841 (Up to 2x historical baseline)",
+      "High": "p >= 0.4841 (More than 2x historical baseline)"
+    }
+  },
+  "test_performance": {
+    "roc_auc": 0.6401949194946484,
+    "pr_auc": 0.3668771358165736,
+    "f1_score": 0.417335929837529,
+    "recall": 0.5901982068910063,
+    "precision": 0.32279343858568976,
+    "accuracy": 0.6011035314954117,
+    "brier_score": 0.23445565656067638
+  }
+}

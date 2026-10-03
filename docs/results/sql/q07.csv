@@ -1,0 +1,16 @@
+vehicle_type_id,vehicle_type_name,total_vehicles_recorded,distinct_collisions_involved,severe_collision_involvements,severe_rate_pct
+9,Car,637681,433442,134437,31.02
+1,Pedal cycle,81486,79812,21094,26.43
+19,Van / Goods 3.5 tonnes mgw or under,60309,56893,13643,23.98
+3,Motorcycle 125cc and under,44795,44144,10750,24.35
+5,Motorcycle over 500cc,23011,22350,12143,54.33
+8,Taxi/Private hire car,15362,15053,2904,19.29
+11,Bus or coach (17 or more pass seats),15100,14926,3543,23.74
+21,Goods 7.5 tonnes mgw and over,13247,12518,4089,32.66
+4,Motorcycle over 125cc and up to 500cc,9590,9475,3631,38.32
+33,Personal powered transporter,6901,6858,2125,30.99
+90,Other vehicle,5094,4991,1539,30.84
+2,Motorcycle 50cc and under,5008,4952,1275,25.75
+20,Goods over 3.5t. and under 7.5t,4046,3942,943,23.92
+98,Goods vehicle - unknown weight,3920,3867,758,19.60
+97,Motorcycle - unknown cc,2988,2943,1158,39.35

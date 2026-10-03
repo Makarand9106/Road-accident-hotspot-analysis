@@ -1,0 +1,8 @@
+code,label,note,table
+0,Not at junction or within 20 metres,,collision
+1,Authorised person,,collision
+2,Auto traffic signal,,collision
+3,Stop sign,,collision
+4,Give way or uncontrolled,,collision
+-1,Data missing or out of range,,collision
+9,unknown (self reported),,collision

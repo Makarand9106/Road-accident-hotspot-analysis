@@ -1,0 +1,15 @@
+code,label,note,table
+0,None,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+11,Defective traffic signals,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+12,Permanent road signing or markings defective or obscured or inadequate,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+13,Roadworks,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+14,Oil or diesel,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+15,Mud,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+16,Dislodged vehicle load in carriageway,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+17,Other object in carriageway,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+18,Involvement with previous collision,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+19,Pedestrian in carriageway - not injured,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+20,Any animal in carriageway (except ridden horse),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+21,Poor or defective road surface,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+-1,Data missing or out of range,New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision
+99,unknown (self reported),New field added with the 2024 data - data collected in or converted to the 2024 STATS19 specification,collision

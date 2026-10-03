@@ -1,0 +1,21 @@
+overall_risk_rank,police_force_name,total_regional_collisions,regional_severe_percentage,distinct_hotspots_count,hotspot_linked_collisions,volume_percentile,severity_percentile,hotspot_percentile,composite_regional_risk_index
+1,West Yorkshire,20485,28.99,18,900,93.0,69.8,95.3,86.05
+2,Sussex,16939,28.52,14,1121,86.0,67.4,88.4,80.62
+3,Lancashire,13696,32.98,9,347,74.4,88.4,72.1,78.29
+4,Hampshire,17000,25.75,14,579,88.4,48.8,88.4,75.19
+5,Essex,14207,27.37,8,280,81.4,60.5,65.1,68.99
+5,South Yorkshire,10495,33.41,4,168,67.4,90.7,48.8,68.99
+6,West Midlands,23672,19.68,41,1893,97.7,9.3,97.7,68.22
+7,Kent,18400,23.06,12,532,90.7,30.2,81.4,67.44
+8,Metropolitan Police,110585,16.37,468,51533,100.0,0.0,100.0,66.67
+8,Surrey,12954,25.64,12,533,72.1,46.5,81.4,66.67
+9,Greater Manchester,13846,29.99,3,81,76.7,74.4,46.5,65.89
+10,Police Scotland,20530,42.53,0,0,95.3,100.0,0.0,65.12
+10,Humberside,9519,24.46,17,732,60.5,41.9,93.0,65.12
+11,Nottinghamshire,9971,24.59,8,812,62.8,44.2,65.1,57.36
+12,Derbyshire,8936,24.05,9,356,55.8,37.2,72.1,55.04
+13,Avon and Somerset,12018,18.49,12,746,69.8,7.0,81.4,52.71
+13,Thames Valley,15062,20.65,6,220,83.7,11.6,62.8,52.71
+14,Merseyside,10230,21.67,8,506,65.1,20.9,65.1,50.39
+15,Cambridgeshire,7115,27.15,4,127,41.9,58.1,48.8,49.61
+15,City of London,871,30.42,9,650,0.0,76.7,72.1,49.61

@@ -1,0 +1,7 @@
+code,label,note,table
+1,Daylight,,collision
+4,Darkness - lights lit,,collision
+5,Darkness - lights unlit,,collision
+6,Darkness - no lighting,,collision
+7,Darkness - lighting unknown,,collision
+-1,Data missing or out of range,,collision

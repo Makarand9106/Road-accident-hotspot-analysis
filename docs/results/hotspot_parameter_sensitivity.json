@@ -1,0 +1,101 @@
+[
+  {
+    "eps_metres": 100,
+    "min_samples": 20,
+    "num_clusters": 1194,
+    "clustered_collisions": 59888,
+    "pct_collisions_clustered": 11.66,
+    "mean_cluster_size": 50.2,
+    "median_cluster_size": 30.0,
+    "max_cluster_size": 984,
+    "execution_seconds": 0.38
+  },
+  {
+    "eps_metres": 100,
+    "min_samples": 30,
+    "num_clusters": 475,
+    "clustered_collisions": 31958,
+    "pct_collisions_clustered": 6.22,
+    "mean_cluster_size": 67.3,
+    "median_cluster_size": 49.0,
+    "max_cluster_size": 622,
+    "execution_seconds": 0.35
+  },
+  {
+    "eps_metres": 100,
+    "min_samples": 50,
+    "num_clusters": 128,
+    "clustered_collisions": 10147,
+    "pct_collisions_clustered": 1.98,
+    "mean_cluster_size": 79.3,
+    "median_cluster_size": 68.0,
+    "max_cluster_size": 258,
+    "execution_seconds": 0.33
+  },
+  {
+    "eps_metres": 150,
+    "min_samples": 20,
+    "num_clusters": 1553,
+    "clustered_collisions": 104569,
+    "pct_collisions_clustered": 20.35,
+    "mean_cluster_size": 67.3,
+    "median_cluster_size": 31.0,
+    "max_cluster_size": 14422,
+    "execution_seconds": 0.39
+  },
+  {
+    "eps_metres": 150,
+    "min_samples": 30,
+    "num_clusters": 704,
+    "clustered_collisions": 63879,
+    "pct_collisions_clustered": 12.43,
+    "mean_cluster_size": 90.7,
+    "median_cluster_size": 49.0,
+    "max_cluster_size": 3132,
+    "execution_seconds": 0.39
+  },
+  {
+    "eps_metres": 150,
+    "min_samples": 50,
+    "num_clusters": 241,
+    "clustered_collisions": 29165,
+    "pct_collisions_clustered": 5.68,
+    "mean_cluster_size": 121.0,
+    "median_cluster_size": 85.0,
+    "max_cluster_size": 1032,
+    "execution_seconds": 0.36
+  },
+  {
+    "eps_metres": 250,
+    "min_samples": 20,
+    "num_clusters": 1881,
+    "clustered_collisions": 188772,
+    "pct_collisions_clustered": 36.74,
+    "mean_cluster_size": 100.4,
+    "median_cluster_size": 32.0,
+    "max_cluster_size": 68595,
+    "execution_seconds": 0.46
+  },
+  {
+    "eps_metres": 250,
+    "min_samples": 30,
+    "num_clusters": 939,
+    "clustered_collisions": 135058,
+    "pct_collisions_clustered": 26.29,
+    "mean_cluster_size": 143.8,
+    "median_cluster_size": 51.0,
+    "max_cluster_size": 55301,
+    "execution_seconds": 0.44
+  },
+  {
+    "eps_metres": 250,
+    "min_samples": 50,
+    "num_clusters": 362,
+    "clustered_collisions": 78307,
+    "pct_collisions_clustered": 15.24,
+    "mean_cluster_size": 216.3,
+    "median_cluster_size": 89.0,
+    "max_cluster_size": 27009,
+    "execution_seconds": 0.4
+  }
+]

@@ -1,0 +1,6 @@
+code,label,note,table
+0,No / Not applicable,,casualty
+1,Yes,,casualty
+2,Not Known,,casualty
+3,Probable,2005 specification only,casualty
+-1,Data missing or out of range,,casualty

@@ -1,0 +1,5 @@
+code,label,hours,description
+1,Morning Peak,07:00-09:59,Morning rush hour commuter traffic proxy
+2,Daytime Off-Peak,10:00-15:59,Daytime inter-peak traffic proxy
+3,Evening Peak,16:00-18:59,Evening rush hour commuter traffic proxy
+4,Night / Off-Hours,19:00-06:59,Nighttime and early morning low traffic proxy

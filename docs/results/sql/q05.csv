@@ -1,0 +1,9 @@
+weather_condition_id,weather_condition_name,total_collisions,severe_collisions,slight_collisions,severe_percentage,pct_of_all_weather_collisions
+1,Fine no high winds,413632,102325,311307,24.74,82.86
+2,Raining no high winds,55834,13404,42430,24.01,11.18
+8,Other,15955,3164,12791,19.83,3.20
+5,Raining + high winds,5173,1385,3788,26.77,1.04
+4,Fine + high winds,4472,1330,3142,29.74,0.90
+7,Fog or mist,2128,597,1531,28.05,0.43
+3,Snowing no high winds,1791,406,1385,22.67,0.36
+6,Snowing + high winds,238,46,192,19.33,0.05

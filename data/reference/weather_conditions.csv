@@ -1,0 +1,11 @@
+code,label,note,table
+1,Fine no high winds,,collision
+2,Raining no high winds,,collision
+3,Snowing no high winds,,collision
+4,Fine + high winds,,collision
+5,Raining + high winds,,collision
+6,Snowing + high winds,,collision
+7,Fog or mist,,collision
+8,Other,,collision
+9,Unknown,,collision
+-1,Data missing or out of range,,collision

@@ -1,0 +1,6 @@
+road_surface_condition_id,road_surface_condition_name,total_collisions,severe_collisions,severe_percentage,avg_vehicles_involved
+1,Dry,374268,90900,24.29,1.84
+2,Wet or damp,120572,30572,25.36,1.79
+4,Frost or ice,6668,1510,22.65,1.67
+3,Snow,1257,289,22.99,1.80
+5,Flood over 3cm. deep,788,215,27.28,1.45

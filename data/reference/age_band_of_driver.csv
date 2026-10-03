@@ -1,0 +1,13 @@
+code,label,note,table
+1,0 - 5,,vehicle
+2,6 - 10,,vehicle
+3,11 - 15,,vehicle
+4,16 - 20,,vehicle
+5,21 - 25,,vehicle
+6,26 - 35,,vehicle
+7,36 - 45,,vehicle
+8,46 - 55,,vehicle
+9,56 - 65,,vehicle
+10,66 - 75,,vehicle
+11,Over 75,,vehicle
+-1,Data missing or out of range,,vehicle

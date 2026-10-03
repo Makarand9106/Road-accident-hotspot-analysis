@@ -1,0 +1,12 @@
+code,label,note,table
+0,Did not leave carriageway,,vehicle
+1,Nearside,,vehicle
+2,Nearside and rebounded,,vehicle
+3,Straight ahead at junction,,vehicle
+4,Offside on to central reservation,,vehicle
+5,Offside on to centrl res + rebounded,,vehicle
+6,Offside - crossed central reservation,,vehicle
+7,Offside,,vehicle
+8,Offside and rebounded,,vehicle
+9,unknown (self reported),,vehicle
+-1,Data missing or out of range,,vehicle

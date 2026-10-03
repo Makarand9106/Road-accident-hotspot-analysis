@@ -1,0 +1,7 @@
+code,label,note,table
+1,Fatal,category introduced where collected in 2023,casualty
+5,Very Serious,category introduced where collected in 2023,casualty
+6,Moderately Serious,category introduced where collected in 2023,casualty
+7,Less Serious,category introduced where collected in 2023,casualty
+3,Slight,category introduced where collected in 2023,casualty
+-1,Data missing or out of range,category introduced where collected in 2023,casualty
