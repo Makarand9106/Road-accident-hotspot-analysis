@@ -17,6 +17,7 @@ import { ErrorBanner, EmptyStateCard } from '../components/ErrorBanner';
 import { BarChartCard } from '../charts/BarChartCard';
 import { LineChartCard } from '../charts/LineChartCard';
 import { HeatmapCard } from '../charts/HeatmapCard';
+import { DonutCard } from '../charts/DonutCard';
 import {
   formatNumber,
   formatPercent,
@@ -104,32 +105,44 @@ export function AccidentAnalysis() {
       'Severe Rate (%)': h.severe_percentage,
     })) || [];
 
-  // Tab 2 (Environment) Prepared Formats
-  const weatherBarData =
+  // Tab 2 (Environment) Prepared Formats for Pie/Donut Charts
+  const ENV_PALETTES = {
+    weather: ['#0284C7', '#38BDF8', '#6366F1', '#818CF8', '#F59E0B', '#10B981', '#94A3B8', '#EC4899'],
+    surface: ['#0284C7', '#0EA5E9', '#38BDF8', '#F59E0B', '#EF4444'],
+    light: ['#F59E0B', '#0284C7', '#4F46E5', '#64748B'],
+  };
+
+  const weatherPieData =
     environmentData?.weather
-      ?.filter((w) => w.condition !== 'Unknown' && w.total_collisions > 100)
-      .map((w) => ({
+      ?.filter((w) => w.condition !== 'Unknown' && w.total_collisions > 50)
+      .map((w, idx) => ({
         name: w.condition,
-        'Total Collisions': w.total_collisions,
-        'Severe %': w.severe_percentage,
+        value: w.total_collisions,
+        severe_collisions: w.severe_collisions,
+        severe_percentage: w.severe_percentage,
+        color: ENV_PALETTES.weather[idx % ENV_PALETTES.weather.length],
       })) || [];
 
-  const surfaceBarData =
+  const surfacePieData =
     environmentData?.road_surface
-      ?.filter((s) => s.condition !== 'Unknown' && s.total_collisions > 100)
-      .map((s) => ({
+      ?.filter((s) => s.condition !== 'Unknown' && s.total_collisions > 50)
+      .map((s, idx) => ({
         name: s.condition,
-        'Total Collisions': s.total_collisions,
-        'Severe %': s.severe_percentage,
+        value: s.total_collisions,
+        severe_collisions: s.severe_collisions,
+        severe_percentage: s.severe_percentage,
+        color: ENV_PALETTES.surface[idx % ENV_PALETTES.surface.length],
       })) || [];
 
-  const lightBarData =
+  const lightPieData =
     environmentData?.light_condition
       ?.filter((l) => l.condition !== 'Unknown')
-      .map((l) => ({
+      .map((l, idx) => ({
         name: l.condition,
-        'Total Collisions': l.total_collisions,
-        'Severe %': l.severe_percentage,
+        value: l.total_collisions,
+        severe_collisions: l.severe_collisions,
+        severe_percentage: l.severe_percentage,
+        color: ENV_PALETTES.light[idx % ENV_PALETTES.light.length],
       })) || [];
 
   // Tab 3 (Road) Prepared Formats
@@ -162,7 +175,7 @@ export function AccidentAnalysis() {
 
   // Tab 4 (Vehicles) Prepared Formats
   const topVehiclesData =
-    vehicleData?.top_vehicle_categories?.slice(0, 8).map((v) => ({
+    vehicleData?.top_vehicle_categories?.map((v) => ({
       name: v.vehicle_type,
       'Vehicles Involved': v.vehicle_count,
     })) || [];
@@ -224,7 +237,7 @@ export function AccidentAnalysis() {
             title="7-Day × 24-Hour Collision Density Heatmap (C5)"
             question="At what precise hours and days do collisions concentrate across the national network?"
             caveat="Caveat: High concentration during weekday rush hours (8 AM & 5 PM) is exposure-driven. Notice how weekend night hours show significantly darker relative severity."
-            data={temporalData?.matrix}
+            data={temporalData?.heatmap_7x24 || temporalData?.matrix}
           />
 
           {/* Diurnal Charts Row: C4 Hourly Diurnal & C6 Severe Rate by Hour */}
@@ -302,53 +315,97 @@ export function AccidentAnalysis() {
       {/* Tab 2: Environment Content */}
       {!loading && !error && activeTab === 'environment' && (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* C7: Weather Condition vs Severe Rate */}
-            <BarChartCard
-              title="Weather Conditions vs Injury Severity (C7)"
-              question="How do adverse atmospheric conditions (rain, fog, high winds) affect collision severity?"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* C7: Weather Condition Pie */}
+            <DonutCard
+              title="Weather Conditions Share (C7)"
+              question="How are collisions distributed across weather conditions?"
               caveat="Caveat: 80%+ of collisions occur in fine weather due to exposure. However, fine + high winds and fog show the highest severe casualty proportions (28–30%)."
-              data={weatherBarData}
-              layout="vertical"
-              xAxisKey="name"
-              bars={[{ key: 'Total Collisions', name: 'Total Collisions', color: '#0284C7' }]}
-              lineKey="Severe %"
-              lineName="Severe %"
-              lineColor="#D55E00"
+              data={weatherPieData}
+              nameKey="name"
+              dataKey="value"
               height={340}
             />
 
-            {/* C8: Road Surface Condition vs Severe Rate */}
-            <BarChartCard
-              title="Road Surface Conditions & Severity (C8)"
-              question="Does wet, snowy, or icy asphalt increase the likelihood of severe trauma?"
-              caveat="Caveat: Wet or damp asphalt accounts for ~23% of collisions. Floods (>3cm) and icy conditions produce elevated severe rates."
-              data={surfaceBarData}
-              layout="vertical"
-              xAxisKey="name"
-              bars={[{ key: 'Total Collisions', name: 'Total Collisions', color: '#0284C7' }]}
-              lineKey="Severe %"
-              lineName="Severe %"
-              lineColor="#D55E00"
+            {/* C8: Road Surface Condition Pie */}
+            <DonutCard
+              title="Road Surface Conditions (C8)"
+              question="What proportion of crashes occur on dry vs wet/icy surfaces?"
+              caveat="Caveat: Wet or damp asphalt accounts for ~24% of collisions. Floods (>3cm) and icy conditions produce elevated severe rates."
+              data={surfacePieData}
+              nameKey="name"
+              dataKey="value"
+              height={340}
+            />
+
+            {/* C9: Light Condition Analysis Pie */}
+            <DonutCard
+              title="Lighting Conditions (C9)"
+              question="How do collisions divide between daylight and darkness?"
+              caveat="Caveat: Unlit darkness is the single most hazardous lighting environment, with severe collision rates reaching 35.0% compared to 23.2% in daylight."
+              data={lightPieData}
+              nameKey="name"
+              dataKey="value"
               height={340}
             />
           </div>
 
-          {/* C9: Light Condition Analysis */}
+          {/* Comparative Summary & Explanatory Callout Row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <BarChartCard
-              title="Lighting Conditions vs Injury Severity (C9)"
-              question="How does ambient darkness without street lighting affect accident severity?"
-              caveat="Caveat: Unlit darkness is the single most hazardous lighting environment, with severe collision rates reaching 35.0% compared to 23.2% in daylight."
-              data={lightBarData}
-              layout="vertical"
-              xAxisKey="name"
-              bars={[{ key: 'Total Collisions', name: 'Total Collisions', color: '#0284C7' }]}
-              lineKey="Severe %"
-              lineName="Severe %"
-              lineColor="#D55E00"
-              height={300}
-            />
+            {/* Environmental Severity Comparison Table / Matrix */}
+            <div className="glass-panel rounded-xl p-5 border-slate-800 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-base font-bold text-slate-100">
+                    Environmental Risk Factor Comparison
+                  </h3>
+                  <span className="text-[11px] font-mono text-sky-400 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/50">
+                    Cross-Comparison
+                  </span>
+                </div>
+                <p className="text-xs text-slate-400 mb-4">
+                  Comparative summary of total volume share vs severe injury rates across all three environmental dimensions.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs">
+                    <thead>
+                      <tr className="border-b border-slate-800 text-slate-400">
+                        <th className="pb-2 font-semibold">Category</th>
+                        <th className="pb-2 font-semibold">Leading Condition</th>
+                        <th className="pb-2 font-semibold text-right">Volume</th>
+                        <th className="pb-2 font-semibold text-right">Severe Rate</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                      <tr>
+                        <td className="py-2.5 font-medium text-slate-200">Atmosphere</td>
+                        <td className="py-2.5">Fine no high winds</td>
+                        <td className="py-2.5 text-right font-mono">{formatNumber(weatherPieData[0]?.value)}</td>
+                        <td className="py-2.5 text-right font-mono text-amber-400">{formatPercent(weatherPieData[0]?.severe_percentage)}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 font-medium text-slate-200">Road Surface</td>
+                        <td className="py-2.5">Dry asphalt</td>
+                        <td className="py-2.5 text-right font-mono">{formatNumber(surfacePieData[0]?.value)}</td>
+                        <td className="py-2.5 text-right font-mono text-amber-400">{formatPercent(surfacePieData[0]?.severe_percentage)}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 font-medium text-slate-200">Illumination</td>
+                        <td className="py-2.5">Daylight</td>
+                        <td className="py-2.5 text-right font-mono">{formatNumber(lightPieData[0]?.value)}</td>
+                        <td className="py-2.5 text-right font-mono text-amber-400">{formatPercent(lightPieData[0]?.severe_percentage)}</td>
+                      </tr>
+                      <tr className="bg-rose-950/20">
+                        <td className="py-2.5 font-medium text-rose-300">Worst Hazard</td>
+                        <td className="py-2.5 text-rose-300">Darkness (no lighting)</td>
+                        <td className="py-2.5 text-right font-mono text-rose-300">{formatNumber(lightPieData.find(l => l.name?.includes('no lighting'))?.value || 0)}</td>
+                        <td className="py-2.5 text-right font-mono text-rose-400 font-bold">{formatPercent(lightPieData.find(l => l.name?.includes('no lighting'))?.severe_percentage || 0)}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
 
             {/* Explanatory Callout Card */}
             <div className="glass-panel rounded-xl p-6 flex flex-col justify-between border-sky-500/20 bg-sky-950/20">
@@ -556,7 +613,7 @@ export function AccidentAnalysis() {
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400">
-                  <span>STATS19 Vehicle Table • 937,265 records analyzed</span>
+                  <span>STATS19 Vehicle Records • Dynamic filtered count</span>
                 </div>
               </div>
             </div>

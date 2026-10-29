@@ -40,14 +40,14 @@ export function HeatmapCard({
 
   // Compute color based on relative intensity
   const getCellColor = (total) => {
-    if (!total || total === 0) return 'bg-slate-900/60 border-slate-800/40 text-slate-600';
+    if (!total || total === 0) return { backgroundColor: 'rgba(15, 23, 42, 0.6)', borderColor: 'rgba(30, 41, 59, 0.4)' };
     const ratio = total / maxCount;
 
-    if (ratio < 0.15) return 'bg-sky-950/80 border-sky-900/50 hover:border-sky-400';
-    if (ratio < 0.35) return 'bg-teal-900/80 border-teal-800/60 hover:border-teal-400';
-    if (ratio < 0.55) return 'bg-amber-900/80 border-amber-700/60 hover:border-amber-400';
-    if (ratio < 0.75) return 'bg-amber-600/90 border-amber-500/80 hover:border-amber-300';
-    return 'bg-orange-600 border-orange-400 hover:border-orange-200';
+    if (ratio < 0.15) return { backgroundColor: '#082f49', borderColor: '#0c4a6e' }; // deep sky blue
+    if (ratio < 0.35) return { backgroundColor: '#134e4a', borderColor: '#115e59' }; // teal
+    if (ratio < 0.55) return { backgroundColor: '#78350f', borderColor: '#92400e' }; // warm amber/brown
+    if (ratio < 0.75) return { backgroundColor: '#d97706', borderColor: '#f59e0b' }; // amber
+    return { backgroundColor: '#ea580c', borderColor: '#f97316' }; // vibrant orange
   };
 
   return (
@@ -82,11 +82,12 @@ export function HeatmapCard({
                 </span>
                 {HOURS.map((hour) => {
                   const cell = matrixMap[`${day}_${hour}`] || { total: 0, severe: 0, severe_pct: 0 };
-                  const colorClass = getCellColor(cell.total);
+                  const colorStyle = getCellColor(cell.total);
 
                   return (
                     <div
                       key={`cell-${day}-${hour}`}
+                      style={colorStyle}
                       onMouseEnter={() =>
                         setHoveredCell({
                           day,
@@ -97,7 +98,7 @@ export function HeatmapCard({
                         })
                       }
                       onMouseLeave={() => setHoveredCell(null)}
-                      className={`h-6 rounded border transition-all duration-150 cursor-pointer ${colorClass} flex items-center justify-center`}
+                      className="h-6 rounded border transition-all duration-150 cursor-pointer hover:brightness-125 flex items-center justify-center"
                     />
                   );
                 })}

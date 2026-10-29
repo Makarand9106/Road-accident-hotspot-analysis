@@ -65,6 +65,21 @@ export async function getTemporalAnalysis(queryParams = {}) {
     ORDER BY total_collisions DESC;
   `;
 
+  // Monthly distribution
+  const monthlySql = `
+    SELECT 
+      a.month,
+      TO_CHAR(TO_DATE(a.month::text, 'MM'), 'Mon') AS month_name,
+      COUNT(*) AS total_collisions,
+      SUM(a.is_severe) AS severe_collisions,
+      ROUND(SUM(a.is_severe) * 100.0 / NULLIF(COUNT(*), 0), 2) AS severe_percentage
+    FROM accident a
+    ${whereClause}
+    WHERE a.month IS NOT NULL ${whereClause ? 'AND ' + whereClause.replace('WHERE', '') : ''}
+    GROUP BY a.month
+    ORDER BY a.month ASC;
+  `;
+
   // 7x24 Heatmap Matrix
   let heatmapSql;
   if (!whereClause) {
@@ -107,10 +122,11 @@ export async function getTemporalAnalysis(queryParams = {}) {
     `;
   }
 
-  const [hourRes, weekdayRes, periodRes, heatmapRes] = await Promise.all([
+  const [hourRes, weekdayRes, periodRes, monthlyRes, heatmapRes] = await Promise.all([
     query(hourSql, values),
     query(weekdaySql, values),
     query(periodSql, values),
+    query(monthlySql, values),
     query(heatmapSql, whereClause ? values : []),
   ]);
 
@@ -124,6 +140,13 @@ export async function getTemporalAnalysis(queryParams = {}) {
     weekday: weekdayRes.rows.map((r) => ({
       day_index: parseInt(r.day_index, 10),
       day_name: r.day_of_week_name,
+      total_collisions: parseInt(r.total_collisions, 10),
+      severe_collisions: parseInt(r.severe_collisions, 10),
+      severe_percentage: parseFloat(r.severe_percentage),
+    })),
+    monthly: monthlyRes.rows.map((r) => ({
+      month: parseInt(r.month, 10),
+      month_name: r.month_name,
       total_collisions: parseInt(r.total_collisions, 10),
       severe_collisions: parseInt(r.severe_collisions, 10),
       severe_percentage: parseFloat(r.severe_percentage),
