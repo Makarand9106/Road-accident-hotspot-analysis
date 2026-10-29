@@ -1,288 +1,526 @@
-# Smart Road Accident Hotspot Analysis and Risk Prediction System
+# Smart Road Accident Hotspot Analysis & Risk Prediction System
 
 ## Summary
-The **Smart Road Accident Hotspot Analysis and Risk Prediction System** is an end-to-end Data Visualization and DBMS/SQL project designed to identify high-risk road collision locations (hotspots) and predict accident severity using historical road safety records. Built on the UK Department for Transport's STATS19 dataset across five recent complete years (2021–2025), the system combines spatial clustering (DBSCAN in British National Grid metres) and binary risk classification (Logistic Regression) with an interactive spatial and analytical dashboard (React, Leaflet, Recharts) powered by a lightweight Node.js/Express backend and PostgreSQL relational database. The project prioritizes academic clarity, explainability during viva examinations, and strict reproducibility without heavy cloud or container dependencies.
+The **Smart Road Accident Hotspot Analysis and Risk Prediction System** is an end-to-end Data Visualization and DBMS/SQL project that identifies high-risk road collision locations (hotspots) and predicts accident severity using historical road safety records. Built on the UK Department for Transport's STATS19 dataset across five complete years (2021–2025), the system combines:
+
+- **Spatial clustering** (DBSCAN in British National Grid metres) → 704 hotspot clusters
+- **Binary risk classification** (Logistic Regression for severity prediction)
+- **Interactive dashboard** (React + Vite + Leaflet + Recharts)
+- **Power BI 6-page analytics report** (descriptive → prescriptive analytics)
+- **Node.js/Express RESTful API** + **PostgreSQL** database
+
+> 🔗 **Power BI blueprint:** `docs/powerbi_analytics_blueprint.md`  
+> 📊 **Power BI setup guide:** `powerbi/README_PowerBI.md`  
+> 📝 **Full project report:** `report/project_report.md`
 
 ---
 
 ## Pipeline Architecture
 
-```text
-+-----------------------------------------------------------------------------------+
-|                                  DATA PIPELINE                                    |
-|                                                                                   |
-|  [UK DfT STATS19 Data]                                                            |
-|  (Collisions, Vehicles, Casualties: 2021-2025)                                    |
-|         |                                                                         |
-|         v                                                                         |
-|  [Python Ingestion & Preprocessing]                                               |
-|  (Clean, Validate, Derive time_period proxy, Calculate BNG Easting/Northing)      |
-|         |                                                                         |
-|         +----------------------------------+                                      |
-|         |                                  |                                      |
-|         v                                  v                                      |
-|  [PostgreSQL Database]             [Python ML & Spatial Analysis]                 |
-|  - Normalized Star Schema          - DBSCAN Spatial Hotspot Clustering            |
-|  - Aggregated Spatial Views        - Logistic Regression (is_severe target)       |
-|  - Indexed Spatial & Temporal Data - Model Weights & Metrics Exported as JSON     |
-|         |                                  |                                      |
-|         +----------------+                 |                                      |
-|                          |                 |                                      |
-+--------------------------|-----------------|--------------------------------------+
-                           |                 |
-                           v                 v
-+-----------------------------------------------------------------------------------+
-|                                BACKEND & SERVING                                  |
-|                                                                                   |
-|  [Node.js + Express API Server] (Port 4000)                                       |
-|  - RESTful Endpoints for Hotspots, Statistics, and Filter Queries                 |
-|  - In-memory Risk Scoring Engine using Exported Model JSON (No Python daemon)     |
-|  - Direct SQL Queries for Fast Analytics & Aggregations                          |
-+-----------------------------------------------------------------------------------+
-                           |
-                           v
-+-----------------------------------------------------------------------------------+
-|                               FRONTEND DASHBOARD                                  |
-|                                                                                   |
-|  [React + Vite + Tailwind CSS]                                                    |
-|  - Leaflet / OpenStreetMap: Interactive Cluster & Hotspot Map Visualization        |
-|  - Recharts: Severity Breakdown, Weather/Light Analysis, Hourly Trend Graphs      |
-|  - Real-time Scenario Risk Predictor Form & Severity Probability Gauge            |
-+-----------------------------------------------------------------------------------+
+```
+[UK DfT STATS19 CSVs]  (Collisions, Vehicles, Casualties: 2021-2025)
+         │
+         ▼
+┌─────────────────────────────────────────────────────────┐
+│  Python Preprocessing Pipeline                          │
+│  preprocessing/run_all_preprocessing.py                 │
+│  ├── Clean (duplicates, nulls, sentinels, coords)       │
+│  ├── Feature engineering (is_severe, time_period, BNG)  │
+│  ├── Split into 3 normalized tables                     │
+│  └── 20-figure EDA visualization suite                  │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+          ▼                         ▼
+[PostgreSQL Database]     [Python ML & Spatial]
+ 18 tables, star schema    DBSCAN → 704 clusters
+ 87 constraints, 42 idx    Logistic Regression
+ 4 views + materialized    JSON model export
+          │                         │
+          └────────────┬────────────┘
+                       │
+                       ▼
+          [Node.js + Express API — Port 4000]
+          RESTful endpoints + in-memory scoring
+                       │
+                       ▼
+          [React + Vite Frontend — Port 5173]
+          Leaflet maps, Recharts, Risk Predictor
 ```
 
 ---
 
-## Planned Folder Map
+## Folder Structure
 
-```text
-DV Project/
-├── .env.example               # Template environment configuration
-├── .gitignore                  # Git ignore rules for data, env, and build artifacts
-├── README.md                   # Project overview, architecture, and setup instructions
-├── database/                   # SQL schemas, migrations, and analytical views
+```
+Road-accident-hotspot-analysis/
+├── README.md                              ← This file
+├── .env.example                           ← Environment config template
+├── preprocessing/                         ← NEW: Preprocessing package
+│   ├── run_all_preprocessing.py           ← Master pipeline runner
+│   ├── __init__.py
+│   ├── load_data.py                       ← CSV/Parquet loading utilities
+│   ├── clean_data.py                      ← Cleaning (duplicates, nulls, etc.)
+│   ├── split_data.py                      ← Train/val/test split
+│   ├── aggregate_data.py                  ← GroupBy aggregation utilities
+│   ├── visualize_eda.py                   ← EDA visualization helpers
+│   └── results_of_preprocessing/          ← NEW: Consolidated output folder
+│       ├── README.md                      ← What's in this folder
+│       ├── preprocessing_summary.md       ← Human-readable cleaning summary
+│       ├── accidents_clean.csv            ← Copied from data/processed/
+│       ├── vehicles_clean.csv             ← Copied from data/processed/
+│       ├── casualties_clean.csv           ← Copied from data/processed/
+│       └── quality_report.json            ← Full JSON quality report
+├── python/                                ← Full Python analytics stack
+│   ├── config.py
+│   ├── requirements.txt
+│   ├── ingestion/                         ← Download + validation scripts
+│   ├── preprocessing/                     ← Core cleaning + feature engineering
+│   │   ├── clean.py                       ← Modular cleaning functions
+│   │   ├── features.py                    ← Feature engineering
+│   │   └── run_pipeline.py                ← End-to-end pipeline runner
+│   ├── analysis/
+│   │   └── run_eda.py                     ← NEW: 20-figure EDA runner
+│   ├── visualization/
+│   │   └── eda_plots.py                   ← Reusable plot functions
+│   ├── hotspot/                           ← DBSCAN spatial clustering
+│   ├── prediction/                        ← Logistic Regression + export
+│   ├── db/                                ← PostgreSQL ETL scripts
+│   ├── notebooks/                         ← Jupyter notebooks
+│   └── tests/                             ← Unit tests
+├── database/                              ← SQL schemas, views, queries
+├── backend/                               ← Node.js + Express API
+│   ├── package.json
+│   └── src/
+│       ├── server.js
+│       ├── app.js
+│       ├── routes/
+│       ├── controllers/
+│       ├── services/
+│       ├── db/
+│       └── utils/
+├── frontend/                              ← React + Vite + Tailwind dashboard
+│   ├── package.json
+│   ├── vite.config.js
+│   └── src/
+│       ├── App.jsx
+│       ├── pages/                         ← Overview, Analysis, Hotspots, Prediction, SQL, Methodology
+│       ├── components/                    ← Layout, Sidebar, Header, KpiCard, etc.
+│       ├── charts/                        ← Recharts wrappers
+│       ├── maps/                          ← Leaflet map components
+│       ├── prediction/                    ← Risk predictor form + result card
+│       ├── services/                      ← API client
+│       └── context/                       ← Global filter context
+├── models/                                ← Trained model artifacts
+│   ├── risk_model.joblib
+│   ├── risk_model.json                    ← JS-portable model weights
+│   └── all_pipelines.joblib
+├── powerbi/                               ← Power BI report files
+│   └── README_PowerBI.md                  ← Setup & launch guide
+├── report/
+│   └── project_report.md                  ← Full project report
 ├── data/
-│   ├── raw/                    # Downloaded raw STATS19 CSV files (gitignored)
-│   ├── reference/              # Lookup tables, road safety codebooks & metadata
-│   └── processed/              # Cleaned & joined datasets for ingestion/modeling
-├── python/
-│   ├── config.py               # Central path & DB configuration using pathlib
-│   ├── requirements.txt        # Python analytical dependencies
-│   ├── ingestion/              # Downloaders and raw data loaders
-│   ├── preprocessing/          # Data cleaning, feature engineering & transformations
-│   ├── analysis/               # Exploratory data analysis & statistical summaries
-│   ├── visualization/          # Static publication/viva charts (Matplotlib/Seaborn)
-│   ├── hotspot/                # DBSCAN spatial clustering and ranking algorithms
-│   ├── prediction/             # Logistic Regression training & JSON export
-│   ├── db/                     # Database loading and ETL scripts (SQLAlchemy/psycopg2)
-│   ├── notebooks/              # Jupyter notebooks for iterative analysis & EDA
-│   └── tests/                  # Unit and pipeline tests for Python modules
-├── backend/
-│   ├── src/
-│   │   ├── routes/             # Express API route handlers
-│   │   ├── controllers/        # Request processing & business logic
-│   │   ├── services/           # DB query services & in-memory risk scoring
-│   │   ├── db/                 # PostgreSQL pool/client configuration
-│   │   └── utils/              # Helper utilities & validators
-│   └── tests/                  # API endpoint and service tests
-├── frontend/                   # React + Vite + Tailwind + Leaflet + Recharts application
-├── models/                     # Trained model weights, parameters & metrics (JSON)
+│   ├── raw/                               ← Raw STATS19 CSVs (gitignored)
+│   ├── reference/                         ← 76 lookup/codebook CSVs
+│   └── processed/                         ← Cleaned pipeline outputs
 └── docs/
-    ├── architecture.md         # Detailed Mermaid architectural diagrams
-    ├── DECISIONS.md            # Technical and methodology decision records
-    ├── PROGRESS.md             # Running progress log and milestone tracker
-    ├── figures/                # Visuals, figures, and plots for reports
-    ├── results/                # Evaluation results, tables, and metrics
-    ├── viva/                   # Viva examination prep notes & Q&A guide
-    └── report/                 # Coursework project report and documentation
+    ├── powerbi_analytics_blueprint.md     ← 6-page Power BI design spec
+    ├── figures/eda/                       ← 20 EDA visualization PNGs
+    ├── results/                           ← Query outputs, metrics
+    ├── api.md                             ← API documentation
+    └── (other docs...)
 ```
 
 ---
 
 ## Prerequisites
 
-Before setting up and running the project, ensure the following software is installed on your machine:
-
-1. **Python**: Python `3.10` or higher (tested on Python 3.10+)
-2. **Node.js**: Node.js `v18.0.0` or higher (LTS recommended) and `npm`
-3. **PostgreSQL**: PostgreSQL `14` or higher running locally on port `5432`
+| Tool | Version | Purpose |
+|---|---|---|
+| **Python** | 3.10+ | Preprocessing, ML, EDA |
+| **Node.js** | v18.0+ LTS | Backend API + Frontend dev server |
+| **npm** | 9.0+ | Package management |
+| **PostgreSQL** | 14+ | Database (port 5432) |
+| **Power BI Desktop** | Latest | Analytics report (free download) |
 
 ---
 
-## Get the Data
+## Step-by-Step Setup & Launch Guide
 
-The raw STATS19 datasets and the official DfT data guide can be downloaded and validated automatically:
+### ① Environment Setup
 
 ```bash
-# 1. Create and activate a Python virtual environment
+# Clone the repository
+git clone <repo-url>
+cd Road-accident-hotspot-analysis
+
+# Create Python virtual environment
 python3 -m venv venv
-source venv/bin/activate    # On Windows: venv\Scripts\activate
 
-# 2. Install dependencies
+# Activate virtual environment
+source venv/bin/activate       # macOS/Linux
+# venv\Scripts\activate        # Windows
+
+# Install Python dependencies
 pip install -r python/requirements.txt
+```
 
-# 3. Download raw STATS19 CSVs and Data Guide into data/raw/ and data/reference/
+---
+
+### ② Configure Environment Variables
+
+```bash
+# Copy the environment template
+cp .env.example .env
+
+# Edit .env with your PostgreSQL credentials
+nano .env   # or use any text editor
+```
+
+Required `.env` variables:
+```env
+PGHOST=localhost
+PGPORT=5432
+PGDATABASE=road_safety_db
+PGUSER=your_username
+PGPASSWORD=your_password
+BACKEND_PORT=4000
+VITE_API_BASE_URL=http://localhost:4000
+```
+
+---
+
+### ③ Download Raw STATS19 Data
+
+```bash
+# Download raw STATS19 CSVs into data/raw/
 python python/ingestion/download_data.py
 
-# 4. Extract official code-to-label reference CSV tables into data/reference/
+# Extract official reference code tables into data/reference/
 python python/ingestion/build_reference_tables.py
 
-# 5. Run full data integrity, geospatial bounds, and schema validation suite
+# Validate raw data integrity, schema, and geographic bounds
 python python/ingestion/validate_data.py
 ```
 
-Validation metrics and detailed quality assessments are saved to `docs/results/validation_metrics.json` and documented in [docs/dataset_validation.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/dataset_validation.md).
+> ⏱️ Download takes 5–15 minutes depending on internet speed.  
+> Data is ~500MB. Raw files are gitignored.
 
 ---
 
-## Data Preprocessing & Feature Engineering
+### ④ Run Full Preprocessing Pipeline
 
-Once raw data is downloaded, execute the end-to-end cleaning and feature engineering pipeline:
-
+**Option A — Single command (recommended):**
 ```bash
-# Run unit tests on preprocessing logic
+# Run everything: clean, feature engineering, EDA visualizations, copy results
+python preprocessing/run_all_preprocessing.py
+
+# If data already downloaded, skip the download step:
+python preprocessing/run_all_preprocessing.py --skip-download
+```
+
+**Option B — Step by step:**
+```bash
+# Step 1: Run unit tests on cleaning functions
 pytest -v python/tests/test_preprocessing.py
 
-# Execute full preprocessing pipeline (outputs to data/processed/)
+# Step 2: Execute full cleaning + feature engineering pipeline
 python python/preprocessing/run_pipeline.py
+
+# Step 3: Inspect quality report
+cat data/processed/quality_report.json
+
+# Step 4: Generate all 20 EDA visualizations
+python python/analysis/run_eda.py
 ```
 
-Cleaned datasets and quality transformation reports are saved to `data/processed/` and documented in [docs/preprocessing.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/preprocessing.md).
+**Outputs produced:**
+
+| File | Location |
+|---|---|
+| `accidents_clean.csv` | `data/processed/` and `preprocessing/results_of_preprocessing/` |
+| `vehicles_clean.csv` | `data/processed/` and `preprocessing/results_of_preprocessing/` |
+| `casualties_clean.csv` | `data/processed/` and `preprocessing/results_of_preprocessing/` |
+| `quality_report.json` | `data/processed/` and `preprocessing/results_of_preprocessing/` |
+| `preprocessing_summary.md` | `preprocessing/results_of_preprocessing/` |
+| 20 EDA figures (PNG) | `docs/figures/eda/` |
 
 ---
 
-## Database Setup & Data Ingestion
- 
-Create the PostgreSQL schema, constraints, performance indexes, official seed reference data, and load the processed STATS19 dataset:
- 
+### ⑤ Database Setup & Data Loading
+
 ```bash
-# 1. Initialize or reset schema, constraints, and seed lookups
+# Create PostgreSQL database (run once)
+createdb road_safety_db   # or create via pgAdmin
+
+# Initialize schema, constraints, indexes, and seed data
 python database/run_sql.py --reset
 
-# 2. Bulk load cleaned STATS19 dataset (COPY in one transaction), build indexes, and ANALYZE
+# Bulk load all cleaned STATS19 data into PostgreSQL (~38s)
 python python/db/load_data.py --reset
 
-# 3. Verify database integrity, foreign keys, row parity, and analytical queries
+# Verify database integrity and row counts
 python python/db/verify_load.py
 
-# 4. Create analytical views and materialized heatmap view
+# Create analytical views and materialized heatmap
 python database/run_sql.py --views-only
 
-# 5. Execute 16 analytical SQL queries and export benchmark results to docs/results/sql/
+# Execute all 20 analytical SQL queries (outputs to docs/results/sql/)
 python database/run_queries.py
-
-# 6. (Optional) Run ACID transaction management demonstration
-python -c "import psycopg2, python.config as config; conn=psycopg2.connect(host=config.DB_HOST, port=config.DB_PORT, user=config.DB_USER, database=config.DB_NAME); cur=conn.cursor(); cur.execute(open('database/transactions_demo.sql').read()); conn.commit(); print('Transactions demo executed successfully'); conn.close()"
 ```
-
-Schema design rationales, normal form proofs, ER diagrams, load performance reports, and SQL guides are documented in [docs/schema_design.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/schema_design.md), [docs/ERD.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/ERD.md), [docs/data_load_report.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/data_load_report.md), and [docs/sql_guide.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/sql_guide.md).
 
 ---
 
-## Exploratory Data Analysis & Visualization
- 
-Run the automated statistical visualizer and generate publication-grade figures or execute the interactive Jupyter notebook:
- 
+### ⑥ Spatial Hotspot Detection
+
 ```bash
-# 1. Generate 15 statistical figures in docs/figures/eda/
-python python/analysis/run_eda.py
+# Generate k-distance elbow curve for DBSCAN parameter tuning
+python python/hotspot/tune_parameters.py
 
-# 2. Execute EDA Jupyter Notebook top-to-bottom
-jupyter nbconvert --to notebook --execute --inplace python/notebooks/01_eda.ipynb
+# Run DBSCAN clustering (ε=150m, MinPts=30) → 704 clusters
+python python/hotspot/detect_hotspots.py
+
+# Sync hotspot results to PostgreSQL
+python database/run_sql.py --views-only
 ```
-
-Detailed visual findings, 95% Wilson Score confidence intervals, and methodological caveats are documented in [docs/eda_findings.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/eda_findings.md).
 
 ---
 
-## Spatial Hotspot Clustering & Risk Scoring
-
-Detect geographic collision clusters using DBSCAN on projected metric coordinates (OSGB36 Easting/Northing in metres) and compute multi-criteria risk scores:
+### ⑦ Train & Export Severity Prediction Model
 
 ```bash
-# 1. Generate k-distance elbow curve and parameter sensitivity grid search
-./venv/bin/python python/hotspot/tune_parameters.py
+# Train all model variants (Dummy, Logistic Regression, Decision Tree, Random Forest)
+python python/prediction/train.py
 
-# 2. Execute DBSCAN spatial clustering, compute risk scores, and sync to PostgreSQL
-./venv/bin/python python/hotspot/detect_hotspots.py
+# Evaluate model performance and generate diagnostic reports
+python python/prediction/evaluate.py
 
-# 3. Apply updated hotspot and 500m grid views
-./venv/bin/python database/run_sql.py --views-only
-
-# 4. Execute all 20 DBMS analytical queries and export outputs
-./venv/bin/python database/run_queries.py
+# Export model weights to JSON for Node.js in-memory scoring
+python python/prediction/export_model.py
 ```
 
-Methodology, parameter tuning justifications, and risk score formulations are documented in [docs/hotspot_methodology.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/hotspot_methodology.md).
+**Model outputs:**
+- `models/risk_model.json` — Logistic regression weights (JS-portable)
+- `models/risk_model.joblib` — Python scikit-learn model
+- `models/all_pipelines.joblib` — All 4 trained pipelines
+- `docs/results/model/` — Performance metrics, confusion matrix, ROC curve
 
 ---
 
-## Severity-Risk Prediction Model & Parity Export
-
-Train, evaluate, and export an explainable severity classification model (strictly quarantining post-crash casualty metrics to prevent target leakage):
+### ⑧ Start Backend API Server
 
 ```bash
-# 1. Train Dummy, Logistic Regression, Decision Tree, and Random Forest pipelines
-./venv/bin/python python/prediction/train.py
-
-# 2. Evaluate diagnostics, temporal validation, and store metrics in PostgreSQL
-./venv/bin/python python/prediction/evaluate.py
-
-# 3. Export JSON weights, generate test vectors, and verify 6-decimal parity
-./venv/bin/python python/prediction/export_model.py
-```
-
-Model performance, calibration curves, odds ratios, and honest limitations are documented in [docs/model_report.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/model_report.md).
-
----
-
-## Backend API Server (Node.js & Express)
-
-Run the high-performance, read-only Express API server providing parameterized SQL endpoints and in-memory JS risk prediction:
-
-```bash
-# 1. Install backend dependencies
+# Install backend Node.js dependencies
 cd backend && npm install
 
-# 2. Run automated test suite (filters, risk model parity, API integration smoke tests)
+# Run backend tests (30 test cases)
 npm test
 
-# 3. Start development server (default: http://localhost:4000)
+# Start development server (http://localhost:4000)
 npm run dev
 ```
 
-Full API endpoint specifications, parameters, curl commands, and JSON responses are documented in [docs/api.md](file:///Users/makarandkulkarni/Myspace/DV%20Project/docs/api.md).
+Verify backend is running:
+```bash
+curl http://localhost:4000/api/health
+# Expected: {"status":"ok","database":{"connected":true,...}}
+```
+
+Key API endpoints:
+| Endpoint | Description |
+|---|---|
+| `GET /api/health` | Server and database health check |
+| `GET /api/accidents/stats` | KPI statistics with filter support |
+| `GET /api/accidents/trends` | Yearly trend data |
+| `GET /api/hotspots` | DBSCAN cluster list with risk scores |
+| `POST /api/predict/risk` | Severity risk prediction |
+| `GET /api/sql/queries` | List of 20 analytical queries |
+| `GET /api/sql/run/:queryId` | Execute specific analytical query |
 
 ---
 
-## Frontend Interactive Dashboard (React, Tailwind & Recharts)
-
-Run the interactive React frontend dashboard featuring real-time filter synchronization, executive safety KPIs, 5-year trends, and multidimensional factor analysis:
+### ⑨ Start Frontend Dashboard
 
 ```bash
-# 1. Install frontend dependencies
+# Open a new terminal tab (keep backend running in previous tab)
 cd frontend && npm install
 
-# 2. Build for production verification
-npm run build
-
-# 3. Start development server (default: http://localhost:5173)
+# Start Vite dev server (http://localhost:5173)
 npm run dev
 ```
+
+Open your browser at: **http://localhost:5173**
+
+**Dashboard pages:**
+| URL | Page |
+|---|---|
+| `/` | Executive Overview (KPIs, trends) |
+| `/analysis` | Accident Factor Analysis |
+| `/hotspots` | Geospatial Hotspot Map |
+| `/prediction` | Risk Prediction Simulator |
+| `/sql-insights` | SQL Insights Explorer |
+| `/methodology` | ERD & System Architecture |
+
+---
+
+### ⑩ Launch Power BI Report
+
+```bash
+# 1. Ensure all processed data is ready (Step ④ above)
+ls data/processed/  # Should show accidents_clean.csv, vehicles_clean.csv, casualties_clean.csv
+
+# 2. Download Power BI Desktop (free)
+# https://powerbi.microsoft.com/en-us/desktop/
+
+# 3. Open the report file
+# File: powerbi/RoadAccidentAnalytics.pbix
+# (See powerbi/README_PowerBI.md for full instructions)
+```
+
+**On first open in Power BI Desktop:**
+1. Go to **Home → Transform Data → Data Source Settings**
+2. For each table, click **Change Source** and update paths to your `data/processed/` folder
+3. Click **Close & Apply** then **Home → Refresh**
+
+**Power BI Report Pages:**
+
+| Page | Content |
+|---|---|
+| 1. Overview | KPI cards, 5-year trend, severity donut, region ranking |
+| 2. Temporal | Hourly bar, day×hour heatmap, monthly seasonality |
+| 3. Geographic | Cluster map, DBSCAN hotspot table, risk rankings |
+| 4. Diagnostic | Weather/road/light condition severity charts, correlation heatmap |
+| 5. ML Evaluation | Confusion matrix, ROC curve, feature importance, prediction explorer |
+| 6. Decision Support | Priority investigation ranking, Pareto chart, action recommendations |
+
+---
+
+## Showcasing the Project — Quick Demo
+
+### Show Preprocessing Results
+```bash
+# Print cleaning summary
+cat preprocessing/results_of_preprocessing/preprocessing_summary.md
+
+# Show quality report stats
+python -c "
+import json
+with open('preprocessing/results_of_preprocessing/quality_report.json') as f:
+    qr = json.load(f)
+acc = qr['row_counts']['accidents']
+print(f'Raw accidents: {acc[\"raw\"]:,}')
+print(f'Cleaned accidents: {acc[\"cleaned\"]:,}')
+print(f'Duplicates removed: {acc[\"duplicates_dropped\"]:,}')
+print(f'Valid coordinates: {acc[\"valid_coordinates\"]:,}')
+print(f'Severe rate: {qr[\"target_distribution\"][\"severe_percentage\"]}%')
+"
+
+# List generated EDA figures
+ls docs/figures/eda/
+```
+
+### Show All EDA Visualizations
+```bash
+# Open the EDA figures folder in file manager
+xdg-open docs/figures/eda/        # Linux
+# open docs/figures/eda/           # macOS
+
+# Or generate them fresh
+python python/analysis/run_eda.py
+```
+
+### Test Risk Prediction API
+```bash
+curl -X POST http://localhost:4000/api/predict/risk \
+  -H "Content-Type: application/json" \
+  -d '{
+    "time_period": "Night",
+    "day_of_week_name": "Saturday",
+    "weather_condition_name": "Raining no high winds",
+    "road_surface_condition_name": "Wet or damp",
+    "light_condition_name": "Darkness - lights lit",
+    "road_type_name": "Single carriageway",
+    "road_class_name": "A",
+    "junction_detail_name": "T or staggered junction",
+    "junction_control_name": "Give way or uncontrolled",
+    "urban_rural_name": "Rural",
+    "hour": 23,
+    "month": 11,
+    "speed_limit": 60,
+    "number_of_vehicles": 2,
+    "is_weekend": 1,
+    "involves_motorcycle": 0,
+    "involves_hgv": 0,
+    "involves_cyclist": 0
+  }'
+```
+
+### Run Unit Tests
+```bash
+# Python preprocessing tests
+pytest -v python/tests/test_preprocessing.py
+
+# Backend API tests
+cd backend && npm test
+
+# Full test suite
+pytest -v && cd backend && npm test
+```
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|---|---|
+| `FileNotFoundError: data/raw/...` | Run `python python/ingestion/download_data.py` first |
+| `PGPASSWORD authentication failed` | Check `.env` file credentials and PostgreSQL user permissions |
+| Backend port 4000 already in use | `lsof -ti:4000 \| xargs kill -9` then restart |
+| Frontend blank page | Check that backend is running on port 4000; inspect browser console |
+| Power BI "data source not found" | Update paths in Transform Data → Data Source Settings |
+| EDA plots not generating | Run `pip install matplotlib seaborn pandas numpy` in venv |
+| DBSCAN step slow | Normal — 513,801 coordinate pairs take ~2 minutes |
+
+---
+
+## Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Raw Data | UK DfT STATS19 CSVs (Open Government Licence v3.0) |
+| Preprocessing | Python 3.10, pandas, NumPy |
+| Machine Learning | scikit-learn (Logistic Regression, DBSCAN) |
+| Visualization (EDA) | Matplotlib, Seaborn |
+| Analytics (Power BI) | Power BI Desktop (DAX, M, ArcGIS Maps) |
+| Database | PostgreSQL 14+, psycopg2, SQLAlchemy |
+| Backend API | Node.js 18+, Express, pg |
+| Frontend | React 18, Vite 5, Tailwind CSS 3, Recharts, Leaflet |
+| Maps | Leaflet.js, OpenStreetMap tiles |
 
 ---
 
 ## Milestone Progress
 
-- **Milestone 0: Project Scaffolding & Configuration** &mdash; *Completed*
-- **Milestone 1: Data Acquisition & Validation** &mdash; *Completed* (513,801 collisions validated; 72 reference tables generated; Go decision)
-- **Milestone 2: Preprocessing & Feature Engineering** &mdash; *Completed* (3 clean CSVs generated, unit tests passing, quality report created)
-- **Milestone 3: Database Schema, Constraints & Seed Data (PostgreSQL)** &mdash; *Completed* (18 tables created, 87 check constraints, 42 indexes, 13 seeded lookup tables)
-- **Milestone 4: Bulk Database Loading (PostgreSQL ETL)** &mdash; *Completed* (2.1M records loaded via COPY in ~38s, 10 indexes created, 0 orphans, 100% verified)
-- **Milestone 5: SQL Analytical Views & DBMS Query Suite** &mdash; *Completed* (4 views, 1 materialized heatmap view, 16 analytical queries, optimization benchmarks, SQL guide)
-- **Milestone 6: Exploratory Data Analysis & Statistical Profiling** &mdash; *Completed* (15 figures generated with 95% Wilson CIs, executed notebook, findings report with caveats)
-- **Milestone 7: Spatial Hotspot Clustering & DBMS Queries 17–20** &mdash; *Completed* (DBSCAN 150m/30, 704 clusters, F/S/T risk scoring, PostgreSQL sync, 20 SQL queries passing)
-- **Milestone 8: Explainable Severity Prediction Model & Parity Export** &mdash; *Completed* (Balanced Logistic Regression, temporal validation, JSON weights, 6-decimal parity verified)
-- **Milestone 9: Backend API Development (Express/Node)** &mdash; *Completed* (RESTful API, strict parameterization, pure JS scoring, 30 passing tests, docs/api.md)
-- **Milestone 10: Frontend Core Dashboard (Overview & Accident Analysis)** &mdash; *Completed* (React 18 + Vite + Tailwind, FilterContext, Recharts suite, live API synchronization)
-- **Milestone 11: Spatial Map Visualization, Interactive ML Simulator & SQL Runner** &mdash; *Pending*
+- **Milestone 0:** Project Scaffolding — ✅ Completed
+- **Milestone 1:** Data Acquisition & Validation — ✅ Completed (513,801 collisions, 76 reference tables)
+- **Milestone 2:** Preprocessing & Feature Engineering — ✅ Completed (3 clean CSVs, quality report, unit tests)
+- **Milestone 3:** Database Schema & Constraints — ✅ Completed (18 tables, 87 constraints, 42 indexes)
+- **Milestone 4:** Database Loading — ✅ Completed (2.1M records via COPY in ~38s)
+- **Milestone 5:** SQL Views & Query Suite — ✅ Completed (4 views, 20 analytical queries)
+- **Milestone 6:** EDA & Statistical Profiling — ✅ Completed (20 figures, 95% Wilson CIs)
+- **Milestone 7:** Spatial Hotspot Clustering — ✅ Completed (DBSCAN 150m/30, 704 clusters)
+- **Milestone 8:** Severity Prediction Model — ✅ Completed (Logistic Regression, JSON export, 6-decimal parity)
+- **Milestone 9:** Backend API — ✅ Completed (30 passing tests, RESTful API docs)
+- **Milestone 10:** Frontend Dashboard Core — ✅ Completed
+- **Milestone 11:** Full Integration & Power BI Report — ✅ Completed (this milestone)
+
+---
+
+## License
+
+Data: Contains public sector information licensed under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+
+Code: MIT License (see LICENSE file).
+
+*Academic and Teaching Project: Data Visualization + DBMS Capstone. Not certified for emergency or operational dispatch.*
