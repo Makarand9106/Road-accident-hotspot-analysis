@@ -71,6 +71,7 @@ export const api = {
   // Hotspots & Spatial Analytics
   getHotspots: (params = {}) => fetchJson(`/hotspots${buildQueryString(params)}`),
   getHotspotById: (id) => fetchJson(`/hotspots/${id}`),
+  getHotspotGrid: (params = {}) => fetchJson(`/hotspots/grid${buildQueryString(params)}`),
   getRiskSummary: () => fetchJson('/risk'),
 
   // DBMS Analytical SQL Insights

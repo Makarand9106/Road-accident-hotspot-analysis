@@ -16,10 +16,10 @@ import { formatNumber } from '../utils/constants';
 const NAV_ITEMS = [
   { path: '/', label: 'Overview', icon: LayoutDashboard, exact: true },
   { path: '/analysis', label: 'Accident Analysis', icon: BarChart3 },
-  { path: '/hotspots', label: 'Hotspot Analysis', icon: MapPin, badge: 'M11' },
-  { path: '/prediction', label: 'Risk Prediction', icon: Sparkles, badge: 'M11' },
-  { path: '/sql-insights', label: 'SQL Insights', icon: Database, badge: 'M11' },
-  { path: '/methodology', label: 'Methodology', icon: BookOpen, badge: 'M11' },
+  { path: '/hotspots', label: 'Hotspot Analysis', icon: MapPin },
+  { path: '/prediction', label: 'Risk Prediction', icon: Sparkles },
+  { path: '/sql-insights', label: 'SQL Insights', icon: Database },
+  { path: '/methodology', label: 'Methodology', icon: BookOpen },
 ];
 
 export function Sidebar({ mobileOpen, setMobileOpen }) {
