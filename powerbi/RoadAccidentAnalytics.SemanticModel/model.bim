@@ -1,0 +1,1195 @@
+{
+  "name": "RoadAccidentAnalytics",
+  "compatibilityLevel": 1550,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-GB",
+    "tables": [
+      {
+        "name": "FactAccidents",
+        "columns": [
+          {
+            "name": "accident_index",
+            "dataType": "string",
+            "sourceColumn": "accident_index"
+          },
+          {
+            "name": "accident_year",
+            "dataType": "int64",
+            "sourceColumn": "accident_year"
+          },
+          {
+            "name": "accident_date",
+            "dataType": "dateTime",
+            "sourceColumn": "accident_date",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "time",
+            "dataType": "string",
+            "sourceColumn": "time"
+          },
+          {
+            "name": "accident_severity",
+            "dataType": "int64",
+            "sourceColumn": "accident_severity"
+          },
+          {
+            "name": "severity_name",
+            "dataType": "string",
+            "sourceColumn": "severity_name"
+          },
+          {
+            "name": "is_severe",
+            "dataType": "int64",
+            "sourceColumn": "is_severe"
+          },
+          {
+            "name": "number_of_vehicles",
+            "dataType": "int64",
+            "sourceColumn": "number_of_vehicles"
+          },
+          {
+            "name": "number_of_casualties",
+            "dataType": "int64",
+            "sourceColumn": "number_of_casualties"
+          },
+          {
+            "name": "police_force_id",
+            "dataType": "int64",
+            "sourceColumn": "police_force_id"
+          },
+          {
+            "name": "police_force_name",
+            "dataType": "string",
+            "sourceColumn": "police_force_name"
+          },
+          {
+            "name": "road_type_id",
+            "dataType": "int64",
+            "sourceColumn": "road_type_id"
+          },
+          {
+            "name": "road_type_name",
+            "dataType": "string",
+            "sourceColumn": "road_type_name"
+          },
+          {
+            "name": "speed_limit",
+            "dataType": "int64",
+            "sourceColumn": "speed_limit"
+          },
+          {
+            "name": "light_condition_id",
+            "dataType": "int64",
+            "sourceColumn": "light_condition_id"
+          },
+          {
+            "name": "light_condition_name",
+            "dataType": "string",
+            "sourceColumn": "light_condition_name"
+          },
+          {
+            "name": "weather_condition_id",
+            "dataType": "int64",
+            "sourceColumn": "weather_condition_id"
+          },
+          {
+            "name": "weather_condition_name",
+            "dataType": "string",
+            "sourceColumn": "weather_condition_name"
+          },
+          {
+            "name": "road_surface_condition_id",
+            "dataType": "int64",
+            "sourceColumn": "road_surface_condition_id"
+          },
+          {
+            "name": "road_surface_condition_name",
+            "dataType": "string",
+            "sourceColumn": "road_surface_condition_name"
+          },
+          {
+            "name": "urban_or_rural_area",
+            "dataType": "int64",
+            "sourceColumn": "urban_or_rural_area"
+          },
+          {
+            "name": "urban_rural_name",
+            "dataType": "string",
+            "sourceColumn": "urban_rural_name"
+          },
+          {
+            "name": "latitude",
+            "dataType": "double",
+            "sourceColumn": "latitude"
+          },
+          {
+            "name": "longitude",
+            "dataType": "double",
+            "sourceColumn": "longitude"
+          },
+          {
+            "name": "easting",
+            "dataType": "int64",
+            "sourceColumn": "easting"
+          },
+          {
+            "name": "northing",
+            "dataType": "int64",
+            "sourceColumn": "northing"
+          },
+          {
+            "name": "hour",
+            "dataType": "int64",
+            "sourceColumn": "hour"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month"
+          },
+          {
+            "name": "month_name",
+            "dataType": "string",
+            "sourceColumn": "month_name"
+          },
+          {
+            "name": "day_of_week",
+            "dataType": "int64",
+            "sourceColumn": "day_of_week"
+          },
+          {
+            "name": "day_of_week_name",
+            "dataType": "string",
+            "sourceColumn": "day_of_week_name"
+          },
+          {
+            "name": "is_weekend",
+            "dataType": "int64",
+            "sourceColumn": "is_weekend"
+          },
+          {
+            "name": "time_period",
+            "dataType": "string",
+            "sourceColumn": "time_period"
+          },
+          {
+            "name": "involves_motorcycle",
+            "dataType": "int64",
+            "sourceColumn": "involves_motorcycle"
+          },
+          {
+            "name": "involves_hgv",
+            "dataType": "int64",
+            "sourceColumn": "involves_hgv"
+          },
+          {
+            "name": "involves_cyclist",
+            "dataType": "int64",
+            "sourceColumn": "involves_cyclist"
+          },
+          {
+            "name": "hotspot_id",
+            "dataType": "int64",
+            "sourceColumn": "hotspot_id"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Accidents",
+            "expression": "COUNTROWS(FactAccidents)",
+            "formatString": "#,##0",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Total number of road collision records recorded."
+          },
+          {
+            "name": "Total Casualties",
+            "expression": "COUNTROWS(FactCasualties)",
+            "formatString": "#,##0",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Total number of individuals injured or killed."
+          },
+          {
+            "name": "Total Vehicles",
+            "expression": "COUNTROWS(FactVehicles)",
+            "formatString": "#,##0",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Total number of vehicles involved."
+          },
+          {
+            "name": "Severe Accidents",
+            "expression": "CALCULATE([Total Accidents], FactAccidents[is_severe] = 1)",
+            "formatString": "#,##0",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Collisions categorized as Fatal or Serious."
+          },
+          {
+            "name": "Fatal Accidents",
+            "expression": "CALCULATE([Total Accidents], FactAccidents[accident_severity] = 1)",
+            "formatString": "#,##0",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Collisions resulting in at least 1 fatality."
+          },
+          {
+            "name": "Serious Accidents",
+            "expression": "CALCULATE([Total Accidents], FactAccidents[accident_severity] = 2)",
+            "formatString": "#,##0",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Collisions resulting in severe incapacitating injury."
+          },
+          {
+            "name": "Slight Accidents",
+            "expression": "CALCULATE([Total Accidents], FactAccidents[accident_severity] = 3)",
+            "formatString": "#,##0",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Collisions resulting in slight minor injuries."
+          },
+          {
+            "name": "Severe Accident %",
+            "expression": "DIVIDE([Severe Accidents], [Total Accidents], 0) * 100",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Percentage of collisions that are severe."
+          },
+          {
+            "name": "Fatal Accident %",
+            "expression": "DIVIDE([Fatal Accidents], [Total Accidents], 0) * 100",
+            "formatString": "0.00\"%\"",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Percentage of collisions that are fatal."
+          },
+          {
+            "name": "Avg Casualties Per Accident",
+            "expression": "DIVIDE([Total Casualties], [Total Accidents], 0)",
+            "formatString": "0.00",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Average casualties per collision incident."
+          },
+          {
+            "name": "Avg Vehicles Per Accident",
+            "expression": "DIVIDE([Total Vehicles], [Total Accidents], 0)",
+            "formatString": "0.00",
+            "displayFolder": "01_Key_KPIs",
+            "description": "Average vehicles involved per incident."
+          },
+          {
+            "name": "Accidents Prior Year",
+            "expression": "CALCULATE([Total Accidents], SAMEPERIODLASTYEAR(DimDate[date]))",
+            "formatString": "#,##0",
+            "displayFolder": "02_Time_Intelligence",
+            "description": "Collision volume in the equivalent period of the previous year."
+          },
+          {
+            "name": "YoY Accident Change",
+            "expression": "[Total Accidents] - [Accidents Prior Year]",
+            "formatString": "+#,##0;-#,##0;0",
+            "displayFolder": "02_Time_Intelligence",
+            "description": "Absolute Year-over-Year collision change."
+          },
+          {
+            "name": "YoY Accident Change %",
+            "expression": "DIVIDE([YoY Accident Change], [Accidents Prior Year], 0) * 100",
+            "formatString": "+0.0\"%\";-0.0\"%\";0.0\"%\"",
+            "displayFolder": "02_Time_Intelligence",
+            "description": "Percentage Year-over-Year collision shift."
+          },
+          {
+            "name": "Weekend Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[is_weekend] = 1)",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "02_Time_Intelligence",
+            "description": "Severe rate on Saturday and Sunday."
+          },
+          {
+            "name": "Weekday Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[is_weekend] = 0)",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "02_Time_Intelligence",
+            "description": "Severe rate Monday through Friday."
+          },
+          {
+            "name": "Motorcycle Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[involves_motorcycle] = 1)",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "03_Severity_Analytics",
+            "description": "Severe rate for collisions involving motorcycles."
+          },
+          {
+            "name": "HGV Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[involves_hgv] = 1)",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "03_Severity_Analytics",
+            "description": "Severe rate for collisions involving HGVs."
+          },
+          {
+            "name": "Cyclist Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[involves_cyclist] = 1)",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "03_Severity_Analytics",
+            "description": "Severe rate for collisions involving pedal cyclists."
+          },
+          {
+            "name": "Night Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[time_period] = \"Night\")",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "03_Severity_Analytics",
+            "description": "Severe rate during night hours (23:00 - 06:59)."
+          },
+          {
+            "name": "Dark Unlit Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[light_condition_name] = \"Darkness - no lighting\")",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "03_Severity_Analytics",
+            "description": "Severe rate in unlit darkness."
+          },
+          {
+            "name": "Wet Road Severe %",
+            "expression": "CALCULATE([Severe Accident %], FactAccidents[road_surface_condition_name] IN {\"Wet or damp\", \"Flood over 3cm. deep\"})",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "03_Severity_Analytics",
+            "description": "Severe rate on wet or flooded surfaces."
+          },
+          {
+            "name": "Total Hotspots",
+            "expression": "COUNTROWS(FactHotspots)",
+            "formatString": "#,##0",
+            "displayFolder": "04_Hotspot_Analytics",
+            "description": "Total detected DBSCAN spatial clusters (eps=150m, min_samples=30)."
+          },
+          {
+            "name": "High Risk Hotspots",
+            "expression": "CALCULATE([Total Hotspots], FactHotspots[risk_level] = \"High\")",
+            "formatString": "#,##0",
+            "displayFolder": "04_Hotspot_Analytics",
+            "description": "Clusters in the High Risk Tier (Risk Score >= 70)."
+          },
+          {
+            "name": "Medium Risk Hotspots",
+            "expression": "CALCULATE([Total Hotspots], FactHotspots[risk_level] = \"Medium\")",
+            "formatString": "#,##0",
+            "displayFolder": "04_Hotspot_Analytics",
+            "description": "Clusters in the Medium Risk Tier (50 <= Risk Score < 70)."
+          },
+          {
+            "name": "Low Risk Hotspots",
+            "expression": "CALCULATE([Total Hotspots], FactHotspots[risk_level] = \"Low\")",
+            "formatString": "#,##0",
+            "displayFolder": "04_Hotspot_Analytics",
+            "description": "Clusters in the Low Risk Tier (Risk Score < 50)."
+          },
+          {
+            "name": "Avg Hotspot Risk Score",
+            "expression": "AVERAGE(FactHotspots[risk_score])",
+            "formatString": "0.0",
+            "displayFolder": "04_Hotspot_Analytics",
+            "description": "Mean risk score across all detected clusters."
+          },
+          {
+            "name": "Hotspot Clustered Accidents",
+            "expression": "SUM(FactHotspots[accident_count])",
+            "formatString": "#,##0",
+            "displayFolder": "04_Hotspot_Analytics",
+            "description": "Total collisions clustered inside DBSCAN hotspots."
+          },
+          {
+            "name": "Hotspot Clustered Collision Share %",
+            "expression": "DIVIDE([Hotspot Clustered Accidents], [Total Accidents], 0) * 100",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "04_Hotspot_Analytics",
+            "description": "Share of national collisions concentrated inside hotspots."
+          },
+          {
+            "name": "Evaluated Test Samples",
+            "expression": "COUNTROWS(FactPredictions)",
+            "formatString": "#,##0",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Test set samples evaluated by Logistic Regression."
+          },
+          {
+            "name": "True Positives",
+            "expression": "CALCULATE([Evaluated Test Samples], FactPredictions[prediction_outcome] = \"True Positive\")",
+            "formatString": "#,##0",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Correctly predicted severe trauma incidents."
+          },
+          {
+            "name": "True Negatives",
+            "expression": "CALCULATE([Evaluated Test Samples], FactPredictions[prediction_outcome] = \"True Negative\")",
+            "formatString": "#,##0",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Correctly predicted slight collisions."
+          },
+          {
+            "name": "False Positives",
+            "expression": "CALCULATE([Evaluated Test Samples], FactPredictions[prediction_outcome] = \"False Positive\")",
+            "formatString": "#,##0",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Type I Errors."
+          },
+          {
+            "name": "False Negatives",
+            "expression": "CALCULATE([Evaluated Test Samples], FactPredictions[prediction_outcome] = \"False Negative\")",
+            "formatString": "#,##0",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Type II Errors."
+          },
+          {
+            "name": "Model Accuracy %",
+            "expression": "DIVIDE([True Positives] + [True Negatives], [Evaluated Test Samples], 0) * 100",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Overall classifier accuracy."
+          },
+          {
+            "name": "Model Precision %",
+            "expression": "DIVIDE([True Positives], [True Positives] + [False Positives], 0) * 100",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Precision for severe outcome class."
+          },
+          {
+            "name": "Model Recall %",
+            "expression": "DIVIDE([True Positives], [True Positives] + [False Negatives], 0) * 100",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Sensitivity / Recall for severe outcome class."
+          },
+          {
+            "name": "Model Balanced Accuracy %",
+            "expression": "VAR rec = [Model Recall %] VAR spec = DIVIDE([True Negatives], [True Negatives] + [False Positives], 0) * 100 RETURN (rec + spec) / 2",
+            "formatString": "0.0\"%\"",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Balanced accuracy accounting for class imbalance."
+          },
+          {
+            "name": "Model F1 Score",
+            "expression": "VAR p = [Model Precision %] / 100 VAR r = [Model Recall %] / 100 RETURN IF((p + r) = 0, 0, 2 * DIVIDE(p * r, p + r, 0))",
+            "formatString": "0.000",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "F1 score for severe outcome class."
+          },
+          {
+            "name": "High Risk Predictions Count",
+            "expression": "CALCULATE([Evaluated Test Samples], FactPredictions[risk_tier] = \"High\")",
+            "formatString": "#,##0",
+            "displayFolder": "05_ML_Model_Metrics",
+            "description": "Collisions where model predicted >= 2x baseline probability."
+          },
+          {
+            "name": "Priority 1 Hotspots",
+            "expression": "CALCULATE(COUNTROWS(FactHotspotAlerts), FactHotspotAlerts[priority_tier] = \"Priority 1\")",
+            "formatString": "#,##0",
+            "displayFolder": "06_Decision_Support",
+            "description": "High-burden locations with rising collision trend requiring immediate audit."
+          },
+          {
+            "name": "Priority 2 Hotspots",
+            "expression": "CALCULATE(COUNTROWS(FactHotspotAlerts), FactHotspotAlerts[priority_tier] = \"Priority 2\")",
+            "formatString": "#,##0",
+            "displayFolder": "06_Decision_Support",
+            "description": "Locations with severe crash burden requiring engineering intervention."
+          },
+          {
+            "name": "Priority 3 Hotspots",
+            "expression": "CALCULATE(COUNTROWS(FactHotspotAlerts), FactHotspotAlerts[priority_tier] = \"Priority 3\")",
+            "formatString": "#,##0",
+            "displayFolder": "06_Decision_Support",
+            "description": "Locations with vulnerable road user or nocturnal concentration."
+          },
+          {
+            "name": "Monitoring Hotspots",
+            "expression": "CALCULATE(COUNTROWS(FactHotspotAlerts), FactHotspotAlerts[priority_tier] = \"Monitor\")",
+            "formatString": "#,##0",
+            "displayFolder": "06_Decision_Support",
+            "description": "Stable clusters under standard monitoring."
+          },
+          {
+            "name": "Total Actionable Hotspots",
+            "expression": "[Priority 1 Hotspots] + [Priority 2 Hotspots] + [Priority 3 Hotspots]",
+            "formatString": "#,##0",
+            "displayFolder": "06_Decision_Support",
+            "description": "Total locations identified for active intervention."
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactAccidents-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"data/processed/accidents_clean.csv\"), [Delimiter=\",\", Columns=37, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactCasualties",
+        "columns": [
+          {
+            "name": "casualty_id",
+            "dataType": "int64",
+            "sourceColumn": "casualty_id"
+          },
+          {
+            "name": "accident_index",
+            "dataType": "string",
+            "sourceColumn": "accident_index"
+          },
+          {
+            "name": "casualty_reference",
+            "dataType": "int64",
+            "sourceColumn": "casualty_reference"
+          },
+          {
+            "name": "casualty_class",
+            "dataType": "int64",
+            "sourceColumn": "casualty_class"
+          },
+          {
+            "name": "casualty_class_name",
+            "dataType": "string",
+            "sourceColumn": "casualty_class_name"
+          },
+          {
+            "name": "sex_of_casualty",
+            "dataType": "string",
+            "sourceColumn": "sex_of_casualty"
+          },
+          {
+            "name": "age_of_casualty",
+            "dataType": "int64",
+            "sourceColumn": "age_of_casualty"
+          },
+          {
+            "name": "casualty_severity",
+            "dataType": "int64",
+            "sourceColumn": "casualty_severity"
+          },
+          {
+            "name": "casualty_severity_name",
+            "dataType": "string",
+            "sourceColumn": "casualty_severity_name"
+          },
+          {
+            "name": "casualty_type",
+            "dataType": "int64",
+            "sourceColumn": "casualty_type"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactCasualties-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"data/processed/casualties_clean.csv\"), [Delimiter=\",\", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactVehicles",
+        "columns": [
+          {
+            "name": "vehicle_id",
+            "dataType": "int64",
+            "sourceColumn": "vehicle_id"
+          },
+          {
+            "name": "accident_index",
+            "dataType": "string",
+            "sourceColumn": "accident_index"
+          },
+          {
+            "name": "vehicle_reference",
+            "dataType": "int64",
+            "sourceColumn": "vehicle_reference"
+          },
+          {
+            "name": "vehicle_type",
+            "dataType": "int64",
+            "sourceColumn": "vehicle_type"
+          },
+          {
+            "name": "vehicle_type_name",
+            "dataType": "string",
+            "sourceColumn": "vehicle_type_name"
+          },
+          {
+            "name": "sex_of_driver",
+            "dataType": "string",
+            "sourceColumn": "sex_of_driver"
+          },
+          {
+            "name": "age_of_driver",
+            "dataType": "int64",
+            "sourceColumn": "age_of_driver"
+          },
+          {
+            "name": "first_point_of_impact",
+            "dataType": "string",
+            "sourceColumn": "first_point_of_impact"
+          },
+          {
+            "name": "engine_capacity_cc",
+            "dataType": "int64",
+            "sourceColumn": "engine_capacity_cc"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactVehicles-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"data/processed/vehicles_clean.csv\"), [Delimiter=\",\", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactHotspots",
+        "columns": [
+          {
+            "name": "hotspot_id",
+            "dataType": "int64",
+            "sourceColumn": "hotspot_id"
+          },
+          {
+            "name": "risk_rank",
+            "dataType": "int64",
+            "sourceColumn": "risk_rank"
+          },
+          {
+            "name": "risk_score",
+            "dataType": "double",
+            "sourceColumn": "risk_score"
+          },
+          {
+            "name": "risk_level",
+            "dataType": "string",
+            "sourceColumn": "risk_level"
+          },
+          {
+            "name": "accident_count",
+            "dataType": "int64",
+            "sourceColumn": "accident_count"
+          },
+          {
+            "name": "fatal_count",
+            "dataType": "int64",
+            "sourceColumn": "fatal_count"
+          },
+          {
+            "name": "serious_count",
+            "dataType": "int64",
+            "sourceColumn": "serious_count"
+          },
+          {
+            "name": "slight_count",
+            "dataType": "int64",
+            "sourceColumn": "slight_count"
+          },
+          {
+            "name": "severe_percentage",
+            "dataType": "double",
+            "sourceColumn": "severe_percentage"
+          },
+          {
+            "name": "trend_slope",
+            "dataType": "double",
+            "sourceColumn": "trend_slope"
+          },
+          {
+            "name": "centre_lat",
+            "dataType": "double",
+            "sourceColumn": "centre_lat"
+          },
+          {
+            "name": "centre_lon",
+            "dataType": "double",
+            "sourceColumn": "centre_lon"
+          },
+          {
+            "name": "radius_m",
+            "dataType": "double",
+            "sourceColumn": "radius_m"
+          },
+          {
+            "name": "diameter_m",
+            "dataType": "double",
+            "sourceColumn": "diameter_m"
+          },
+          {
+            "name": "police_force_name",
+            "dataType": "string",
+            "sourceColumn": "police_force_name"
+          },
+          {
+            "name": "nearest_district_name",
+            "dataType": "string",
+            "sourceColumn": "nearest_district_name"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactHotspots-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"docs/results/hotspots/hotspot_results.csv\"), [Delimiter=\",\", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactHotspotAlerts",
+        "columns": [
+          {
+            "name": "alert_id",
+            "dataType": "int64",
+            "sourceColumn": "alert_id"
+          },
+          {
+            "name": "hotspot_id",
+            "dataType": "int64",
+            "sourceColumn": "hotspot_id"
+          },
+          {
+            "name": "observation_period",
+            "dataType": "string",
+            "sourceColumn": "observation_period"
+          },
+          {
+            "name": "observed_accidents",
+            "dataType": "int64",
+            "sourceColumn": "observed_accidents"
+          },
+          {
+            "name": "expected_accidents",
+            "dataType": "int64",
+            "sourceColumn": "expected_accidents"
+          },
+          {
+            "name": "historical_baseline",
+            "dataType": "double",
+            "sourceColumn": "historical_baseline"
+          },
+          {
+            "name": "pct_change_vs_baseline",
+            "dataType": "double",
+            "sourceColumn": "pct_change_vs_baseline"
+          },
+          {
+            "name": "severe_accident_count",
+            "dataType": "int64",
+            "sourceColumn": "severe_accident_count"
+          },
+          {
+            "name": "anomaly_score",
+            "dataType": "double",
+            "sourceColumn": "anomaly_score"
+          },
+          {
+            "name": "p_value",
+            "dataType": "double",
+            "sourceColumn": "p_value"
+          },
+          {
+            "name": "priority_tier",
+            "dataType": "string",
+            "sourceColumn": "priority_tier"
+          },
+          {
+            "name": "recommended_action",
+            "dataType": "string",
+            "sourceColumn": "recommended_action"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactHotspotAlerts-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"docs/results/hotspots/hotspot_alerts.csv\"), [Delimiter=\",\", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactPredictions",
+        "columns": [
+          {
+            "name": "prediction_id",
+            "dataType": "int64",
+            "sourceColumn": "prediction_id"
+          },
+          {
+            "name": "accident_index",
+            "dataType": "string",
+            "sourceColumn": "accident_index"
+          },
+          {
+            "name": "actual_is_severe",
+            "dataType": "int64",
+            "sourceColumn": "actual_is_severe"
+          },
+          {
+            "name": "predicted_probability",
+            "dataType": "double",
+            "sourceColumn": "predicted_probability"
+          },
+          {
+            "name": "predicted_is_severe",
+            "dataType": "int64",
+            "sourceColumn": "predicted_is_severe"
+          },
+          {
+            "name": "predicted_is_severe_50",
+            "dataType": "int64",
+            "sourceColumn": "predicted_is_severe_50"
+          },
+          {
+            "name": "risk_tier",
+            "dataType": "string",
+            "sourceColumn": "risk_tier"
+          },
+          {
+            "name": "prediction_outcome",
+            "dataType": "string",
+            "sourceColumn": "prediction_outcome"
+          },
+          {
+            "name": "residual",
+            "dataType": "double",
+            "sourceColumn": "residual"
+          },
+          {
+            "name": "time_period",
+            "dataType": "string",
+            "sourceColumn": "time_period"
+          },
+          {
+            "name": "weather_condition_name",
+            "dataType": "string",
+            "sourceColumn": "weather_condition_name"
+          },
+          {
+            "name": "road_surface_condition_name",
+            "dataType": "string",
+            "sourceColumn": "road_surface_condition_name"
+          },
+          {
+            "name": "light_condition_name",
+            "dataType": "string",
+            "sourceColumn": "light_condition_name"
+          },
+          {
+            "name": "road_type_name",
+            "dataType": "string",
+            "sourceColumn": "road_type_name"
+          },
+          {
+            "name": "speed_limit",
+            "dataType": "int64",
+            "sourceColumn": "speed_limit"
+          },
+          {
+            "name": "involves_motorcycle",
+            "dataType": "int64",
+            "sourceColumn": "involves_motorcycle"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactPredictions-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"docs/results/model/predictions_test.csv\"), [Delimiter=\",\", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "date",
+            "dataType": "dateTime",
+            "sourceColumn": "date",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year"
+          },
+          {
+            "name": "quarter",
+            "dataType": "string",
+            "sourceColumn": "quarter"
+          },
+          {
+            "name": "quarter_year",
+            "dataType": "string",
+            "sourceColumn": "quarter_year"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month"
+          },
+          {
+            "name": "month_name",
+            "dataType": "string",
+            "sourceColumn": "month_name",
+            "sortByColumn": "month"
+          },
+          {
+            "name": "month_year",
+            "dataType": "string",
+            "sourceColumn": "month_year",
+            "sortByColumn": "month_sort"
+          },
+          {
+            "name": "month_sort",
+            "dataType": "int64",
+            "sourceColumn": "month_sort"
+          },
+          {
+            "name": "day",
+            "dataType": "int64",
+            "sourceColumn": "day"
+          },
+          {
+            "name": "day_of_week",
+            "dataType": "int64",
+            "sourceColumn": "day_of_week"
+          },
+          {
+            "name": "day_of_week_name",
+            "dataType": "string",
+            "sourceColumn": "day_of_week_name",
+            "sortByColumn": "day_of_week"
+          },
+          {
+            "name": "day_of_week_short",
+            "dataType": "string",
+            "sourceColumn": "day_of_week_short",
+            "sortByColumn": "day_of_week"
+          },
+          {
+            "name": "is_weekend",
+            "dataType": "int64",
+            "sourceColumn": "is_weekend"
+          },
+          {
+            "name": "season",
+            "dataType": "string",
+            "sourceColumn": "season"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDate-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"data/processed/dim_date.csv\"), [Delimiter=\",\", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimLocation",
+        "columns": [
+          {
+            "name": "police_force_id",
+            "dataType": "int64",
+            "sourceColumn": "police_force_id"
+          },
+          {
+            "name": "police_force_name",
+            "dataType": "string",
+            "sourceColumn": "police_force_name"
+          },
+          {
+            "name": "region_name",
+            "dataType": "string",
+            "sourceColumn": "region_name"
+          },
+          {
+            "name": "latitude",
+            "dataType": "double",
+            "sourceColumn": "latitude"
+          },
+          {
+            "name": "longitude",
+            "dataType": "double",
+            "sourceColumn": "longitude"
+          },
+          {
+            "name": "urban_rural_profile",
+            "dataType": "string",
+            "sourceColumn": "urban_rural_profile"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimLocation-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"data/processed/dim_location.csv\"), [Delimiter=\",\", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimRoadCondition",
+        "columns": [
+          {
+            "name": "condition_key",
+            "dataType": "string",
+            "sourceColumn": "condition_key"
+          },
+          {
+            "name": "road_surface_condition_name",
+            "dataType": "string",
+            "sourceColumn": "road_surface_condition_name"
+          },
+          {
+            "name": "light_condition_name",
+            "dataType": "string",
+            "sourceColumn": "light_condition_name"
+          },
+          {
+            "name": "compound_risk_rating",
+            "dataType": "string",
+            "sourceColumn": "compound_risk_rating"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimRoadCondition-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"data/processed/dim_road_condition.csv\"), [Delimiter=\",\", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])",
+                "in",
+                "    Promoted"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "FactAccidents_DimDate_FK",
+        "fromTable": "FactAccidents",
+        "fromColumn": "accident_date",
+        "toTable": "DimDate",
+        "toColumn": "date",
+        "crossFilteringBehavior": "oneDirection"
+      },
+      {
+        "name": "FactAccidents_DimLocation_FK",
+        "fromTable": "FactAccidents",
+        "fromColumn": "police_force_id",
+        "toTable": "DimLocation",
+        "toColumn": "police_force_id",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "FactCasualties_FactAccidents_FK",
+        "fromTable": "FactCasualties",
+        "fromColumn": "accident_index",
+        "toTable": "FactAccidents",
+        "toColumn": "accident_index",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "FactVehicles_FactAccidents_FK",
+        "fromTable": "FactVehicles",
+        "fromColumn": "accident_index",
+        "toTable": "FactAccidents",
+        "toColumn": "accident_index",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "FactHotspotAlerts_FactHotspots_FK",
+        "fromTable": "FactHotspotAlerts",
+        "fromColumn": "hotspot_id",
+        "toTable": "FactHotspots",
+        "toColumn": "hotspot_id",
+        "crossFilteringBehavior": "bothDirections"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "700"
+      }
+    ]
+  }
+}

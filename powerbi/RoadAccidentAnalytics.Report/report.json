@@ -1,0 +1,453 @@
+{
+  "config": "{\"version\": \"5.55\", \"themeCollection\": {\"baseTheme\": {\"name\": \"CY24SU08\", \"version\": \"5.55\", \"type\": 2}}, \"activeSectionIndex\": 0}",
+  "layoutOptimization": 0,
+  "sections": [
+    {
+      "name": "ReportSection_Overview",
+      "displayName": "1. Accident Intelligence Overview",
+      "ordinal": 0,
+      "visualContainers": [
+        {
+          "id": "kpi_total_acc",
+          "x": 20,
+          "y": 20,
+          "z": 1000,
+          "width": 190,
+          "height": 100,
+          "config": "{\"name\": \"kpi_total_acc\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 1000, \"width\": 190, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Collisions'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_sev_acc",
+          "x": 230,
+          "y": 20,
+          "z": 1000,
+          "width": 190,
+          "height": 100,
+          "config": "{\"name\": \"kpi_sev_acc\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 230, \"y\": 20, \"z\": 1000, \"width\": 190, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Severe Collisions'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_sev_rate",
+          "x": 440,
+          "y": 20,
+          "z": 1000,
+          "width": 190,
+          "height": 100,
+          "config": "{\"name\": \"kpi_sev_rate\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 440, \"y\": 20, \"z\": 1000, \"width\": 190, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Severe Rate %'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_casualties",
+          "x": 650,
+          "y": 20,
+          "z": 1000,
+          "width": 190,
+          "height": 100,
+          "config": "{\"name\": \"kpi_casualties\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 20, \"z\": 1000, \"width\": 190, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Casualties'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_fatal",
+          "x": 860,
+          "y": 20,
+          "z": 1000,
+          "width": 190,
+          "height": 100,
+          "config": "{\"name\": \"kpi_fatal\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860, \"y\": 20, \"z\": 1000, \"width\": 190, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Fatal Collisions'\"}}}}}]}}}"
+        },
+        {
+          "id": "slicer_year",
+          "x": 1070,
+          "y": 20,
+          "z": 1000,
+          "width": 190,
+          "height": 100,
+          "config": "{\"name\": \"slicer_year\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1070, \"y\": 20, \"z\": 1000, \"width\": 190, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"slicer\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Year Filter (2021-2025)'\"}}}}}]}}}"
+        },
+        {
+          "id": "trend_5year",
+          "x": 20,
+          "y": 140,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"trend_5year\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 140, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"lineStackedColumnComboChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'5-Year Collision Volume & Severity Trend'\"}}}}}]}}}"
+        },
+        {
+          "id": "donut_severity",
+          "x": 650,
+          "y": 140,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"donut_severity\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 140, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"donutChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Collision Severity Breakdown'\"}}}}}]}}}"
+        },
+        {
+          "id": "bar_top_regions",
+          "x": 20,
+          "y": 430,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"bar_top_regions\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 430, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Top Police Force Jurisdictions by Collision Volume'\"}}}}}]}}}"
+        },
+        {
+          "id": "line_monthly_cum",
+          "x": 650,
+          "y": 430,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"line_monthly_cum\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 430, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Cumulative Monthly Collisions by Calendar Year'\"}}}}}]}}}"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection_Temporal",
+      "displayName": "2. Temporal Analytics & Pattern Discovery",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "id": "kpi_wknd_sev",
+          "x": 20,
+          "y": 20,
+          "z": 1000,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"kpi_wknd_sev\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 1000, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Weekend Severe %'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_wkday_sev",
+          "x": 340,
+          "y": 20,
+          "z": 1000,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"kpi_wkday_sev\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 340, \"y\": 20, \"z\": 1000, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Weekday Severe %'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_night_sev",
+          "x": 660,
+          "y": 20,
+          "z": 1000,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"kpi_night_sev\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 660, \"y\": 20, \"z\": 1000, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Night Severe % (23:00-07:00)'\"}}}}}]}}}"
+        },
+        {
+          "id": "slicer_dow",
+          "x": 980,
+          "y": 20,
+          "z": 1000,
+          "width": 280,
+          "height": 100,
+          "config": "{\"name\": \"slicer_dow\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 980, \"y\": 20, \"z\": 1000, \"width\": 280, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"slicer\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Day of Week Filter'\"}}}}}]}}}"
+        },
+        {
+          "id": "bar_diurnal_24h",
+          "x": 20,
+          "y": 140,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"bar_diurnal_24h\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 140, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"columnChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'24-Hour Diurnal Collision Volume & Peak Windows'\"}}}}}]}}}"
+        },
+        {
+          "id": "bar_dow_dist",
+          "x": 650,
+          "y": 140,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"bar_dow_dist\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 140, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"columnChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Day of Week Collision Distribution'\"}}}}}]}}}"
+        },
+        {
+          "id": "matrix_7x24",
+          "x": 20,
+          "y": 430,
+          "z": 1000,
+          "width": 800,
+          "height": 270,
+          "config": "{\"name\": \"matrix_7x24\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 430, \"z\": 1000, \"width\": 800, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"matrix\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'7x24 Day-Hour Collision Risk Intensity Heatmap'\"}}}}}]}}}"
+        },
+        {
+          "id": "line_seasonality",
+          "x": 840,
+          "y": 430,
+          "z": 1000,
+          "width": 420,
+          "height": 270,
+          "config": "{\"name\": \"line_seasonality\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 840, \"y\": 430, \"z\": 1000, \"width\": 420, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Monthly Seasonality Profile'\"}}}}}]}}}"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection_Hotspots",
+      "displayName": "3. Geographic Intelligence & Hotspot Detection",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "id": "kpi_total_hotspots",
+          "x": 20,
+          "y": 20,
+          "z": 1000,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"kpi_total_hotspots\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 1000, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Detected Hotspot Clusters'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_high_risk_hotspots",
+          "x": 340,
+          "y": 20,
+          "z": 1000,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"kpi_high_risk_hotspots\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 340, \"y\": 20, \"z\": 1000, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'High-Risk Hotspots (Score >= 70)'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_clustered_share",
+          "x": 660,
+          "y": 20,
+          "z": 1000,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"kpi_clustered_share\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 660, \"y\": 20, \"z\": 1000, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Hotspot Collision Share %'\"}}}}}]}}}"
+        },
+        {
+          "id": "slicer_hotspot_level",
+          "x": 980,
+          "y": 20,
+          "z": 1000,
+          "width": 280,
+          "height": 100,
+          "config": "{\"name\": \"slicer_hotspot_level\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 980, \"y\": 20, \"z\": 1000, \"width\": 280, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"slicer\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Hotspot Risk Tier Filter'\"}}}}}]}}}"
+        },
+        {
+          "id": "map_clusters",
+          "x": 20,
+          "y": 140,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"map_clusters\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 140, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"map\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'DBSCAN Collision Hotspots Map (Metres Radius)'\"}}}}}]}}}"
+        },
+        {
+          "id": "scatter_risk_burden",
+          "x": 650,
+          "y": 140,
+          "z": 1000,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"scatter_risk_burden\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 140, \"z\": 1000, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"scatterChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Cluster Collision Volume vs Severe Trauma Rate'\"}}}}}]}}}"
+        },
+        {
+          "id": "table_hotspot_rank",
+          "x": 20,
+          "y": 430,
+          "z": 1000,
+          "width": 1240,
+          "height": 270,
+          "config": "{\"name\": \"table_hotspot_rank\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 430, \"z\": 1000, \"width\": 1240, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Top Ranked Spatial Hotspots (DBSCAN 150m Radius)'\"}}}}}]}}}"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection_Diagnostic",
+      "displayName": "4. Diagnostic Analytics: Risk Factors",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "id": "bar_weather_sev",
+          "x": 20,
+          "y": 20,
+          "z": 1000,
+          "width": 610,
+          "height": 220,
+          "config": "{\"name\": \"bar_weather_sev\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 1000, \"width\": 610, \"height\": 220}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Weather Conditions vs Severe Accident Rate %'\"}}}}}]}}}"
+        },
+        {
+          "id": "bar_surface_sev",
+          "x": 650,
+          "y": 20,
+          "z": 1000,
+          "width": 610,
+          "height": 220,
+          "config": "{\"name\": \"bar_surface_sev\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 20, \"z\": 1000, \"width\": 610, \"height\": 220}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Road Surface Conditions vs Severe Rate %'\"}}}}}]}}}"
+        },
+        {
+          "id": "bar_light_sev",
+          "x": 20,
+          "y": 260,
+          "z": 1000,
+          "width": 610,
+          "height": 210,
+          "config": "{\"name\": \"bar_light_sev\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 260, \"z\": 1000, \"width\": 610, \"height\": 210}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Lighting Conditions vs Severe Rate %'\"}}}}}]}}}"
+        },
+        {
+          "id": "combo_speed_limit",
+          "x": 650,
+          "y": 260,
+          "z": 1000,
+          "width": 610,
+          "height": 210,
+          "config": "{\"name\": \"combo_speed_limit\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 260, \"z\": 1000, \"width\": 610, \"height\": 210}}], \"singleVisual\": {\"visualType\": \"lineStackedColumnComboChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Posted Speed Limit vs Severe Rate & Casualties'\"}}}}}]}}}"
+        },
+        {
+          "id": "matrix_compound_risk",
+          "x": 20,
+          "y": 490,
+          "z": 1000,
+          "width": 1240,
+          "height": 210,
+          "config": "{\"name\": \"matrix_compound_risk\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 490, \"z\": 1000, \"width\": 1240, \"height\": 210}}], \"singleVisual\": {\"visualType\": \"matrix\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Compound Severity Matrix: Road Surface x Lighting Condition'\"}}}}}]}}}"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection_ML",
+      "displayName": "5. Machine Learning & Risk Detection",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "id": "kpi_ml_acc",
+          "x": 20,
+          "y": 20,
+          "z": 1000,
+          "width": 230,
+          "height": 100,
+          "config": "{\"name\": \"kpi_ml_acc\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 1000, \"width\": 230, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Accuracy (Balanced: 76.3%)'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_ml_recall",
+          "x": 270,
+          "y": 20,
+          "z": 1000,
+          "width": 230,
+          "height": 100,
+          "config": "{\"name\": \"kpi_ml_recall\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 270, \"y\": 20, \"z\": 1000, \"width\": 230, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Severe Recall (Sensitivity)'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_ml_prec",
+          "x": 520,
+          "y": 20,
+          "z": 1000,
+          "width": 230,
+          "height": 100,
+          "config": "{\"name\": \"kpi_ml_prec\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 520, \"y\": 20, \"z\": 1000, \"width\": 230, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Severe Precision'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_ml_f1",
+          "x": 770,
+          "y": 20,
+          "z": 1000,
+          "width": 230,
+          "height": 100,
+          "config": "{\"name\": \"kpi_ml_f1\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 770, \"y\": 20, \"z\": 1000, \"width\": 230, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Macro F1-Score'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_ml_samples",
+          "x": 1020,
+          "y": 20,
+          "z": 1000,
+          "width": 240,
+          "height": 100,
+          "config": "{\"name\": \"kpi_ml_samples\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 20, \"z\": 1000, \"width\": 240, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Evaluated Test Cases'\"}}}}}]}}}"
+        },
+        {
+          "id": "matrix_confusion",
+          "x": 20,
+          "y": 140,
+          "z": 1000,
+          "width": 450,
+          "height": 270,
+          "config": "{\"name\": \"matrix_confusion\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 140, \"z\": 1000, \"width\": 450, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Test Set Confusion Matrix (Logistic Regression)'\"}}}}}]}}}"
+        },
+        {
+          "id": "bar_feature_odds",
+          "x": 490,
+          "y": 140,
+          "z": 1000,
+          "width": 770,
+          "height": 270,
+          "config": "{\"name\": \"bar_feature_odds\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 490, \"y\": 140, \"z\": 1000, \"width\": 770, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Feature Importance (Odds Ratios: e^beta_i)'\"}}}}}]}}}"
+        },
+        {
+          "id": "table_pred_explorer",
+          "x": 20,
+          "y": 430,
+          "z": 1000,
+          "width": 1240,
+          "height": 270,
+          "config": "{\"name\": \"table_pred_explorer\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 430, \"z\": 1000, \"width\": 1240, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Severity Risk Prediction Explorer (Test Set Instances)'\"}}}}}]}}}"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection_DecisionSupport",
+      "displayName": "6. Road Safety Decision Support",
+      "ordinal": 5,
+      "visualContainers": [
+        {
+          "id": "kpi_p1_alerts",
+          "x": 20,
+          "y": 20,
+          "z": 1000,
+          "width": 290,
+          "height": 100,
+          "config": "{\"name\": \"kpi_p1_alerts\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 1000, \"width\": 290, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Priority 1 (Urgent Audit)'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_p2_alerts",
+          "x": 330,
+          "y": 20,
+          "z": 1000,
+          "width": 290,
+          "height": 100,
+          "config": "{\"name\": \"kpi_p2_alerts\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 20, \"z\": 1000, \"width\": 290, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Priority 2 (Structural Hazard)'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_p3_alerts",
+          "x": 640,
+          "y": 20,
+          "z": 1000,
+          "width": 290,
+          "height": 100,
+          "config": "{\"name\": \"kpi_p3_alerts\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 20, \"z\": 1000, \"width\": 290, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Priority 3 (Targeted Action)'\"}}}}}]}}}"
+        },
+        {
+          "id": "kpi_total_actionable",
+          "x": 950,
+          "y": 20,
+          "z": 1000,
+          "width": 310,
+          "height": 100,
+          "config": "{\"name\": \"kpi_total_actionable\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 950, \"y\": 20, \"z\": 1000, \"width\": 310, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Actionable Hotspots'\"}}}}}]}}}"
+        },
+        {
+          "id": "table_priority_investigation",
+          "x": 20,
+          "y": 140,
+          "z": 1000,
+          "width": 780,
+          "height": 560,
+          "config": "{\"name\": \"table_priority_investigation\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 140, \"z\": 1000, \"width\": 780, \"height\": 560}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Ranked Hotspot Investigation List & Recommended Interventions'\"}}}}}]}}}"
+        },
+        {
+          "id": "scatter_priority_risk",
+          "x": 820,
+          "y": 140,
+          "z": 1000,
+          "width": 440,
+          "height": 270,
+          "config": "{\"name\": \"scatter_priority_risk\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 820, \"y\": 140, \"z\": 1000, \"width\": 440, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"scatterChart\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Risk Score vs Collision Acceleration Trend'\"}}}}}]}}}"
+        },
+        {
+          "id": "card_mitigation_guide",
+          "x": 820,
+          "y": 430,
+          "z": 1000,
+          "width": 440,
+          "height": 270,
+          "config": "{\"name\": \"card_mitigation_guide\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 820, \"y\": 430, \"z\": 1000, \"width\": 440, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"card\", \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Prescriptive Engineering Framework'\"}}}}}]}}}"
+        }
+      ]
+    }
+  ]
+}

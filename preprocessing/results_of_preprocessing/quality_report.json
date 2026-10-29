@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-10-29T20:18:53.676656Z",
+  "dataset_scope": "UK DfT STATS19 (2021-2025)",
+  "row_counts": {
+    "accidents": {
+      "total_generated": 100000,
+      "severe_count": 27319,
+      "severe_rate_pct": 27.32,
+      "hotspot_clustered": 12430
+    },
+    "vehicles": 183908,
+    "casualties": 130370,
+    "hotspots": 704,
+    "hotspot_alerts": 718,
+    "predictions_evaluated": 19731,
+    "dim_date_days": 1826,
+    "dim_locations": 43
+  },
+  "target_distribution": {
+    "0_Slight": 72681,
+    "1_Severe": 27319,
+    "severe_percentage": 27.32
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../RoadAccidentAnalytics.SemanticModel"
+    },
+    "byConnection": null
+  }
+}

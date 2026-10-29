@@ -1,0 +1,357 @@
+// ===============================================================================
+// UK STATS19 ROAD ACCIDENT ANALYTICS — PRODUCTION DAX MEASURES SPECIFICATION
+// Compatible with: Microsoft Power BI Desktop / Power BI Service (DirectQuery & Import)
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// FOLDER: 01_Key_KPIs (Headline Performance & Severity Metrics)
+// -------------------------------------------------------------------------------
+
+// Total collision volume
+Total Accidents = 
+COUNTROWS(FactAccidents)
+
+// Total injured or killed individuals
+Total Casualties = 
+COUNTROWS(FactCasualties)
+
+// Total motorized and non-motorized vehicles involved
+Total Vehicles = 
+COUNTROWS(FactVehicles)
+
+// Severe collision count (Fatal + Serious injury collisions, DfT STATS19 classification)
+Severe Accidents = 
+CALCULATE(
+    [Total Accidents],
+    FactAccidents[is_severe] = 1
+)
+
+// Fatal collisions (collisions resulting in at least 1 death within 30 days)
+Fatal Accidents = 
+CALCULATE(
+    [Total Accidents],
+    FactAccidents[accident_severity] = 1
+)
+
+// Serious injury collisions (hospital admission, severe fractures, incapacitating trauma)
+Serious Accidents = 
+CALCULATE(
+    [Total Accidents],
+    FactAccidents[accident_severity] = 2
+)
+
+// Slight injury collisions (whiplash, minor cuts, bruising, shock)
+Slight Accidents = 
+CALCULATE(
+    [Total Accidents],
+    FactAccidents[accident_severity] = 3
+)
+
+// Percentage of collisions categorized as severe
+Severe Accident % = 
+DIVIDE([Severe Accidents], [Total Accidents], 0) * 100
+
+// Percentage of collisions resulting in fatalities
+Fatal Accident % = 
+DIVIDE([Fatal Accidents], [Total Accidents], 0) * 100
+
+// Average casualty burden per collision incident
+Avg Casualties Per Accident = 
+DIVIDE([Total Casualties], [Total Accidents], 0)
+
+// Average vehicle involvement density per incident
+Avg Vehicles Per Accident = 
+DIVIDE([Total Vehicles], [Total Accidents], 0)
+
+
+// -------------------------------------------------------------------------------
+// FOLDER: 02_Time_Intelligence (Year-over-Year, Seasonality & Diurnal Dynamics)
+// -------------------------------------------------------------------------------
+
+// Prior year total accident volume for comparative benchmarking
+Accidents Prior Year = 
+CALCULATE(
+    [Total Accidents],
+    SAMEPERIODLASTYEAR(DimDate[date])
+)
+
+// Absolute YoY collision delta
+YoY Accident Change = 
+VAR currentVal = [Total Accidents]
+VAR prevVal = [Accidents Prior Year]
+RETURN
+    IF(ISBLANK(prevVal), BLANK(), currentVal - prevVal)
+
+// Percentage YoY collision shift
+YoY Accident Change % = 
+VAR currentVal = [Total Accidents]
+VAR prevVal = [Accidents Prior Year]
+RETURN
+    DIVIDE(currentVal - prevVal, prevVal, 0) * 100
+
+// Prior year severe collision volume
+Severe Accidents Prior Year = 
+CALCULATE(
+    [Severe Accidents],
+    SAMEPERIODLASTYEAR(DimDate[date])
+)
+
+// Percentage YoY severe collision delta
+YoY Severe Change % = 
+VAR currentSev = [Severe Accidents]
+VAR prevSev = [Severe Accidents Prior Year]
+RETURN
+    DIVIDE(currentSev - prevSev, prevSev, 0) * 100
+
+// 3-Month rolling centered moving average for seasonal smoothing
+Accidents 3M Moving Avg = 
+CALCULATE(
+    [Total Accidents],
+    DATESINPERIOD(DimDate[date], LASTDATE(DimDate[date]), -3, MONTH)
+) / 3
+
+// Weekend severity rate (Saturday & Sunday)
+Weekend Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[is_weekend] = 1
+)
+
+// Weekday severity rate (Monday through Friday)
+Weekday Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[is_weekend] = 0
+)
+
+// Weekend to Weekday severity disparity ratio
+Weekend Severity Elevation Ratio = 
+DIVIDE([Weekend Severe %], [Weekday Severe %], 1.0)
+
+
+// -------------------------------------------------------------------------------
+// FOLDER: 03_Severity_Analytics (Modal Vulnerability & Environmental Risk Factors)
+// -------------------------------------------------------------------------------
+
+// Severe collision percentage when at least one motorcycle is involved
+Motorcycle Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[involves_motorcycle] = 1
+)
+
+// Severe collision percentage when heavy goods vehicles (HGV) are involved
+HGV Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[involves_hgv] = 1
+)
+
+// Severe collision percentage when pedal cyclists are involved
+Cyclist Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[involves_cyclist] = 1
+)
+
+// Severe percentage during Night hours (23:00 - 06:59)
+Night Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[time_period] = "Night"
+)
+
+// Severe percentage in unlit darkness (Darkness - no lighting)
+Dark Unlit Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[light_condition_name] = "Darkness - no lighting"
+)
+
+// Severe percentage on wet, damp, or flooded carriageways
+Wet Road Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[road_surface_condition_name] IN {"Wet or damp", "Flood over 3cm. deep"}
+)
+
+// Collisions occurring under hazardous environmental interactions (Wet + Dark)
+Adverse Condition Accidents = 
+CALCULATE(
+    [Total Accidents],
+    FactAccidents[road_surface_condition_name] IN {"Wet or damp", "Snow", "Frost or ice", "Flood over 3cm. deep"} &&
+    FactAccidents[light_condition_name] IN {"Darkness - no lighting", "Darkness - lights unlit", "Darkness - lights lit"}
+)
+
+// Severity rate under adverse compound conditions
+Adverse Condition Severe % = 
+CALCULATE(
+    [Severe Accident %],
+    FactAccidents[road_surface_condition_name] IN {"Wet or damp", "Snow", "Frost or ice", "Flood over 3cm. deep"} &&
+    FactAccidents[light_condition_name] IN {"Darkness - no lighting", "Darkness - lights unlit", "Darkness - lights lit"}
+)
+
+
+// -------------------------------------------------------------------------------
+// FOLDER: 04_Hotspot_Analytics (DBSCAN Spatial Clustering & Risk Stratification)
+// -------------------------------------------------------------------------------
+
+// Total spatial hotspot clusters detected by DBSCAN (eps=150m, min_samples=30)
+Total Hotspots = 
+COUNTROWS(FactHotspots)
+
+// Count of DBSCAN hotspots in the High Risk Tier (Risk Score >= 70.0)
+High Risk Hotspots = 
+CALCULATE(
+    [Total Hotspots],
+    FactHotspots[risk_level] = "High"
+)
+
+// Count of DBSCAN hotspots in the Medium Risk Tier (50.0 <= Risk Score < 70.0)
+Medium Risk Hotspots = 
+CALCULATE(
+    [Total Hotspots],
+    FactHotspots[risk_level] = "Medium"
+)
+
+// Count of DBSCAN hotspots in the Low Risk Tier (Risk Score < 50.0)
+Low Risk Hotspots = 
+CALCULATE(
+    [Total Hotspots],
+    FactHotspots[risk_level] = "Low"
+)
+
+// National mean empirical risk score across all detected clusters
+Avg Hotspot Risk Score = 
+AVERAGE(FactHotspots[risk_score])
+
+// Collisions physically concentrated inside identified DBSCAN clusters
+Hotspot Clustered Accidents = 
+SUM(FactHotspots[accident_count])
+
+// Proportion of national collisions accounted for by spatial hotspot clusters
+Hotspot Clustered Collision Share % = 
+DIVIDE([Hotspot Clustered Accidents], [Total Accidents], 0) * 100
+
+// Composite severe collision percentage across all cluster locations
+Hotspot Severe Rate % = 
+VAR totalClusterAcc = SUM(FactHotspots[accident_count])
+VAR totalClusterSev = SUM(FactHotspots[fatal_count]) + SUM(FactHotspots[serious_count])
+RETURN
+    DIVIDE(totalClusterSev, totalClusterAcc, 0) * 100
+
+
+// -------------------------------------------------------------------------------
+// FOLDER: 05_ML_Model_Metrics (Balanced Logistic Regression Diagnostic Evaluation)
+// -------------------------------------------------------------------------------
+
+// Total evaluated holdout test samples
+Evaluated Test Samples = 
+COUNTROWS(FactPredictions)
+
+// True Positive predictions (Actual Severe = 1, Predicted Severe = 1)
+True Positives = 
+CALCULATE(
+    [Evaluated Test Samples],
+    FactPredictions[prediction_outcome] = "True Positive"
+)
+
+// True Negative predictions (Actual Slight = 0, Predicted Slight = 0)
+True Negatives = 
+CALCULATE(
+    [Evaluated Test Samples],
+    FactPredictions[prediction_outcome] = "True Negative"
+)
+
+// False Positive predictions (Type I Error: Actual Slight = 0, Predicted Severe = 1)
+False Positives = 
+CALCULATE(
+    [Evaluated Test Samples],
+    FactPredictions[prediction_outcome] = "False Positive"
+)
+
+// False Negative predictions (Type II Error: Actual Severe = 1, Predicted Slight = 0)
+False Negatives = 
+CALCULATE(
+    [Evaluated Test Samples],
+    FactPredictions[prediction_outcome] = "False Negative"
+)
+
+// Overall diagnostic accuracy
+Model Accuracy % = 
+DIVIDE([True Positives] + [True Negatives], [Evaluated Test Samples], 0) * 100
+
+// Precision (Positive Predictive Value for Severe trauma)
+Model Precision % = 
+DIVIDE([True Positives], [True Positives] + [False Positives], 0) * 100
+
+// Recall / Sensitivity (True Positive Rate for capturing severe incidents)
+Model Recall % = 
+DIVIDE([True Positives], [True Positives] + [False Negatives], 0) * 100
+
+// Specificity (True Negative Rate for slight collisions)
+Model Specificity % = 
+DIVIDE([True Negatives], [True Negatives] + [False Positives], 0) * 100
+
+// Balanced Accuracy ((Sensitivity + Specificity) / 2) to correct for class imbalance
+Model Balanced Accuracy % = 
+([Model Recall %] + [Model Specificity %]) / 2
+
+// Harmonic Mean of Precision and Recall
+Model F1 Score = 
+VAR p = [Model Precision %] / 100
+VAR r = [Model Recall %] / 100
+RETURN
+    IF((p + r) = 0, 0, 2 * DIVIDE(p * r, p + r, 0))
+
+// Average model predicted probability of severe outcome
+Avg Predicted Probability = 
+AVERAGE(FactPredictions[predicted_probability])
+
+// Incidents flagged as High Risk (probability >= 2x historical baseline, p >= 48.42%)
+High Risk Predictions Count = 
+CALCULATE(
+    [Evaluated Test Samples],
+    FactPredictions[risk_tier] = "High"
+)
+
+
+// -------------------------------------------------------------------------------
+// FOLDER: 06_Decision_Support (Actionable Prioritization & Prescriptive Tiers)
+// -------------------------------------------------------------------------------
+
+// Priority 1 Hotspots (Urgent site audit: statistically verified rising collisions & high severity)
+Priority 1 Hotspots = 
+CALCULATE(
+    COUNTROWS(FactHotspotAlerts),
+    FactHotspotAlerts[priority_tier] = "Priority 1"
+)
+
+// Priority 2 Hotspots (Structural hazard: high historical severity burden)
+Priority 2 Hotspots = 
+CALCULATE(
+    COUNTROWS(FactHotspotAlerts),
+    FactHotspotAlerts[priority_tier] = "Priority 2"
+)
+
+// Priority 3 Hotspots (Targeted intervention: elevated vulnerable road user or nocturnal pattern)
+Priority 3 Hotspots = 
+CALCULATE(
+    COUNTROWS(FactHotspotAlerts),
+    FactHotspotAlerts[priority_tier] = "Priority 3"
+)
+
+// Hotspots under baseline monitoring
+Monitoring Hotspots = 
+CALCULATE(
+    COUNTROWS(FactHotspotAlerts),
+    FactHotspotAlerts[priority_tier] = "Monitor"
+)
+
+// Total locations requiring proactive engineering or enforcement intervention
+Total Actionable Hotspots = 
+[Priority 1 Hotspots] + [Priority 2 Hotspots] + [Priority 3 Hotspots]
+
+// Share of detected clusters requiring intervention
+Actionable Hotspot Share % = 
+DIVIDE([Total Actionable Hotspots], COUNTROWS(FactHotspotAlerts), 0) * 100

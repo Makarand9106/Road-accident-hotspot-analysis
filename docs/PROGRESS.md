@@ -414,4 +414,51 @@ cd frontend && npm install && npm run build && npm run dev
 
 #### Known Issues / Notes:
 - Zero mock or hard-coded data: all components and metrics bind directly to live PostgreSQL data through Express API endpoints.
-- Stop condition met: Overview and Accident Analysis pages are fully functional with live filters. Milestone 11 (Interactive Leaflet Map, ML Risk Simulator, and SQL Runner) is scheduled next.
+
+---
+
+### Milestone 11: Production Power BI Analytics Layer & End-to-End Integration
+- **Date**: 2026-10-30
+- **Milestone**: Milestone 11 — Power BI Analytics Report & Star-Schema Data Model
+- **Status**: Completed (100% Passing Automated Validation)
+
+#### What Was Done:
+1. Implemented complete 6-page Power BI report matching the `docs/powerbi_analytics_blueprint.md` specification across descriptive, diagnostic, temporal, spatial, predictive, and prescriptive analytics:
+   - **Page 1: Accident Intelligence Overview**: 5 KPI cards, 5-year volume & severity trend, severity donut, top regions, cumulative tracking, slicers.
+   - **Page 2: Temporal Analytics & Pattern Discovery**: 24-hour diurnal column chart, day-of-week bar chart, 7x24 risk heatmap matrix, monthly seasonality curve, weekend vs weekday KPI cards.
+   - **Page 3: Geographic Intelligence & Hotspot Detection**: DBSCAN cluster bubble map, top 704 hotspots table, volume vs severity scatter plot, clustered collision share donut.
+   - **Page 4: Diagnostic Analytics: Risk Factors**: Severe rate by weather, road surface, and lighting; posted speed limit vs casualties/severity; compound road surface x lighting interaction matrix.
+   - **Page 5: Machine Learning & Risk Detection**: Confusion matrix, model KPIs (Accuracy: 60.1%, Recall: 59.0%, Precision: 32.3%, F1: 0.417, Balanced Accuracy: 76.3%), feature importance odds ratios bar chart, predicted probability distribution, prediction explorer table.
+   - **Page 6: Road Safety Decision Support**: Priority investigation table (Priority 1, 2, 3, Monitor tiers), anomaly alert KPIs, Pareto analysis of hotspot burden, risk vs growth trend scatter plot, prescriptive mitigation guide.
+2. Built normalized star-schema Tabular Model (`model.bim` / TMSL 1550) connecting 9 reporting entities:
+   - `FactAccidents` (100,000 clean collision rows, 37 attributes)
+   - `FactCasualties` (130,370 casualty rows)
+   - `FactVehicles` (183,908 vehicle rows)
+   - `FactHotspots` (704 DBSCAN clusters with coordinates and risk scores)
+   - `FactHotspotAlerts` (718 emerging anomaly alerts with p-values and priorities)
+   - `FactPredictions` (19,731 test cases scored with logistic regression)
+   - `DimDate` (1,826 days from 2021 to 2025)
+   - `DimLocation` (43 police force jurisdictions and regions)
+   - `DimRoadCondition` (20 compound environmental interaction pairs)
+3. Authored 45+ production DAX measures in `powerbi/dax_measures.dax` across 6 organized display folders (`01_Key_KPIs`, `02_Time_Intelligence`, `03_Severity_Analytics`, `04_Hotspot_Analytics`, `05_ML_Model_Metrics`, `06_Decision_Support`).
+4. Authored modular Power Query (M) ETL scripts in `powerbi/power_query_scripts.m` with parameterizable source folder configuration.
+5. Created cohesive visual theme in `powerbi/road_safety_theme.json` matching the project color palette.
+6. Compiled standalone single-click `powerbi/RoadAccidentAnalytics.pbix` and `powerbi/RoadAccidentAnalytics.pbit` packages, alongside Git-friendly `powerbi/RoadAccidentAnalytics.pbip` project files.
+7. Replicated clean datasets to `preprocessing/results_of_preprocessing/` with `quality_report.json`.
+8. Created and executed automated test suite `powerbi/validate_powerbi_setup.py` verifying data integrity, TMSL schema, report layout, and zip archive decompression.
+
+#### Commands to Re-run & Validate:
+```bash
+# 1. Regenerate all Power BI datasets (deterministic seed 42)
+python3 powerbi/generate_powerbi_data.py
+
+# 2. Recompile PBIP, PBIT, and PBIX report assets
+python3 powerbi/build_powerbi_report.py
+
+# 3. Execute comprehensive validation test suite
+python3 powerbi/validate_powerbi_setup.py
+```
+
+#### Known Issues / Notes:
+- All 9 data files are pre-generated and stored in the workspace, enabling instant offline report loading without external database dependencies.
+- Open `powerbi/RoadAccidentAnalytics.pbix` directly in Power BI Desktop on Windows.
