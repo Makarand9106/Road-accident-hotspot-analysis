@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Road Accident Analysis Report — Data Visualization Project</title>
+  <style>
+  @page {
+    size: A4;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .academic-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: #ffffff;
+    padding: 28px 24px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+  }
+  .course-badge {
+    display: inline-block;
+    background: #f59e0b;
+    color: #0f172a;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .division-batch {
+    color: #93c5fd;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .main-title {
+    color: #ffffff !important;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 6px 0 !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+  .sub-title {
+    color: #cbd5e1;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .github-bar {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-bottom: 16px;
+    word-break: break-all;
+  }
+  .github-bar a {
+    color: #38bdf8;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .team-card {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .team-title {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #f59e0b;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .team-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .member-box {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .member-name {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .member-mis {
+    display: block;
+    font-size: 11px;
+    color: #93c5fd;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  h1 {
+    color: #0f172a;
+    font-size: 22px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-top: 28px;
+  }
+  h2 {
+    color: #1e3a8a;
+    font-size: 17px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 24px;
+    page-break-after: avoid;
+  }
+  h3 {
+    color: #334155;
+    font-size: 14px;
+    margin-top: 18px;
+    page-break-after: avoid;
+  }
+  p, li {
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+  blockquote {
+    background: #f8fafc;
+    border-left: 4px solid #3b82f6;
+    margin: 14px 0;
+    padding: 8px 14px;
+    border-radius: 0 4px 4px 0;
+    color: #475569;
+    font-size: 12px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 14px auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cbd5e1;
+    page-break-inside: avoid;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 11px;
+    page-break-inside: avoid;
+  }
+  th, td {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    text-align: left;
+  }
+  th {
+    background-color: #0f172a;
+    color: #ffffff;
+    font-weight: 700;
+  }
+  tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+  pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    overflow-x: auto;
+    page-break-inside: avoid;
+  }
+  code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+  }
+  p code {
+    background: #f1f5f9;
+    color: #0284c7;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+  hr {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="academic-header">
+      <div class="course-badge">PROJECT OF DATA VISUALIZATION</div>
+      <div class="division-batch">DIV 1 &nbsp;|&nbsp; DVL 2 BATCH</div>
+      <h1 class="main-title">Smart Road Accident Hotspot Analysis & Risk Prediction System</h1>
+      <div class="sub-title">Final Technical & Data Visualization Project Report — Statistical EDA, Spatial Clustering & ML Severity Modeling</div>
+      <div class="github-bar">
+        <strong>GitHub Repository:</strong> 
+        <a href="https://github.com/Makarand9106/Road-accident-hotspot-analysis" target="_blank">https://github.com/Makarand9106/Road-accident-hotspot-analysis</a>
+      </div>
+      <div class="team-card">
+        <div class="team-title">PROJECT TEAM MEMBERS</div>
+        <div class="team-grid">
+          <div class="member-box">
+            <span class="member-name">Krishiv Nair</span>
+            <span class="member-mis">MIS: 612415087</span>
+          </div>
+          <div class="member-box">
+            <span class="member-name">Makarand Kulkarni</span>
+            <span class="member-mis">MIS: 612415092</span>
+          </div>
+          <div class="member-box">
+            <span class="member-name">Siddhant Hemangire</span>
+            <span class="member-mis">MIS: 612415067</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h2>1. Executive Summary</h2>
+<p>This project builds a full end-to-end data analytics pipeline for UK road accident intelligence. Starting from raw government STATS19 CSVs, the system performs data cleaning, feature engineering, spatial hotspot detection, machine learning severity classification, and presents findings through an interactive web dashboard and a complementary Power BI report.</p>
+<p><strong>Key findings:</strong>
+- 513,801 road collisions recorded 2021–2025 across England, Scotland, and Wales
+- Severe collision rate (fatal + serious): <strong>24.21%</strong> of all collisions
+- <strong>704 geospatial DBSCAN clusters</strong> identified as persistent hotspots
+- Logistic Regression achieves <strong>76.3% balanced accuracy</strong> for severity prediction
+- Highest-risk periods: <strong>Evening Peak (16:00–19:00) on Fridays</strong>
+- Most dangerous conditions: <strong>Wet road + darkness + motorway</strong> combination</p>
+<hr />
+<h2>2. Data Pipeline Architecture</h2>
+<pre><code>Raw STATS19 CSVs (DfT)
+         │
+         ▼
+Python Preprocessing Pipeline
+├── Duplicate removal
+├── Sentinel unknown conversion
+├── Date/time standardization
+├── Coordinate validation (UK bounds)
+├── Orphan record removal
+└── Feature engineering
+         │
+         ▼
+PostgreSQL Database (18 tables, star schema)
+├── 87 check constraints
+├── 42 performance indexes
+├── 4 analytical views
+└── 1 materialized heatmap view
+         │
+    ┌────┴────┐
+    │         │
+    ▼         ▼
+Python ML   Node.js/Express API (Port 4000)
+DBSCAN      ├── 20+ SQL analytical endpoints
+Hotspot     └── In-memory JS risk scoring
+Detection
+    │
+    ▼
+React + Vite Frontend (Port 5173)
+├── Leaflet interactive maps
+├── Recharts visualizations
+└── Real-time severity predictor
+</code></pre>
+<hr />
+<h2>3. Data Preprocessing Results</h2>
+<h3>3.1 Raw Data Loaded</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collisions</td>
+<td>513,801</td>
+</tr>
+<tr>
+<td>Vehicles</td>
+<td>~1,020,000</td>
+</tr>
+<tr>
+<td>Casualties</td>
+<td>~680,000</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 Cleaning Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duplicate removal</td>
+<td>Exact row duplicates + primary key deduplication</td>
+</tr>
+<tr>
+<td>Null/sentinel conversion</td>
+<td>-1, 9, 99 codes → NaN per domain rules</td>
+</tr>
+<tr>
+<td>Date parsing</td>
+<td>DD/MM/YYYY → ISO 8601; invalid dates flagged</td>
+</tr>
+<tr>
+<td>Coordinate validation</td>
+<td>Against UK bounding box (49.85–60.90°N)</td>
+</tr>
+<tr>
+<td>Orphan removal</td>
+<td>Vehicles/casualties without valid accident_index</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 Feature Engineering</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Derivation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_severe</code></td>
+<td>accident_severity ∈ {1,2} → 1</td>
+<td>ML target</td>
+</tr>
+<tr>
+<td><code>time_period</code></td>
+<td>Hour → named period</td>
+<td>Analysis, ML</td>
+</tr>
+<tr>
+<td><code>day_of_week_name</code></td>
+<td>Integer code → day string</td>
+<td>Analysis, ML</td>
+</tr>
+<tr>
+<td><code>involves_motorcycle</code></td>
+<td>Vehicle type flag</td>
+<td>ML feature</td>
+</tr>
+<tr>
+<td><code>easting_bng/northing_bng</code></td>
+<td>WGS84 → OSGB36 metres</td>
+<td>DBSCAN clustering</td>
+</tr>
+<tr>
+<td><code>is_weekend</code></td>
+<td>Sat/Sun flag</td>
+<td>ML feature</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. Database Schema</h2>
+<h3>4.1 Normalized Star Schema (3NF)</h3>
+<p>The PostgreSQL database follows a <strong>3rd Normal Form</strong> star schema with:</p>
+<ul>
+<li><strong>Fact table:</strong> <code>accidents</code> (513,801 rows)</li>
+<li><strong>Related tables:</strong> <code>vehicles</code>, <code>casualties</code></li>
+<li><strong>Lookup tables:</strong> 13 seeded reference tables (weather, road type, lighting, etc.)</li>
+<li><strong>Hotspot table:</strong> <code>hotspots</code> (704 DBSCAN clusters)</li>
+</ul>
+<h3>4.2 Key SQL Analytical Queries</h3>
+<p>The project includes <strong>20 analytical queries</strong> covering:</p>
+<ol>
+<li>Yearly collision trend with YoY change</li>
+<li>Severity distribution by year</li>
+<li>Top 10 highest-risk local authorities</li>
+<li>Collision counts by hour and day of week</li>
+<li>Weather condition severity rates</li>
+<li>Speed limit vs fatal collision rate</li>
+<li>Junction type collision analysis</li>
+<li>DBSCAN cluster rankings by risk score</li>
+<li>Casualty type distributions</li>
+<li>Seasonal patterns with moving averages</li>
+</ol>
+<hr />
+<h2>5. EDA Findings</h2>
+<h3>5.1 Temporal Patterns</h3>
+<ul>
+<li><strong>Peak hours:</strong> 08:00–09:00 and 16:00–18:00 (commuter peaks)</li>
+<li><strong>Peak day:</strong> Friday (highest volume), Sunday (highest severe rate)</li>
+<li><strong>Peak months:</strong> October–November (worse weather, darker evenings)</li>
+</ul>
+<h3>5.2 Severity Factors</h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Severe Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Night + no lighting</td>
+<td>38.2%</td>
+</tr>
+<tr>
+<td>Motorway</td>
+<td>34.1%</td>
+</tr>
+<tr>
+<td>Speed limit ≥70 mph</td>
+<td>31.5%</td>
+</tr>
+<tr>
+<td>Snow/ice road surface</td>
+<td>28.4%</td>
+</tr>
+<tr>
+<td>Single carriageway rural</td>
+<td>27.8%</td>
+</tr>
+<tr>
+<td>Wet road + rain</td>
+<td>22.1%</td>
+</tr>
+<tr>
+<td>Urban dry daytime</td>
+<td>16.3%</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3 Visualization Suite</h3>
+<p>20 publication-grade figures generated (see <code>docs/figures/eda/</code>):</p>
+<ol>
+<li>5-year collision volume trend line</li>
+<li>Severity distribution bar chart</li>
+<li>Severity composition donut/pie chart</li>
+<li>Hourly accident frequency bar</li>
+<li>Day-of-week distribution</li>
+<li>Monthly heatmap by year</li>
+<li>Weather condition vs severity (Wilson CI)</li>
+<li>Road surface vs severity (Wilson CI)</li>
+<li>Lighting condition vs severity (Wilson CI)</li>
+<li>Road type vs severity (Wilson CI)</li>
+<li>Speed limit dual-axis chart</li>
+<li>Day × Hour heatmap</li>
+<li>Vehicle type distribution</li>
+<li>Casualty class breakdown</li>
+<li>Urban vs rural comparison</li>
+<li>Time period stacked severity bar</li>
+<li>Junction type severity chart</li>
+<li>Annual severity stacked bar</li>
+<li>Numeric correlation heatmap</li>
+<li>Vehicles-per-accident distribution</li>
+</ol>
+<hr />
+<h2>6. Spatial Hotspot Detection</h2>
+<p><strong>Method:</strong> DBSCAN (Density-Based Spatial Clustering of Applications with Noise)</p>
+<p><strong>Parameters:</strong>
+- ε (epsilon): 150 metres (British National Grid)
+- MinPts: 30 collisions per cluster</p>
+<p><strong>Results:</strong>
+- <strong>704 hotspot clusters</strong> identified
+- Top cluster: A2 at New Cross Gate (London) — 487 collisions
+- Risk score formula: weighted combination of collision count, severe rate, temporal persistence, and casualty count</p>
+<hr />
+<h2>7. Machine Learning Model</h2>
+<p><strong>Algorithm:</strong> Logistic Regression with class balancing</p>
+<p><strong>Target:</strong> <code>is_severe</code> (binary: Fatal/Serious = 1, Slight = 0)</p>
+<p><strong>Features (47):</strong> Time period, day of week, weather, road surface, lighting, road type, road class, junction detail, junction control, urban/rural, speed limit, number of vehicles, involvement flags</p>
+<p><strong>Performance:</strong>
+| Metric | Severe Class | Slight Class | Overall |
+|---|---|---|---|
+| Precision | 0.71 | 0.83 | 0.79 |
+| Recall | 0.68 | 0.85 | 0.78 |
+| F1-Score | 0.69 | 0.84 | 0.79 |
+| Balanced Accuracy | — | — | <strong>76.3%</strong> |</p>
+<p><strong>Parity:</strong> JSON weights exported with 6-decimal precision; Node.js in-memory scoring verified to match Python outputs exactly.</p>
+<hr />
+<h2>8. Interactive Web Application</h2>
+<h3>8.1 Overview Page</h3>
+<ul>
+<li>6 KPI cards: Total collisions, severe collisions, fatal collisions, casualties, active hotspots, max risk score</li>
+<li>5-year trend line chart</li>
+<li>Severity donut chart</li>
+<li>Vulnerable user summary cards</li>
+</ul>
+<h3>8.2 Accident Analysis Page</h3>
+<ul>
+<li>15+ Recharts visualizations across weather, time, road conditions</li>
+<li>Global filter bar (year, severity, region)</li>
+</ul>
+<h3>8.3 Geospatial Hotspot Map</h3>
+<ul>
+<li>Leaflet/OpenStreetMap interactive cluster map</li>
+<li>Circle markers scaled by risk score</li>
+<li>Click-to-expand hotspot detail panel</li>
+<li>DBSCAN cluster heatmap overlay</li>
+</ul>
+<h3>8.4 Risk Prediction Simulator</h3>
+<ul>
+<li>17-parameter scenario form</li>
+<li>Real-time severity probability gauge (0–100%)</li>
+<li>Feature attribution/logit contribution breakdown</li>
+<li>Model explainability card with metrics</li>
+</ul>
+<h3>8.5 SQL Insights Explorer</h3>
+<ul>
+<li>20 pre-built analytical queries</li>
+<li>Query runner with result tables</li>
+<li>Visual output for each query</li>
+</ul>
+<h3>8.6 Methodology Page</h3>
+<ul>
+<li>ERD diagram (interactive)</li>
+<li>Pipeline architecture diagram</li>
+<li>Decision record documentation</li>
+</ul>
+<hr />
+<h2>9. Power BI Analytics Report</h2>
+<p>A companion 6-page Power BI report is designed to complement the interactive dashboard. See <code>powerbi/README_PowerBI.md</code> for full setup instructions.</p>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Overview</td>
+<td>KPIs, 5-year trend, severity composition</td>
+</tr>
+<tr>
+<td>2. Temporal</td>
+<td>Hourly, day-of-week, month heatmaps</td>
+</tr>
+<tr>
+<td>3. Geographic</td>
+<td>Cluster maps, hotspot rankings</td>
+</tr>
+<tr>
+<td>4. Diagnostic</td>
+<td>Condition-severity cross-tabs, correlation</td>
+</tr>
+<tr>
+<td>5. ML Evaluation</td>
+<td>Confusion matrix, ROC, feature importance</td>
+</tr>
+<tr>
+<td>6. Decision Support</td>
+<td>Priority investigation ranking</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>10. Reproducibility</h2>
+<p>The entire project is reproducible from scratch with:</p>
+<pre><code class="language-bash"># 1. Download data
+python python/ingestion/download_data.py
+
+# 2. Preprocess
+python python/preprocessing/run_pipeline.py
+
+# 3. Load database
+python python/db/load_data.py --reset
+
+# 4. Detect hotspots
+python python/hotspot/detect_hotspots.py
+
+# 5. Train model
+python python/prediction/train.py &amp;&amp; python python/prediction/export_model.py
+
+# 6. Generate visualizations
+python python/analysis/run_eda.py
+
+# 7. Start backend
+cd backend &amp;&amp; npm run dev
+
+# 8. Start frontend
+cd frontend &amp;&amp; npm run dev
+</code></pre>
+<hr />
+<h2>11. Limitations &amp; Ethical Considerations</h2>
+<ul>
+<li><strong>No exposure data:</strong> Accident counts not normalised by vehicle kilometres travelled; urban areas appear more dangerous partly due to higher traffic volume</li>
+<li><strong>Temporal gap:</strong> 2020 excluded from baseline due to COVID-19 travel suppression</li>
+<li><strong>Model scope:</strong> Logistic Regression chosen for explainability; ensemble models would achieve higher accuracy but reduce interpretability</li>
+<li><strong>Spatial precision:</strong> STATS19 coordinates truncated to 100m grid; precise hotspot boundaries are approximations</li>
+<li><strong>Caution:</strong> Model predictions should not be used for operational emergency dispatch decisions</li>
+</ul>
+<hr />
+<p><em>UK DfT STATS19 data licensed under the Open Government Licence v3.0</em><br />
+<em>Academic project: Data Visualization + DBMS Capstone — not certified for operational use</em></p>
+<h2>Data Visualization &amp; Analytical Dashboards Highlights</h2>
+<p>In this Data Visualization project, raw collision data (513,801 records) is transformed through multi-tier visual architectures into actionable visual intelligence:</p>
+<h3>1. Spatial Hotspot Distribution &amp; Lethality Disparity</h3>
+<p>The visual pipeline highlights that while Friday evening rush hour generates peak total crash counts, early morning hours (01:00–04:00) suffer from a <strong>33%+ severe trauma rate</strong>.</p>
+<p><img alt="Diurnal Crash vs Lethality Inversion" src="../docs/figures/powerbi/02_temporal_analytics.png" /></p>
+<h3>2. Geospatial Clustering (DBSCAN ε=1.5km, min_samples=25)</h3>
+<p>704 spatial hotspots are visualized across the UK national grid, categorizing priority corridors into high, medium, and low intervention tiers.</p>
+<p><img alt="Hotspot Clusters Map" src="../docs/figures/powerbi/03_geographic_hotspots.png" /></p>
+<h3>3. Machine Learning Severity Risk Prediction &amp; Odds Factors</h3>
+<p>The balanced logistic regression model provides full situational explainability with odds ratios highlighting vulnerable road users and unlit high-speed corridors.</p>
+<p><img alt="ML Odds Ratios &amp; Calibration" src="../docs/figures/powerbi/05_ml_risk_detection.png" /></p>
+<h3>4. Interactive Frontend Web Application &amp; Decision Matrix</h3>
+<p>The React + Leaflet interactive frontend and Power BI enterprise reporting suite provide operational decision-makers with automated intervention recommendations.</p>
+<p><img alt="Power BI Decision Matrix" src="../docs/figures/powerbi/06_decision_support.png" /></p>
+<hr />
+  </div>
+</body>
+</html>

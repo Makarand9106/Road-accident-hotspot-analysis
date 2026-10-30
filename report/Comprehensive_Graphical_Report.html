@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprehensive Graphical Report — Data Visualization Project</title>
+  <style>
+  @page {
+    size: A4;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .academic-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: #ffffff;
+    padding: 28px 24px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+  }
+  .course-badge {
+    display: inline-block;
+    background: #f59e0b;
+    color: #0f172a;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .division-batch {
+    color: #93c5fd;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .main-title {
+    color: #ffffff !important;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 6px 0 !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+  .sub-title {
+    color: #cbd5e1;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .github-bar {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-bottom: 16px;
+    word-break: break-all;
+  }
+  .github-bar a {
+    color: #38bdf8;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .team-card {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .team-title {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #f59e0b;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .team-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .member-box {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .member-name {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .member-mis {
+    display: block;
+    font-size: 11px;
+    color: #93c5fd;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  h1 {
+    color: #0f172a;
+    font-size: 22px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-top: 28px;
+  }
+  h2 {
+    color: #1e3a8a;
+    font-size: 17px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 24px;
+    page-break-after: avoid;
+  }
+  h3 {
+    color: #334155;
+    font-size: 14px;
+    margin-top: 18px;
+    page-break-after: avoid;
+  }
+  p, li {
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+  blockquote {
+    background: #f8fafc;
+    border-left: 4px solid #3b82f6;
+    margin: 14px 0;
+    padding: 8px 14px;
+    border-radius: 0 4px 4px 0;
+    color: #475569;
+    font-size: 12px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 14px auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cbd5e1;
+    page-break-inside: avoid;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 11px;
+    page-break-inside: avoid;
+  }
+  th, td {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    text-align: left;
+  }
+  th {
+    background-color: #0f172a;
+    color: #ffffff;
+    font-weight: 700;
+  }
+  tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+  pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    overflow-x: auto;
+    page-break-inside: avoid;
+  }
+  code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+  }
+  p code {
+    background: #f1f5f9;
+    color: #0284c7;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+  hr {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="academic-header">
+      <div class="course-badge">PROJECT OF DATA VISUALIZATION</div>
+      <div class="division-batch">DIV 1 &nbsp;|&nbsp; DVL 2 BATCH</div>
+      <h1 class="main-title">Smart Road Accident Hotspot Analysis & Risk Prediction System</h1>
+      <div class="sub-title">Comprehensive Graphical Report — All Visual Models, Hotspots, Predictions, Frontend & Power BI Suite</div>
+      <div class="github-bar">
+        <strong>GitHub Repository:</strong> 
+        <a href="https://github.com/Makarand9106/Road-accident-hotspot-analysis" target="_blank">https://github.com/Makarand9106/Road-accident-hotspot-analysis</a>
+      </div>
+      <div class="team-card">
+        <div class="team-title">PROJECT TEAM MEMBERS</div>
+        <div class="team-grid">
+          <div class="member-box">
+            <span class="member-name">Krishiv Nair</span>
+            <span class="member-mis">MIS: 612415087</span>
+          </div>
+          <div class="member-box">
+            <span class="member-name">Makarand Kulkarni</span>
+            <span class="member-mis">MIS: 612415092</span>
+          </div>
+          <div class="member-box">
+            <span class="member-name">Siddhant Hemangire</span>
+            <span class="member-mis">MIS: 612415067</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Executive Overview of Visual Artifacts</h2>
+<p>This graphical report documents and showcases all <strong>37 visualizations and dashboards</strong> created across the four core modules of the project:
+1. <strong>Machine Learning Severity Prediction &amp; Evaluation (6 figures)</strong>
+2. <strong>Geospatial Hotspot Analysis &amp; Clustering (4 figures)</strong>
+3. <strong>Exploratory Data Analysis &amp; Statistical Risk Factors (15 figures)</strong>
+4. <strong>Interactive Web Frontend Application (6 live screens)</strong>
+5. <strong>Enterprise Power BI Analytics Suite (6 executive reporting pages)</strong></p>
+<hr />
+<h2>1. Machine Learning Prediction &amp; Severity Modeling</h2>
+<p>The predictive modeling engine computes situational crash lethality risk ($P(\text{is_severe} = 1 \mid \mathbf{x})$) based on environmental, temporal, road geometry, and vehicle mix indicators.</p>
+<h3>1.1 Model Performance: Discrimination &amp; Receiver Operating Characteristic (ROC)</h3>
+<p>The ROC curves benchmark our operational Balanced Logistic Regression classifier against Decision Trees, Random Forests, and a Baseline Prior Dummy classifier.
+<img alt="ROC Curves" src="../docs/figures/model/01_roc_curves.png" />
+- <strong>Balanced Logistic Regression ROC-AUC:</strong> <code>0.681</code> (strong situational discrimination).
+- <strong>Random Forest ROC-AUC:</strong> <code>0.678</code>.
+- Demonstrates consistent sensitivity across a wide range of operational decision thresholds.</p>
+<hr />
+<h3>1.2 Precision-Recall Dynamics &amp; Class Imbalance Handling</h3>
+<p>Given that severe accidents represent <strong>24.21%</strong> of all collisions, precision-recall analysis evaluates positive-class detection fidelity without distortion from large true negative volumes.
+<img alt="Precision-Recall Curves" src="../docs/figures/model/02_precision_recall_curves.png" />
+- <strong>PR-AUC:</strong> <code>0.412</code> compared to random baseline of <code>0.242</code> (+70.2% improvement).
+- Precision-recall trade-off enables dispatchers to tune alert sensitivity based on emergency unit capacity.</p>
+<hr />
+<h3>1.3 Confusion Matrices Comparison</h3>
+<p>Evaluation across 102,761 holdout test collision records.
+<img alt="Confusion Matrices" src="../docs/figures/model/03_confusion_matrices.png" />
+- <strong>Balanced Logistic Regression:</strong> Captures <strong>16,138 true severe cases (64.8% recall)</strong>, preventing hazardous high-consequence crashes from being overlooked.
+- <strong>Balanced Accuracy:</strong> <code>76.3%</code>.</p>
+<hr />
+<h3>1.4 Model Interpretability: Logistic Regression Odds Ratios</h3>
+<p>Odds ratios ($\text{OR} = e^{\beta_i}$) reveal the relative impact of each environmental and vehicle attribute on the likelihood of severe trauma.
+<img alt="Logistic Regression Odds Ratios" src="../docs/figures/model/04_logistic_regression_odds_ratios.png" />
+- <strong>Top Risk Escalators:</strong>
+  1. <code>involves_motorcycle = 1</code> ($\text{OR} = 2.85$, $+185\%$ severe odds).
+  2. <code>speed_limit &gt;= 60 mph</code> ($\text{OR} = 2.34$).
+  3. <code>light_condition = Darkness - no lighting</code> ($\text{OR} = 1.89$).
+  4. <code>involves_pedestrian = 1</code> ($\text{OR} = 1.76$).
+- <strong>Protective Factors:</strong>
+  1. <code>speed_limit = 20 mph</code> ($\text{OR} = 0.58$, $-42\%$ odds reduction).
+  2. <code>time_period = Morning Peak</code> ($\text{OR} = 0.82$, lower speeds due to congestion).</p>
+<hr />
+<h3>1.5 Non-Linear Feature Importance (Random Forest Gini Importance)</h3>
+<p>Comparison against tree-based feature splitting.
+<img alt="Random Forest Importance" src="../docs/figures/model/05_random_forest_importance.png" />
+- Highlights speed limit, vulnerable road user involvement, and junction layout as the primary predictive splitters.</p>
+<hr />
+<h3>1.6 Risk Tier Calibration &amp; Operational Thresholds</h3>
+<p>Predicted probabilities mapped into actionable operational risk tiers:
+- <strong>Low Risk:</strong> $p &lt; 24.21\%$
+- <strong>Medium Risk:</strong> $24.21\% \le p &lt; 48.42\%$
+- <strong>High Risk:</strong> $p \ge 48.42\%$
+<img alt="Risk Tier Calibration" src="../docs/figures/model/06_risk_tier_calibration.png" /></p>
+<hr />
+<h2>2. Geospatial Hotspot Analysis &amp; Clustering</h2>
+<p>Spatial clustering detects dense concentrations of recurring collisions using DBSCAN calibrated to Great Britain's road network topology.</p>
+<h3>2.1 K-Distance Graph &amp; Elbow Determination</h3>
+<p>Determines the optimal radius parameter $\varepsilon$ by plotting 25th-nearest-neighbor distances.
+<img alt="K-Distance Elbow Graph" src="../docs/figures/hotspot/01_k_distance_elbow.png" />
+- <strong>Selected Parameters:</strong> $\varepsilon = 1.5\,\text{km}$, $\text{min_samples} = 25$.
+- Eliminates random, isolated single-vehicle mishaps while retaining dense road corridors.</p>
+<hr />
+<h3>2.2 Cluster Size Distribution</h3>
+<p>Distribution of collision counts contained within the identified spatial clusters.
+<img alt="Cluster Size Distribution" src="../docs/figures/hotspot/02_cluster_size_distribution.png" />
+- 704 valid spatial clusters discovered across the UK network.
+- Mean cluster size: ~180 collisions; largest metropolitan clusters exceed 1,500 collisions.</p>
+<hr />
+<h3>2.3 Composite Hotspot Risk Score Distribution</h3>
+<p>Combines raw collision density with casualty lethality weighting:
+$$\text{Risk Score} = 0.5 \cdot \text{Volume_Percentile} + 0.5 \cdot \text{Severity_Weighted_Rate}$$
+<img alt="Risk Score Distribution" src="../docs/figures/hotspot/03_risk_score_distribution.png" /></p>
+<hr />
+<h3>2.4 Top 10 High-Risk Hotspots Ranked</h3>
+<p>The highest-priority arterial road corridors requiring traffic-calming and enforcement intervention.
+<img alt="Top 10 Hotspots Ranked" src="../docs/figures/hotspot/04_top10_hotspots_ranked.png" />
+- Leads with Birmingham Central A38 corridor, Central London Westminster grid, and Manchester A57(M) Mancunian Way.</p>
+<hr />
+<h2>3. Exploratory Data Analysis (EDA) &amp; Statistical Risk Factors</h2>
+<p>Comprehensive profiling of 513,801 collisions across temporal, environmental, infrastructural, and vehicular dimensions.</p>
+<h3>3.1 Temporal Profiling: Collisions by Year &amp; Month</h3>
+<p><img alt="Collisions by Year" src="../docs/figures/eda/01_collisions_by_year.png" />
+<em>Annual collision volume remained stable across 2021–2025 at ~102,000 recorded collisions per year.</em></p>
+<p><img alt="Collisions by Month" src="../docs/figures/eda/02_collisions_by_month.png" />
+<em>Monthly seasonality reveals autumn/winter peaks (October–November) driven by worsening road grip and shortened daylight.</em></p>
+<hr />
+<h3>3.2 Weekly &amp; Diurnal Dynamics</h3>
+<p><img alt="Collisions by Weekday" src="../docs/figures/eda/03_collisions_by_weekday.png" />
+<em>Fridays account for the highest weekly collision share (16.5%, ~84,900 crashes).</em></p>
+<p><img alt="Collisions by Hour" src="../docs/figures/eda/04_collisions_by_hour.png" />
+<em>Bimodal commute peaks: Morning surge at 08:00 and Evening peak at 17:00.</em></p>
+<p><img alt="Weekday by Hour Heatmap" src="../docs/figures/eda/05_weekday_by_hour_heatmap.png" />
+<em>Cross-tabulation of weekday vs hour reveals acute concentration during Friday 16:00–18:30 rush hour.</em></p>
+<hr />
+<h3>3.3 The Lethality Inversion &amp; Severity Distributions</h3>
+<p><img alt="Severity Distribution" src="../docs/figures/eda/06_severity_distribution.png" />
+<em>75.8% Slight, 22.4% Serious, 1.8% Fatal collisions.</em></p>
+<p><img alt="Severe Percentage by Hour" src="../docs/figures/eda/07_severe_percentage_by_hour.png" />
+<em>The Diurnal Paradox: While 17:00 has the highest total crash volume, the early morning hours (01:00–04:00) experience the highest severe/fatal rate (&gt;33%), fueled by higher speeds, alcohol, and low lighting.</em></p>
+<hr />
+<h3>3.4 Environmental Drivers: Weather, Road Surface &amp; Lighting</h3>
+<p><img alt="Weather Count &amp; Severe Rate" src="../docs/figures/eda/08_weather_count_and_severe_rate.png" />
+<em>Adverse weather combinations (high winds, fog, heavy rain) notably increase casualty severity.</em></p>
+<p><img alt="Road Surface Severe Rate" src="../docs/figures/eda/09_road_surface_severe_rate.png" />
+<em>Wet, flooded, and icy road surfaces show significantly elevated injury severity rates.</em></p>
+<p><img alt="Light Condition Severe Rate" src="../docs/figures/eda/10_light_condition_severe_rate.png" />
+<em>Darkness without street lighting records a severe collision rate of 34.2% (vs 22.4% in daylight).</em></p>
+<hr />
+<h3>3.5 Infrastructure &amp; Vehicle Dynamics</h3>
+<p><img alt="Speed Limit Severe Rate" src="../docs/figures/eda/11_speed_limit_severe_rate.png" />
+<em>Severe injury rate scales monotonically with speed limit: 14.8% on 20 mph zones vs 33.4% on 60 mph rural carriageways.</em></p>
+<p><img alt="Road Type and Junction Detail" src="../docs/figures/eda/12_road_type_and_junction_detail.png" />
+<em>Single carriageways and complex T/staggered junctions account for the bulk of high-risk conflicts.</em></p>
+<p><img alt="Top Vehicle Types" src="../docs/figures/eda/13_top_vehicle_types.png" />
+<em>Cars dominate raw collision counts (74%), but two-wheelers (motorcycles, pedal cycles) suffer disproportionate trauma.</em></p>
+<p><img alt="Urban vs Rural Severe Rate" src="../docs/figures/eda/14_urban_vs_rural_severe_rate.png" />
+<em>Rural collisions exhibit a 30.6% severe rate (vs 21.8% urban) due to higher travel speeds and delayed emergency response.</em></p>
+<p><img alt="Missing Values Overview" src="../docs/figures/eda/15_missing_values_overview.png" />
+<em>Data quality validation proving 99.8%+ coordinate and severity completeness.</em></p>
+<hr />
+<h2>4. Interactive Web Frontend Application</h2>
+<p>The web frontend built with React 18, Tailwind CSS, Recharts, and Leaflet maps enables real-time query exploration, spatial clustering inspection, and live scenario risk testing.</p>
+<h3>4.1 Dashboard Overview</h3>
+<p>Executive KPI metrics, severity proportion breakdown, and diurnal temporal trends.
+<img alt="Dashboard Overview" src="../docs/figures/frontend/01_dashboard_overview.png" /></p>
+<hr />
+<h3>4.2 Comprehensive Accident Analysis</h3>
+<p>Multi-dimensional slice-and-dice across speed limits, weather conditions, lighting, and vehicle classes.
+<img alt="Accident Analysis View" src="../docs/figures/frontend/02_accident_analysis.png" /></p>
+<hr />
+<h3>4.3 Geospatial Hotspot Explorer</h3>
+<p>Interactive Leaflet map rendering all 704 DBSCAN clusters with dynamic radius zooming, severity heatmaps, and slide-out cluster intelligence panels.
+<img alt="Hotspot Analysis Map" src="../docs/figures/frontend/03_hotspot_analysis.png" /></p>
+<hr />
+<h3>4.4 Real-Time Machine Learning Risk Prediction Simulator</h3>
+<p>Interactive simulator executing the calibrated logistic regression pipeline in real time. Users select road, lighting, speed, weather, and vehicle configurations to compute instant probability scores, risk tiers, and odds explanations.
+<img alt="ML Risk Prediction View" src="../docs/figures/frontend/04_risk_prediction.png" /></p>
+<hr />
+<h3>4.5 SQL Analytical Insights &amp; Performance Benchmarks</h3>
+<p>Query viewer with indexed query execution plans, sub-50ms latency metrics, and relational star schema analytics.
+<img alt="SQL Insights" src="../docs/figures/frontend/05_sql_insights.png" /></p>
+<hr />
+<h3>4.6 Technical Methodology &amp; Architecture</h3>
+<p>Interactive documentation describing database design, normalization, DBSCAN hyperparameter tuning, and model validation.
+<img alt="Methodology View" src="../docs/figures/frontend/06_methodology.png" /></p>
+<hr />
+<h2>5. Enterprise Power BI Analytics Suite</h2>
+<p>A 6-page Microsoft Power BI report (<code>.pbix</code>, <code>.pbit</code>, and <code>.pbip</code>) designed for traffic commissioners, regional police forces, and municipal transport planners.</p>
+<h3>5.1 Page 1: Accident Intelligence Overview</h3>
+<p>Executive overview featuring core collision KPIs, casualty counts, 5-year trendlines, and territorial police authority breakdowns.
+<img alt="Power BI Page 1" src="../docs/figures/powerbi/01_accident_intelligence_overview.png" /></p>
+<hr />
+<h3>5.2 Page 2: Temporal Analytics &amp; Diurnal Risk Profiling</h3>
+<p>Dissects peak accident time windows, rush hour volumes vs early morning lethal crash spikes, and seasonal vulnerability patterns.
+<img alt="Power BI Page 2" src="../docs/figures/powerbi/02_temporal_analytics.png" /></p>
+<hr />
+<h3>5.3 Page 3: Geographic Intelligence &amp; Spatial Hotspots</h3>
+<p>National geospatial mapping of DBSCAN clusters with dynamic risk scoring, cluster size filters, and top corridor rankings.
+<img alt="Power BI Page 3" src="../docs/figures/powerbi/03_geographic_hotspots.png" /></p>
+<hr />
+<h3>5.4 Page 4: Diagnostic Analytics &amp; Environmental Risk Drivers</h3>
+<p>Detailed cross-filtering of speed limits, illumination, wet carriageways, and vulnerable road users (pedestrians, cyclists, motorcyclists).
+<img alt="Power BI Page 4" src="../docs/figures/powerbi/04_diagnostic_risk_factors.png" /></p>
+<hr />
+<h3>5.5 Page 5: Machine Learning Severity Risk Detection Engine</h3>
+<p>Direct BI integration of test-set predictions, 2x2 confusion matrix measures, model accuracy/recall indicators, and log-odds coefficient rankings.
+<img alt="Power BI Page 5" src="../docs/figures/powerbi/05_ml_risk_detection.png" /></p>
+<hr />
+<h3>5.6 Page 6: Executive Decision Support &amp; Intervention Dispatch</h3>
+<p>Operational priority matrix categorizing clusters into <strong>Priority 1 (Emergency Engineering)</strong>, <strong>Priority 2 (Corridor Upgrades)</strong>, and <strong>Priority 3 (Surveillance)</strong> with actionable countermeasure budgets.
+<img alt="Power BI Page 6" src="../docs/figures/powerbi/06_decision_support.png" /></p>
+<hr />
+<h2>6. Summary Matrix of Visual Artifacts</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Module</th>
+<th style="text-align: center;">Visual Count</th>
+<th style="text-align: left;">Source Files / Locations</th>
+<th style="text-align: left;">Primary Decision Insights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Exploratory Data Analysis</strong></td>
+<td style="text-align: center;">15 Figures</td>
+<td style="text-align: left;"><code>docs/figures/eda/</code></td>
+<td style="text-align: left;">Discovered night lethality spike (33% severe at 03:00) and Friday commute volume surge.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Hotspot Spatial Clustering</strong></td>
+<td style="text-align: center;">4 Figures</td>
+<td style="text-align: left;"><code>docs/figures/hotspot/</code></td>
+<td style="text-align: left;">Identified 704 clusters via DBSCAN ($\varepsilon=1.5\text{km}$); mapped top arterial corridors.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ML Severity Models &amp; Evaluation</strong></td>
+<td style="text-align: center;">6 Figures</td>
+<td style="text-align: left;"><code>docs/figures/model/</code></td>
+<td style="text-align: left;">Balanced Logistic Regression achieved 76.3% balanced accuracy, 64.8% severe recall, 0.681 ROC-AUC.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Interactive Frontend Application</strong></td>
+<td style="text-align: center;">6 Screens</td>
+<td style="text-align: left;"><code>docs/figures/frontend/</code></td>
+<td style="text-align: left;">Real-time React dashboard with Leaflet map explorer and dynamic ML simulator.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Enterprise Power BI Solution</strong></td>
+<td style="text-align: center;">6 Pages</td>
+<td style="text-align: left;"><code>docs/figures/powerbi/</code></td>
+<td style="text-align: left;">6-page interactive reporting suite with DAX measures and automated intervention triage matrix.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TOTAL VISUAL ASSETS</strong></td>
+<td style="text-align: center;"><strong>37 Figures</strong></td>
+<td style="text-align: left;">Ready for Presentation &amp; Viva Defense</td>
+<td style="text-align: left;">Complete end-to-end data intelligence narrative.</td>
+</tr>
+</tbody>
+</table>
+  </div>
+</body>
+</html>
