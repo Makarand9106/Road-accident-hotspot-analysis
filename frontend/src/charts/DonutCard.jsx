@@ -41,6 +41,9 @@ export function DonutCard({
   centerValue,
   centerLabel = 'Total',
   height = 320,
+  innerRadius = '58%',
+  outerRadius = '82%',
+  paddingAngle = 3,
   extraHeader,
   className = '',
 }) {
@@ -73,9 +76,9 @@ export function DonutCard({
                   data={processedData}
                   cx="50%"
                   cy="50%"
-                  innerRadius="58%"
-                  outerRadius="82%"
-                  paddingAngle={3}
+                  innerRadius={innerRadius}
+                  outerRadius={outerRadius}
+                  paddingAngle={paddingAngle}
                   dataKey={dataKey}
                   nameKey={nameKey}
                   stroke="#0F172A"
@@ -95,7 +98,7 @@ export function DonutCard({
             </ResponsiveContainer>
 
             {/* Centered Total / Metric */}
-            {centerValue && (
+            {centerValue && innerRadius !== 0 && innerRadius !== '0%' && (
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-6">
                 <span className="text-xl font-bold tracking-tight text-slate-100 font-mono">
                   {typeof centerValue === 'number' ? formatNumber(centerValue) : centerValue}

@@ -105,11 +105,32 @@ export function AccidentAnalysis() {
       'Severe Rate (%)': h.severe_percentage,
     })) || [];
 
-  // Tab 2 (Environment) Prepared Formats for Pie/Donut Charts
+  // Tab 2 (Environment) Prepared Formats for Full Pie Charts
+  // Distinct, accessible, high-contrast colors with high visibility on dark theme
   const ENV_PALETTES = {
-    weather: ['#0284C7', '#38BDF8', '#6366F1', '#818CF8', '#F59E0B', '#10B981', '#94A3B8', '#EC4899'],
-    surface: ['#0284C7', '#0EA5E9', '#38BDF8', '#F59E0B', '#EF4444'],
-    light: ['#F59E0B', '#0284C7', '#4F46E5', '#64748B'],
+    weather: [
+      '#0284C7', // Sky Blue (Fine)
+      '#3B82F6', // Blue (Rain)
+      '#6366F1', // Indigo (Other)
+      '#F59E0B', // Amber (Raining + high winds)
+      '#EC4899', // Pink (Fine + high winds)
+      '#10B981', // Emerald (Fog or mist)
+      '#8B5CF6', // Purple (Snow)
+      '#EF4444', // Red (Snow + high winds)
+    ],
+    surface: [
+      '#0284C7', // Dry (Sky blue)
+      '#0D9488', // Wet or damp (Teal)
+      '#6366F1', // Frost or ice (Indigo)
+      '#8B5CF6', // Snow (Purple)
+      '#EF4444', // Flood (Rose)
+    ],
+    light: [
+      '#F59E0B', // Daylight (Amber / Sun)
+      '#0284C7', // Darkness - lights lit (Sky blue)
+      '#6366F1', // Darkness - no lighting (Indigo)
+      '#EC4899', // Darkness - lights unlit (Pink)
+    ],
   };
 
   const weatherPieData =
@@ -316,7 +337,7 @@ export function AccidentAnalysis() {
       {!loading && !error && activeTab === 'environment' && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* C7: Weather Condition Pie */}
+            {/* C7: Weather Condition Full Pie */}
             <DonutCard
               title="Weather Conditions Share (C7)"
               question="How are collisions distributed across weather conditions?"
@@ -324,10 +345,13 @@ export function AccidentAnalysis() {
               data={weatherPieData}
               nameKey="name"
               dataKey="value"
+              innerRadius={0}
+              outerRadius="80%"
+              paddingAngle={2}
               height={340}
             />
 
-            {/* C8: Road Surface Condition Pie */}
+            {/* C8: Road Surface Condition Full Pie */}
             <DonutCard
               title="Road Surface Conditions (C8)"
               question="What proportion of crashes occur on dry vs wet/icy surfaces?"
@@ -335,10 +359,13 @@ export function AccidentAnalysis() {
               data={surfacePieData}
               nameKey="name"
               dataKey="value"
+              innerRadius={0}
+              outerRadius="80%"
+              paddingAngle={2}
               height={340}
             />
 
-            {/* C9: Light Condition Analysis Pie */}
+            {/* C9: Light Condition Analysis Full Pie */}
             <DonutCard
               title="Lighting Conditions (C9)"
               question="How do collisions divide between daylight and darkness?"
@@ -346,6 +373,9 @@ export function AccidentAnalysis() {
               data={lightPieData}
               nameKey="name"
               dataKey="value"
+              innerRadius={0}
+              outerRadius="80%"
+              paddingAngle={2}
               height={340}
             />
           </div>
