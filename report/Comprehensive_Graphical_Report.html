@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Comprehensive Graphical Report — Data Visualization Project</title>
+  <title>Comprehensive Graphical Report</title>
   <style>
   @page {
     size: A4;
@@ -19,151 +19,152 @@
   .container {
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0;
+    background: #ffffff;
   }
-  .academic-header {
-    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-    color: #ffffff;
-    padding: 28px 24px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
-  }
-  .course-badge {
-    display: inline-block;
-    background: #f59e0b;
+  
+  /* Clean professional academic header */
+  .college-header {
+    background: #ffffff;
     color: #0f172a;
-    font-size: 11px;
+    padding: 10px 0 15px 0;
+    margin-bottom: 5px;
+  }
+  .header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #0f172a;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+  }
+  .course-name {
+    font-size: 13px;
     font-weight: 800;
-    letter-spacing: 1.5px;
-    padding: 4px 12px;
-    border-radius: 4px;
+    letter-spacing: 0.5px;
+    color: #0f172a;
     text-transform: uppercase;
-    margin-bottom: 8px;
   }
   .division-batch {
-    color: #93c5fd;
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
+    color: #0f172a;
+    text-align: right;
   }
-  .main-title {
-    color: #ffffff !important;
-    font-size: 26px;
-    font-weight: 800;
-    line-height: 1.25;
-    margin: 0 0 6px 0 !important;
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
+  .header-center-title {
+    text-align: center;
+    margin: 15px 0 20px 0;
   }
-  .sub-title {
-    color: #cbd5e1;
-    font-size: 15px;
+  .project-title {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    margin: 0 0 4px 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+  }
+  .report-subtitle {
+    font-size: 13px;
+    color: #475569;
     font-weight: 500;
-    margin-bottom: 16px;
+    margin-top: 4px;
+    text-align: center;
   }
-  .github-bar {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 8px 14px;
-    border-radius: 6px;
+  .header-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+  }
+  .left-col {
+    text-align: left;
     font-size: 12px;
-    margin-bottom: 16px;
-    word-break: break-all;
+    color: #1e293b;
+    line-height: 1.6;
   }
-  .github-bar a {
-    color: #38bdf8;
+  .meta-label {
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 3px;
+    letter-spacing: 0.5px;
+  }
+  .member-item {
+    font-size: 12px;
+    color: #0f172a;
+  }
+  .github-link {
+    margin-top: 6px;
+    font-size: 12px;
+  }
+  .github-link a {
+    color: #0969da;
     text-decoration: underline;
     font-weight: 600;
   }
-  .team-card {
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    padding: 14px;
+  .header-divider {
+    border: 0;
+    height: 1px;
+    background: #cbd5e1;
+    margin: 16px 0 24px 0;
   }
-  .team-title {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: #f59e0b;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-  .team-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .member-box {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px 12px;
-    border-radius: 6px;
-    text-align: center;
-  }
-  .member-name {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    color: #ffffff;
-  }
-  .member-mis {
-    display: block;
-    font-size: 11px;
-    color: #93c5fd;
-    font-weight: 600;
-    margin-top: 2px;
-  }
+
+  /* Body Typography & Content */
   h1 {
     color: #0f172a;
-    font-size: 22px;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 8px;
-    margin-top: 28px;
+    font-size: 20px;
+    border-bottom: 1.5px solid #cbd5e1;
+    padding-bottom: 6px;
+    margin-top: 26px;
   }
   h2 {
-    color: #1e3a8a;
-    font-size: 17px;
+    color: #1e293b;
+    font-size: 16px;
     border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 6px;
-    margin-top: 24px;
+    padding-bottom: 5px;
+    margin-top: 22px;
     page-break-after: avoid;
   }
   h3 {
     color: #334155;
-    font-size: 14px;
-    margin-top: 18px;
+    font-size: 13.5px;
+    margin-top: 16px;
     page-break-after: avoid;
   }
   p, li {
-    font-size: 12.5px;
+    font-size: 12px;
     line-height: 1.6;
   }
   blockquote {
     background: #f8fafc;
-    border-left: 4px solid #3b82f6;
-    margin: 14px 0;
-    padding: 8px 14px;
-    border-radius: 0 4px 4px 0;
+    border-left: 3px solid #64748b;
+    margin: 12px 0;
+    padding: 8px 12px;
+    border-radius: 0 3px 3px 0;
     color: #475569;
-    font-size: 12px;
+    font-size: 11.5px;
   }
   img {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 14px auto;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     border: 1px solid #cbd5e1;
     page-break-inside: avoid;
   }
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 18px 0;
+    margin: 16px 0;
     font-size: 11px;
     page-break-inside: avoid;
   }
@@ -173,8 +174,8 @@
     text-align: left;
   }
   th {
-    background-color: #0f172a;
-    color: #ffffff;
+    background-color: #f1f5f9;
+    color: #0f172a;
     font-weight: 700;
   }
   tr:nth-child(even) {
@@ -184,8 +185,8 @@
     background: #0f172a;
     color: #e2e8f0;
     padding: 12px;
-    border-radius: 6px;
-    font-size: 10.5px;
+    border-radius: 4px;
+    font-size: 10px;
     overflow-x: auto;
     page-break-inside: avoid;
   }
@@ -203,40 +204,37 @@
     border: 0;
     height: 1px;
     background: #e2e8f0;
-    margin: 24px 0;
+    margin: 20px 0;
   }
 </style>
 </head>
 <body>
   <div class="container">
     
-    <div class="academic-header">
-      <div class="course-badge">PROJECT OF DATA VISUALIZATION</div>
-      <div class="division-batch">DIV 1 &nbsp;|&nbsp; DVL 2 BATCH</div>
-      <h1 class="main-title">Smart Road Accident Hotspot Analysis & Risk Prediction System</h1>
-      <div class="sub-title">Comprehensive Graphical Report — All Visual Models, Hotspots, Predictions, Frontend & Power BI Suite</div>
-      <div class="github-bar">
-        <strong>GitHub Repository:</strong> 
-        <a href="https://github.com/Makarand9106/Road-accident-hotspot-analysis" target="_blank">https://github.com/Makarand9106/Road-accident-hotspot-analysis</a>
+    <div class="college-header">
+      <div class="header-top-row">
+        <div class="course-name">PROJECT OF DATA VISUALIZATION</div>
+        <div class="division-batch">Div1 DVL2 Batch</div>
       </div>
-      <div class="team-card">
-        <div class="team-title">PROJECT TEAM MEMBERS</div>
-        <div class="team-grid">
-          <div class="member-box">
-            <span class="member-name">Krishiv Nair</span>
-            <span class="member-mis">MIS: 612415087</span>
-          </div>
-          <div class="member-box">
-            <span class="member-name">Makarand Kulkarni</span>
-            <span class="member-mis">MIS: 612415092</span>
-          </div>
-          <div class="member-box">
-            <span class="member-name">Siddhant Hemangire</span>
-            <span class="member-mis">MIS: 612415067</span>
+      
+      <div class="header-center-title">
+        <h1 class="project-title">Smart Road Accident Hotspot Analysis &amp; Risk Prediction System</h1>
+        <div class="report-subtitle">Comprehensive Graphical Report — All Visual Models, Hotspots, Predictions, Frontend &amp; Power BI Suite</div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="left-col">
+          <div class="meta-label">Submitted by:</div>
+          <div class="member-item"><strong>Krishiv Nair</strong> (MIS: 612415087)</div>
+          <div class="member-item"><strong>Makarand Kulkarni</strong> (MIS: 612415092)</div>
+          <div class="member-item"><strong>Siddhant Hemangire</strong> (MIS: 612415067)</div>
+          <div class="github-link">
+            <strong>GitHub:</strong> <a href="https://github.com/Makarand9106/Road-accident-hotspot-analysis" target="_blank">https://github.com/Makarand9106/Road-accident-hotspot-analysis</a>
           </div>
         </div>
       </div>
     </div>
+    <hr class="header-divider" />
     
     <h2>Executive Overview of Visual Artifacts</h2>
 <p>This graphical report documents and showcases all <strong>37 visualizations and dashboards</strong> created across the four core modules of the project:
