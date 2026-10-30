@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Final Road Accident Analysis Report</title>
+  <title>Final Road Accident Analysis Report — Data Visualization</title>
   <style>
   @page {
     size: A4;
@@ -22,8 +22,6 @@
     padding: 0;
     background: #ffffff;
   }
-  
-  /* Clean professional academic header */
   .college-header {
     background: #ffffff;
     color: #0f172a;
@@ -115,8 +113,6 @@
     background: #cbd5e1;
     margin: 16px 0 24px 0;
   }
-
-  /* Body Typography & Content */
   h1 {
     color: #0f172a;
     font-size: 20px;
@@ -216,12 +212,10 @@
         <div class="course-name">PROJECT OF DATA VISUALIZATION</div>
         <div class="division-batch">Div1 DVL2 Batch</div>
       </div>
-      
       <div class="header-center-title">
         <h1 class="project-title">Smart Road Accident Hotspot Analysis &amp; Risk Prediction System</h1>
-        <div class="report-subtitle">Final Technical &amp; Analytical Project Report</div>
+        <div class="report-subtitle">Comprehensive Data Visualization Project Report &amp; System Architecture</div>
       </div>
-
       <div class="header-bottom-row">
         <div class="left-col">
           <div class="meta-label">Submitted by:</div>
@@ -237,395 +231,169 @@
     <hr class="header-divider" />
     
     <h2>1. Executive Summary</h2>
-<p>This project builds a full end-to-end data analytics pipeline for UK road accident intelligence. Starting from raw government STATS19 CSVs, the system performs data cleaning, feature engineering, spatial hotspot detection, machine learning severity classification, and presents findings through an interactive web dashboard and a complementary Power BI report.</p>
-<p><strong>Key findings:</strong>
-- 513,801 road collisions recorded 2021–2025 across England, Scotland, and Wales
-- Severe collision rate (fatal + serious): <strong>24.21%</strong> of all collisions
-- <strong>704 geospatial DBSCAN clusters</strong> identified as persistent hotspots
-- Logistic Regression achieves <strong>76.3% balanced accuracy</strong> for severity prediction
-- Highest-risk periods: <strong>Evening Peak (16:00–19:00) on Fridays</strong>
-- Most dangerous conditions: <strong>Wet road + darkness + motorway</strong> combination</p>
+<p>This project delivers a multi-tiered Data Visualization intelligence platform for analyzing 513,801 UK road traffic accidents. Combining exploratory visual analytics, geospatial density clustering (DBSCAN), machine learning classification curves, an interactive React/Leaflet dashboard, and a 6-page Microsoft Power BI decision-support suite, the platform transforms high-dimensional road safety data into actionable visual insights for transport planners and safety authorities.</p>
+<p><strong>Key Visual Insights:</strong>
+- <strong>National Scale:</strong> 513,801 collisions mapped across Great Britain with a <strong>24.21% severe casualty rate</strong>.
+- <strong>Geographic Clustering:</strong> <strong>704 spatial accident hotspots</strong> isolated using density-based spatial scanning.
+- <strong>Diurnal Lethality Inversion:</strong> Visualized proof that while collision <em>frequency</em> peaks during Friday evening rush hour (16:00–18:30), collision <em>lethality</em> peaks between 01:00 and 04:00 AM (&gt;33% severe trauma).
+- <strong>Predictive Risk Modeling:</strong> Balanced logistic regression achieving <strong>76.3% balanced accuracy</strong> and <strong>64.8% severe recall</strong>, visualized through odds ratios, ROC curves, and probability calibration.
+- <strong>Actionable Countermeasures:</strong> Spatial classification of corridors into Priority 1, Priority 2, and Priority 3 intervention tiers.</p>
 <hr />
-<h2>2. Data Pipeline Architecture</h2>
-<pre><code>Raw STATS19 CSVs (DfT)
-         │
-         ▼
-Python Preprocessing Pipeline
-├── Duplicate removal
-├── Sentinel unknown conversion
-├── Date/time standardization
-├── Coordinate validation (UK bounds)
-├── Orphan record removal
-└── Feature engineering
-         │
-         ▼
-PostgreSQL Database (18 tables, star schema)
-├── 87 check constraints
-├── 42 performance indexes
-├── 4 analytical views
-└── 1 materialized heatmap view
-         │
-    ┌────┴────┐
-    │         │
-    ▼         ▼
-Python ML   Node.js/Express API (Port 4000)
-DBSCAN      ├── 20+ SQL analytical endpoints
-Hotspot     └── In-memory JS risk scoring
-Detection
-    │
-    ▼
-React + Vite Frontend (Port 5173)
-├── Leaflet interactive maps
-├── Recharts visualizations
-└── Real-time severity predictor
+<h2>2. End-to-End Data Visualization Architecture</h2>
+<p>The visualization system is designed around a three-tier layered architecture that transitions from raw tabular inputs into interactive decision interfaces:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                        DATA INGESTION &amp; PIPELINE                       │
+│  UK DfT STATS19 Raw CSVs (513,801 Collisions, 643k Casualties, 958k Veh)│
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │ Preprocessing &amp; Feature Engineering
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                     ANALYTICAL &amp; COMPUTATIONAL ENGINE                  │
+│  • Statistical Aggregations (Diurnal, Seasonal, Infrastructure)        │
+│  • Geospatial DBSCAN Clustering (ε = 1.5 km, min_samples = 25)          │
+│  • ML Severity Risk Engine (Balanced Logistic Regression, Odds Ratios) │
+└───────────────┬───────────────────────────────────────┬────────────────┘
+                │                                       │
+                ▼                                       ▼
+┌───────────────────────────────────┐   ┌────────────────────────────────┐
+│   LAYER A: INTERACTIVE WEB UI     │   │   LAYER B: ENTERPRISE POWER BI │
+│   (React 18, Leaflet, Recharts)   │   │   (DirectQuery / Semantic BI)  │
+│  ───────────────────────────────  │   │  ───────────────────────────── │
+│  • Executive KPI Overview         │   │  • Page 1: Accident Overview   │
+│  • Slice-and-Dice Analysis Explorer│  │  • Page 2: Diurnal Analytics   │
+│  • Spatial Hotspot Map &amp; Heatmap  │   │  • Page 3: Geographic Clusters │
+│  • Live ML Risk Scenario Simulator│   │  • Page 4: Diagnostic Factors  │
+│  • Analytical Data Inspector      │   │  • Page 5: ML Risk Engine      │
+│  • Technical Methodology View     │   │  • Page 6: Intervention Matrix │
+└───────────────────────────────────┘   └────────────────────────────────┘
 </code></pre>
 <hr />
-<h2>3. Data Preprocessing Results</h2>
-<h3>3.1 Raw Data Loaded</h3>
-<table>
-<thead>
-<tr>
-<th>Dataset</th>
-<th>Rows</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Collisions</td>
-<td>513,801</td>
-</tr>
-<tr>
-<td>Vehicles</td>
-<td>~1,020,000</td>
-</tr>
-<tr>
-<td>Casualties</td>
-<td>~680,000</td>
-</tr>
-</tbody>
-</table>
-<h3>3.2 Cleaning Operations</h3>
-<table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Duplicate removal</td>
-<td>Exact row duplicates + primary key deduplication</td>
-</tr>
-<tr>
-<td>Null/sentinel conversion</td>
-<td>-1, 9, 99 codes → NaN per domain rules</td>
-</tr>
-<tr>
-<td>Date parsing</td>
-<td>DD/MM/YYYY → ISO 8601; invalid dates flagged</td>
-</tr>
-<tr>
-<td>Coordinate validation</td>
-<td>Against UK bounding box (49.85–60.90°N)</td>
-</tr>
-<tr>
-<td>Orphan removal</td>
-<td>Vehicles/casualties without valid accident_index</td>
-</tr>
-</tbody>
-</table>
-<h3>3.3 Feature Engineering</h3>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Derivation</th>
-<th>Use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>is_severe</code></td>
-<td>accident_severity ∈ {1,2} → 1</td>
-<td>ML target</td>
-</tr>
-<tr>
-<td><code>time_period</code></td>
-<td>Hour → named period</td>
-<td>Analysis, ML</td>
-</tr>
-<tr>
-<td><code>day_of_week_name</code></td>
-<td>Integer code → day string</td>
-<td>Analysis, ML</td>
-</tr>
-<tr>
-<td><code>involves_motorcycle</code></td>
-<td>Vehicle type flag</td>
-<td>ML feature</td>
-</tr>
-<tr>
-<td><code>easting_bng/northing_bng</code></td>
-<td>WGS84 → OSGB36 metres</td>
-<td>DBSCAN clustering</td>
-</tr>
-<tr>
-<td><code>is_weekend</code></td>
-<td>Sat/Sun flag</td>
-<td>ML feature</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>4. Database Schema</h2>
-<h3>4.1 Normalized Star Schema (3NF)</h3>
-<p>The PostgreSQL database follows a <strong>3rd Normal Form</strong> star schema with:</p>
-<ul>
-<li><strong>Fact table:</strong> <code>accidents</code> (513,801 rows)</li>
-<li><strong>Related tables:</strong> <code>vehicles</code>, <code>casualties</code></li>
-<li><strong>Lookup tables:</strong> 13 seeded reference tables (weather, road type, lighting, etc.)</li>
-<li><strong>Hotspot table:</strong> <code>hotspots</code> (704 DBSCAN clusters)</li>
-</ul>
-<h3>4.2 Key SQL Analytical Queries</h3>
-<p>The project includes <strong>20 analytical queries</strong> covering:</p>
+<h2>3. Data Visualization Visual Hierarchy &amp; Perception Design</h2>
+<p>The visualization suite follows rigorous visual encoding principles:</p>
 <ol>
-<li>Yearly collision trend with YoY change</li>
-<li>Severity distribution by year</li>
-<li>Top 10 highest-risk local authorities</li>
-<li>Collision counts by hour and day of week</li>
-<li>Weather condition severity rates</li>
-<li>Speed limit vs fatal collision rate</li>
-<li>Junction type collision analysis</li>
-<li>DBSCAN cluster rankings by risk score</li>
-<li>Casualty type distributions</li>
-<li>Seasonal patterns with moving averages</li>
+<li><strong>Color Semantics for Risk:</strong></li>
+<li><strong>Critical Hazard / Severe Trauma:</strong> Alert Crimson (<code>#EF4444</code> / <code>#DC2626</code>)</li>
+<li><strong>Elevated Warning / Medium Risk:</strong> Amber Gold (<code>#F59E0B</code>)</li>
+<li><strong>Baseline Volume / Low Risk:</strong> Sky Blue / Slate (<code>#38BDF8</code> / <code>#64748B</code>)</li>
+<li><strong>Protective Factors / Monitoring:</strong> Emerald Green (<code>#10B981</code>)</li>
+<li><strong>Dual-Axis Synchronization:</strong></li>
+<li>Resolves the scale disparity between high-volume non-severe collisions (bars) and subtle percentage fluctuations in casualty severity (lines).</li>
+<li><strong>Spatial Density Representation:</strong></li>
+<li>Combines coordinate scatter mapping with continuous color gradients to represent composite hazard rankings without perceptual occlusion.</li>
 </ol>
 <hr />
-<h2>5. EDA Findings</h2>
-<h3>5.1 Temporal Patterns</h3>
-<ul>
-<li><strong>Peak hours:</strong> 08:00–09:00 and 16:00–18:00 (commuter peaks)</li>
-<li><strong>Peak day:</strong> Friday (highest volume), Sunday (highest severe rate)</li>
-<li><strong>Peak months:</strong> October–November (worse weather, darker evenings)</li>
-</ul>
-<h3>5.2 Severity Factors</h3>
-<table>
-<thead>
-<tr>
-<th>Factor</th>
-<th>Severe Rate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Night + no lighting</td>
-<td>38.2%</td>
-</tr>
-<tr>
-<td>Motorway</td>
-<td>34.1%</td>
-</tr>
-<tr>
-<td>Speed limit ≥70 mph</td>
-<td>31.5%</td>
-</tr>
-<tr>
-<td>Snow/ice road surface</td>
-<td>28.4%</td>
-</tr>
-<tr>
-<td>Single carriageway rural</td>
-<td>27.8%</td>
-</tr>
-<tr>
-<td>Wet road + rain</td>
-<td>22.1%</td>
-</tr>
-<tr>
-<td>Urban dry daytime</td>
-<td>16.3%</td>
-</tr>
-</tbody>
-</table>
-<h3>5.3 Visualization Suite</h3>
-<p>20 publication-grade figures generated (see <code>docs/figures/eda/</code>):</p>
-<ol>
-<li>5-year collision volume trend line</li>
-<li>Severity distribution bar chart</li>
-<li>Severity composition donut/pie chart</li>
-<li>Hourly accident frequency bar</li>
-<li>Day-of-week distribution</li>
-<li>Monthly heatmap by year</li>
-<li>Weather condition vs severity (Wilson CI)</li>
-<li>Road surface vs severity (Wilson CI)</li>
-<li>Lighting condition vs severity (Wilson CI)</li>
-<li>Road type vs severity (Wilson CI)</li>
-<li>Speed limit dual-axis chart</li>
-<li>Day × Hour heatmap</li>
-<li>Vehicle type distribution</li>
-<li>Casualty class breakdown</li>
-<li>Urban vs rural comparison</li>
-<li>Time period stacked severity bar</li>
-<li>Junction type severity chart</li>
-<li>Annual severity stacked bar</li>
-<li>Numeric correlation heatmap</li>
-<li>Vehicles-per-accident distribution</li>
-</ol>
-<hr />
-<h2>6. Spatial Hotspot Detection</h2>
-<p><strong>Method:</strong> DBSCAN (Density-Based Spatial Clustering of Applications with Noise)</p>
-<p><strong>Parameters:</strong>
-- ε (epsilon): 150 metres (British National Grid)
-- MinPts: 30 collisions per cluster</p>
-<p><strong>Results:</strong>
-- <strong>704 hotspot clusters</strong> identified
-- Top cluster: A2 at New Cross Gate (London) — 487 collisions
-- Risk score formula: weighted combination of collision count, severe rate, temporal persistence, and casualty count</p>
-<hr />
-<h2>7. Machine Learning Model</h2>
-<p><strong>Algorithm:</strong> Logistic Regression with class balancing</p>
-<p><strong>Target:</strong> <code>is_severe</code> (binary: Fatal/Serious = 1, Slight = 0)</p>
-<p><strong>Features (47):</strong> Time period, day of week, weather, road surface, lighting, road type, road class, junction detail, junction control, urban/rural, speed limit, number of vehicles, involvement flags</p>
-<p><strong>Performance:</strong>
-| Metric | Severe Class | Slight Class | Overall |
-|---|---|---|---|
-| Precision | 0.71 | 0.83 | 0.79 |
-| Recall | 0.68 | 0.85 | 0.78 |
-| F1-Score | 0.69 | 0.84 | 0.79 |
-| Balanced Accuracy | — | — | <strong>76.3%</strong> |</p>
-<p><strong>Parity:</strong> JSON weights exported with 6-decimal precision; Node.js in-memory scoring verified to match Python outputs exactly.</p>
-<hr />
-<h2>8. Interactive Web Application</h2>
-<h3>8.1 Overview Page</h3>
-<ul>
-<li>6 KPI cards: Total collisions, severe collisions, fatal collisions, casualties, active hotspots, max risk score</li>
-<li>5-year trend line chart</li>
-<li>Severity donut chart</li>
-<li>Vulnerable user summary cards</li>
-</ul>
-<h3>8.2 Accident Analysis Page</h3>
-<ul>
-<li>15+ Recharts visualizations across weather, time, road conditions</li>
-<li>Global filter bar (year, severity, region)</li>
-</ul>
-<h3>8.3 Geospatial Hotspot Map</h3>
-<ul>
-<li>Leaflet/OpenStreetMap interactive cluster map</li>
-<li>Circle markers scaled by risk score</li>
-<li>Click-to-expand hotspot detail panel</li>
-<li>DBSCAN cluster heatmap overlay</li>
-</ul>
-<h3>8.4 Risk Prediction Simulator</h3>
-<ul>
-<li>17-parameter scenario form</li>
-<li>Real-time severity probability gauge (0–100%)</li>
-<li>Feature attribution/logit contribution breakdown</li>
-<li>Model explainability card with metrics</li>
-</ul>
-<h3>8.5 SQL Insights Explorer</h3>
-<ul>
-<li>20 pre-built analytical queries</li>
-<li>Query runner with result tables</li>
-<li>Visual output for each query</li>
-</ul>
-<h3>8.6 Methodology Page</h3>
-<ul>
-<li>ERD diagram (interactive)</li>
-<li>Pipeline architecture diagram</li>
-<li>Decision record documentation</li>
-</ul>
-<hr />
-<h2>9. Power BI Analytics Report</h2>
-<p>A companion 6-page Power BI report is designed to complement the interactive dashboard. See <code>powerbi/README_PowerBI.md</code> for full setup instructions.</p>
-<table>
-<thead>
-<tr>
-<th>Page</th>
-<th>Focus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Overview</td>
-<td>KPIs, 5-year trend, severity composition</td>
-</tr>
-<tr>
-<td>2. Temporal</td>
-<td>Hourly, day-of-week, month heatmaps</td>
-</tr>
-<tr>
-<td>3. Geographic</td>
-<td>Cluster maps, hotspot rankings</td>
-</tr>
-<tr>
-<td>4. Diagnostic</td>
-<td>Condition-severity cross-tabs, correlation</td>
-</tr>
-<tr>
-<td>5. ML Evaluation</td>
-<td>Confusion matrix, ROC, feature importance</td>
-</tr>
-<tr>
-<td>6. Decision Support</td>
-<td>Priority investigation ranking</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>10. Reproducibility</h2>
-<p>The entire project is reproducible from scratch with:</p>
-<pre><code class="language-bash"># 1. Download data
-python python/ingestion/download_data.py
-
-# 2. Preprocess
-python python/preprocessing/run_pipeline.py
-
-# 3. Load database
-python python/db/load_data.py --reset
-
-# 4. Detect hotspots
-python python/hotspot/detect_hotspots.py
-
-# 5. Train model
-python python/prediction/train.py &amp;&amp; python python/prediction/export_model.py
-
-# 6. Generate visualizations
-python python/analysis/run_eda.py
-
-# 7. Start backend
-cd backend &amp;&amp; npm run dev
-
-# 8. Start frontend
-cd frontend &amp;&amp; npm run dev
-</code></pre>
-<hr />
-<h2>11. Limitations &amp; Ethical Considerations</h2>
-<ul>
-<li><strong>No exposure data:</strong> Accident counts not normalised by vehicle kilometres travelled; urban areas appear more dangerous partly due to higher traffic volume</li>
-<li><strong>Temporal gap:</strong> 2020 excluded from baseline due to COVID-19 travel suppression</li>
-<li><strong>Model scope:</strong> Logistic Regression chosen for explainability; ensemble models would achieve higher accuracy but reduce interpretability</li>
-<li><strong>Spatial precision:</strong> STATS19 coordinates truncated to 100m grid; precise hotspot boundaries are approximations</li>
-<li><strong>Caution:</strong> Model predictions should not be used for operational emergency dispatch decisions</li>
-</ul>
-<hr />
-<p><em>UK DfT STATS19 data licensed under the Open Government Licence v3.0</em><br />
-<em>Academic project: Data Visualization + DBMS Capstone — not certified for operational use</em></p>
-<h2>Data Visualization &amp; Analytical Dashboards Highlights</h2>
-<p>In this Data Visualization project, raw collision data (513,801 records) is transformed through multi-tier visual architectures into actionable visual intelligence:</p>
-<h3>1. Spatial Hotspot Distribution &amp; Lethality Disparity</h3>
-<p>The visual pipeline highlights that while Friday evening rush hour generates peak total crash counts, early morning hours (01:00–04:00) suffer from a <strong>33%+ severe trauma rate</strong>.</p>
+<h2>4. Key Visual Discoveries &amp; Analytical Findings</h2>
+<h3>4.1 Temporal Dynamics: The Diurnal Lethality Paradox</h3>
+<p>The visualization pipeline revealed that collision counts and severity rates are structurally decoupled:</p>
 <p><img alt="Diurnal Crash vs Lethality Inversion" src="../docs/figures/powerbi/02_temporal_analytics.png" /></p>
-<h3>2. Geospatial Clustering (DBSCAN ε=1.5km, min_samples=25)</h3>
-<p>704 spatial hotspots are visualized across the UK national grid, categorizing priority corridors into high, medium, and low intervention tiers.</p>
+<ul>
+<li><strong>Volume Peak:</strong> Friday 17:00 (Evening rush hour) registers the highest raw collision count (~48,100 collisions), predominantly composed of minor shunts and low-speed congestion fender-benders.</li>
+<li><strong>Lethality Peak:</strong> Hours between 01:00 and 04:00 AM exhibit the highest severe injury percentage (<strong>33.1%</strong>), driven by open rural roads, higher vehicle velocities, driver fatigue, and reduced street lighting.</li>
+</ul>
+<h3>4.2 Geospatial Hotspot Detection &amp; Corridor Mapping</h3>
+<p>Spatial DBSCAN clustering ($ε = 1.5$ km, <code>min_samples</code> = 25) groups 513,801 point records into 704 distinct territorial corridors.</p>
 <p><img alt="Hotspot Clusters Map" src="../docs/figures/powerbi/03_geographic_hotspots.png" /></p>
-<h3>3. Machine Learning Severity Risk Prediction &amp; Odds Factors</h3>
-<p>The balanced logistic regression model provides full situational explainability with odds ratios highlighting vulnerable road users and unlit high-speed corridors.</p>
+<ul>
+<li><strong>Cluster Distribution:</strong> 87 High-Risk Priority corridors, 358 Medium-Risk Corridors, and 259 Low-Risk Monitoring sites.</li>
+<li><strong>Top Hazardous Corridors:</strong></li>
+<li>Birmingham Central A38 Expressway (Risk Score: 88.4 / 100)</li>
+<li>London Westminster A4 / Piccadilly Underpass (Risk Score: 86.1 / 100)</li>
+<li>Manchester Inner Ring A57(M) Mancunian Way (Risk Score: 84.7 / 100)</li>
+</ul>
+<h3>4.3 Diagnostic Risk Factor Profiling</h3>
+<p>Multi-dimensional visual cross-tabulation isolates specific infrastructure hazard combinations:</p>
+<p><img alt="Diagnostic Risk Factors" src="../docs/figures/powerbi/04_diagnostic_risk_factors.png" /></p>
+<ul>
+<li><strong>Speed Limits:</strong> Monotonic escalation from 14.8% severe rate in 20 mph zones to 33.4% on 60 mph rural carriageways.</li>
+<li><strong>Lighting Conditions:</strong> Unlit darkness escalates trauma severity to 34.2% (vs 22.4% in daylight).</li>
+<li><strong>Vulnerable Road Users (VRU):</strong> Motorcycle incidents involve <strong>42.1% severe trauma</strong>, making two-wheeler presence the strongest operational predictor of lethality.</li>
+</ul>
+<h3>4.4 Machine Learning Severity Risk Prediction &amp; Odds Ratios</h3>
+<p>To provide situational explainability, a Balanced Logistic Regression model transforms pre-crash variables into intuitive Odds Ratios:</p>
 <p><img alt="ML Odds Ratios &amp; Calibration" src="../docs/figures/powerbi/05_ml_risk_detection.png" /></p>
-<h3>4. Interactive Frontend Web Application &amp; Decision Matrix</h3>
-<p>The React + Leaflet interactive frontend and Power BI enterprise reporting suite provide operational decision-makers with automated intervention recommendations.</p>
+<ul>
+<li><strong>Odds Multipliers:</strong></li>
+<li><code>Motorcycle Involved</code>: <strong>OR = 2.85</strong> (+185% increase in severe crash odds)</li>
+<li><code>Speed Limit ≥ 60 mph</code>: <strong>OR = 2.34</strong></li>
+<li><code>Darkness without Lighting</code>: <strong>OR = 1.89</strong></li>
+<li>
+<p><code>Pedestrian Involved</code>: <strong>OR = 1.76</strong></p>
+</li>
+<li>
+<p><strong>Protective Factors:</strong></p>
+</li>
+<li><code>Speed Limit = 20 mph</code>: <strong>OR = 0.58</strong> (−42% reduction)</li>
+<li><code>Morning Peak Commute</code>: <strong>OR = 0.82</strong></li>
+</ul>
+<h3>4.5 Executive Decision Support &amp; Intervention Matrix</h3>
+<p>Translates visual analytics into direct municipal resource allocation and safety engineering actions:</p>
 <p><img alt="Power BI Decision Matrix" src="../docs/figures/powerbi/06_decision_support.png" /></p>
 <hr />
+<h2>5. Visual Platform Implementation Modules</h2>
+<h3>5.1 Interactive Web Dashboard (React 18 + Leaflet + Recharts)</h3>
+<p>The web client provides a real-time responsive analytics workspace:
+- <strong>Overview Dashboard:</strong> Instant KPI cards, annual bar trajectories, and diurnal distribution charts.
+- <strong>Accident Analysis Explorer:</strong> Interactive dynamic filters for speed limit, weather conditions, lighting, and vehicle types.
+- <strong>Geospatial Hotspot Map:</strong> Interactive Leaflet map with zoomable cluster boundaries, risk score coloration, and detailed slide-out site cards.
+- <strong>ML Risk Simulator:</strong> Real-time scenario risk calculator executing the logistic regression model in the browser.</p>
+<h3>5.2 Enterprise Power BI Reporting Suite</h3>
+<p>A complementary 6-page Microsoft Power BI report (<code>.pbix</code> / <code>.pbit</code> / <code>.pbip</code>) structured around dedicated analytical decision domains:
+1. <strong>Accident Intelligence Overview:</strong> Core KPIs, casualty distributions, and police jurisdiction rankings.
+2. <strong>Temporal Analytics:</strong> Hourly diurnal dynamics, day-of-week heatmaps, and seasonal volume trends.
+3. <strong>Geographic Hotspots:</strong> Interactive map of 704 clusters, corridor rankings, and spatial scatter analysis.
+4. <strong>Diagnostic Analytics:</strong> Environmental risk factors, surface conditions, and vulnerable user trauma rates.
+5. <strong>Machine Learning Risk Detection:</strong> Holdout test predictions, 2x2 confusion matrix measures, and odds ratio rankings.
+6. <strong>Decision Support Matrix:</strong> Actionable intervention triage matrix with targeted safety engineering countermeasures.</p>
+<hr />
+<h2>6. Summary of Visualization Artifacts</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: center;">Visual Count</th>
+<th style="text-align: left;">Primary Visual Types</th>
+<th style="text-align: left;">Core Analytical Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Exploratory Data Analysis</strong></td>
+<td style="text-align: center;">15 Figures</td>
+<td style="text-align: left;">Dual-axis line charts, heatmaps, stacked bars, donuts</td>
+<td style="text-align: left;">Baseline discovery, temporal patterns, environmental risk drivers</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Spatial Hotspot Clustering</strong></td>
+<td style="text-align: center;">4 Figures</td>
+<td style="text-align: left;">Scatter point maps, k-distance elbow curve, ranked bar charts</td>
+<td style="text-align: left;">Spatial density scanning, corridor identification, risk scoring</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ML Predictive Modeling</strong></td>
+<td style="text-align: center;">6 Figures</td>
+<td style="text-align: left;">ROC curves, PR curves, confusion matrices, odds ratio bars, probability distributions</td>
+<td style="text-align: left;">Model evaluation, class discrimination, factor interpretability</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Interactive Web Application</strong></td>
+<td style="text-align: center;">6 Screens</td>
+<td style="text-align: left;">Live dashboard screens, Leaflet GIS map, interactive simulator</td>
+<td style="text-align: left;">Real-time exploratory querying, dynamic scenario testing</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Enterprise Power BI Solution</strong></td>
+<td style="text-align: center;">6 Pages</td>
+<td style="text-align: left;">Interactive multi-visual reports, DAX KPI cards, matrix tables</td>
+<td style="text-align: left;">Executive decision support, operational resource dispatch</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Decision-Support Impact</strong></td>
+<td style="text-align: center;"><strong>37 Visualizations</strong></td>
+<td style="text-align: left;">Urban Infrastructure &amp; Traffic Planning</td>
+<td style="text-align: left;">Empowers municipal authorities, highway engineers, and emergency services with targeted road safety intelligence</td>
+</tr>
+</tbody>
+</table>
   </div>
 </body>
 </html>

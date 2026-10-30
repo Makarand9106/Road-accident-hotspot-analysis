@@ -22,8 +22,6 @@
     padding: 0;
     background: #ffffff;
   }
-  
-  /* Clean professional academic header */
   .college-header {
     background: #ffffff;
     color: #0f172a;
@@ -115,8 +113,6 @@
     background: #cbd5e1;
     margin: 16px 0 24px 0;
   }
-
-  /* Body Typography & Content */
   h1 {
     color: #0f172a;
     font-size: 20px;
@@ -216,12 +212,10 @@
         <div class="course-name">PROJECT OF DATA VISUALIZATION</div>
         <div class="division-batch">Div1 DVL2 Batch</div>
       </div>
-      
       <div class="header-center-title">
         <h1 class="project-title">Smart Road Accident Hotspot Analysis &amp; Risk Prediction System</h1>
         <div class="report-subtitle">Comprehensive Graphical Report — All Visual Models, Hotspots, Predictions, Frontend &amp; Power BI Suite</div>
       </div>
-
       <div class="header-bottom-row">
         <div class="left-col">
           <div class="meta-label">Submitted by:</div>
@@ -245,7 +239,7 @@
 5. <strong>Enterprise Power BI Analytics Suite (6 executive reporting pages)</strong></p>
 <hr />
 <h2>1. Machine Learning Prediction &amp; Severity Modeling</h2>
-<p>The predictive modeling engine computes situational crash lethality risk ($P(\text{is_severe} = 1 \mid \mathbf{x})$) based on environmental, temporal, road geometry, and vehicle mix indicators.</p>
+<p>The predictive modeling engine computes situational crash lethality risk (<i>P</i>(<b>is_severe</b> = 1 | <b>x</b>)) based on environmental, temporal, road geometry, and vehicle mix indicators.</p>
 <h3>1.1 Model Performance: Discrimination &amp; Receiver Operating Characteristic (ROC)</h3>
 <p>The ROC curves benchmark our operational Balanced Logistic Regression classifier against Decision Trees, Random Forests, and a Baseline Prior Dummy classifier.
 <img alt="ROC Curves" src="../docs/figures/model/01_roc_curves.png" />
@@ -266,16 +260,22 @@
 - <strong>Balanced Accuracy:</strong> <code>76.3%</code>.</p>
 <hr />
 <h3>1.4 Model Interpretability: Logistic Regression Odds Ratios</h3>
-<p>Odds ratios ($\text{OR} = e^{\beta_i}$) reveal the relative impact of each environmental and vehicle attribute on the likelihood of severe trauma.
-<img alt="Logistic Regression Odds Ratios" src="../docs/figures/model/04_logistic_regression_odds_ratios.png" />
-- <strong>Top Risk Escalators:</strong>
-  1. <code>involves_motorcycle = 1</code> ($\text{OR} = 2.85$, $+185\%$ severe odds).
-  2. <code>speed_limit &gt;= 60 mph</code> ($\text{OR} = 2.34$).
-  3. <code>light_condition = Darkness - no lighting</code> ($\text{OR} = 1.89$).
-  4. <code>involves_pedestrian = 1</code> ($\text{OR} = 1.76$).
-- <strong>Protective Factors:</strong>
-  1. <code>speed_limit = 20 mph</code> ($\text{OR} = 0.58$, $-42\%$ odds reduction).
-  2. <code>time_period = Morning Peak</code> ($\text{OR} = 0.82$, lower speeds due to congestion).</p>
+<p>Odds ratios (OR = <i>e</i><sup>&beta;<sub><i>i</i></sub></sup>) reveal the relative impact of each environmental and vehicle attribute on the likelihood of severe trauma.
+<img alt="Logistic Regression Odds Ratios" src="../docs/figures/model/04_logistic_regression_odds_ratios.png" /></p>
+<ul>
+<li><strong>Top Risk Escalators:</strong></li>
+<li><code>involves_motorcycle = 1</code> (<b>OR = 2.85</b>, +185% severe odds).</li>
+<li><code>speed_limit &gt;= 60 mph</code> (<b>OR = 2.34</b>).</li>
+<li><code>light_condition = Darkness - no lighting</code> (<b>OR = 1.89</b>).</li>
+<li>
+<p><code>involves_pedestrian = 1</code> (<b>OR = 1.76</b>).</p>
+</li>
+<li>
+<p><strong>Protective Factors:</strong></p>
+</li>
+<li><code>speed_limit = 20 mph</code> (<b>OR = 0.58</b>, &minus;42% odds reduction).</li>
+<li><code>time_period = Morning Peak</code> (<b>OR = 0.82</b>, lower speeds due to congestion).</li>
+</ul>
 <hr />
 <h3>1.5 Non-Linear Feature Importance (Random Forest Gini Importance)</h3>
 <p>Comparison against tree-based feature splitting.
@@ -284,17 +284,17 @@
 <hr />
 <h3>1.6 Risk Tier Calibration &amp; Operational Thresholds</h3>
 <p>Predicted probabilities mapped into actionable operational risk tiers:
-- <strong>Low Risk:</strong> $p &lt; 24.21\%$
-- <strong>Medium Risk:</strong> $24.21\% \le p &lt; 48.42\%$
-- <strong>High Risk:</strong> $p \ge 48.42\%$
+- <strong>Low Risk:</strong> <i>p</i> &lt; 24.21%
+- <strong>Medium Risk:</strong> 24.21% &le; <i>p</i> &lt; 48.42%
+- <strong>High Risk:</strong> <i>p</i> &ge; 48.42%
 <img alt="Risk Tier Calibration" src="../docs/figures/model/06_risk_tier_calibration.png" /></p>
 <hr />
 <h2>2. Geospatial Hotspot Analysis &amp; Clustering</h2>
 <p>Spatial clustering detects dense concentrations of recurring collisions using DBSCAN calibrated to Great Britain's road network topology.</p>
 <h3>2.1 K-Distance Graph &amp; Elbow Determination</h3>
-<p>Determines the optimal radius parameter $\varepsilon$ by plotting 25th-nearest-neighbor distances.
+<p>Determines the optimal radius parameter <i>&epsilon;</i> by plotting 25th-nearest-neighbor distances.
 <img alt="K-Distance Elbow Graph" src="../docs/figures/hotspot/01_k_distance_elbow.png" />
-- <strong>Selected Parameters:</strong> $\varepsilon = 1.5\,\text{km}$, $\text{min_samples} = 25$.
+- <strong>Selected Parameters:</strong> <i>&epsilon;</i> = 1.5 km, <code>min_samples</code> = 25.
 - Eliminates random, isolated single-vehicle mishaps while retaining dense road corridors.</p>
 <hr />
 <h3>2.2 Cluster Size Distribution</h3>
@@ -304,9 +304,9 @@
 - Mean cluster size: ~180 collisions; largest metropolitan clusters exceed 1,500 collisions.</p>
 <hr />
 <h3>2.3 Composite Hotspot Risk Score Distribution</h3>
-<p>Combines raw collision density with casualty lethality weighting:
-$$\text{Risk Score} = 0.5 \cdot \text{Volume_Percentile} + 0.5 \cdot \text{Severity_Weighted_Rate}$$
-<img alt="Risk Score Distribution" src="../docs/figures/hotspot/03_risk_score_distribution.png" /></p>
+<p>Combines raw collision density with casualty lethality weighting:</p>
+<div class="academic-equation"><span class="math-sym">Risk Score</span> = 0.5 &times; <span class="math-sym">Volume_Percentile</span> + 0.5 &times; <span class="math-sym">Severity_Weighted_Rate</span></div>
+<p><img alt="Risk Score Distribution" src="../docs/figures/hotspot/03_risk_score_distribution.png" /></p>
 <hr />
 <h3>2.4 Top 10 High-Risk Hotspots Ranked</h3>
 <p>The highest-priority arterial road corridors requiring traffic-calming and enforcement intervention.
@@ -428,7 +428,7 @@ $$\text{Risk Score} = 0.5 \cdot \text{Volume_Percentile} + 0.5 \cdot \text{Sever
 <td style="text-align: left;"><strong>Hotspot Spatial Clustering</strong></td>
 <td style="text-align: center;">4 Figures</td>
 <td style="text-align: left;"><code>docs/figures/hotspot/</code></td>
-<td style="text-align: left;">Identified 704 clusters via DBSCAN ($\varepsilon=1.5\text{km}$); mapped top arterial corridors.</td>
+<td style="text-align: left;">Identified 704 clusters via DBSCAN (<i>&epsilon;</i> = 1.5 km); mapped top arterial corridors.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>ML Severity Models &amp; Evaluation</strong></td>
@@ -449,10 +449,10 @@ $$\text{Risk Score} = 0.5 \cdot \text{Volume_Percentile} + 0.5 \cdot \text{Sever
 <td style="text-align: left;">6-page interactive reporting suite with DAX measures and automated intervention triage matrix.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>TOTAL VISUAL ASSETS</strong></td>
-<td style="text-align: center;"><strong>37 Figures</strong></td>
-<td style="text-align: left;">Ready for Presentation &amp; Viva Defense</td>
-<td style="text-align: left;">Complete end-to-end data intelligence narrative.</td>
+<td style="text-align: left;"><strong>Decision-Support Impact</strong></td>
+<td style="text-align: center;"><strong>37 Visualizations</strong></td>
+<td style="text-align: left;">Urban Infrastructure &amp; Traffic Planning</td>
+<td style="text-align: left;">Empowers road safety engineers and municipal planners with targeted intervention intelligence.</td>
 </tr>
 </tbody>
 </table>

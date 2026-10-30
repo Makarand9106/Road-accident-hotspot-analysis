@@ -263,4 +263,4 @@ Operational priority matrix categorizing clusters into **Priority 1 (Emergency E
 | **ML Severity Models & Evaluation** | 6 Figures | `docs/figures/model/` | Balanced Logistic Regression achieved 76.3% balanced accuracy, 64.8% severe recall, 0.681 ROC-AUC. |
 | **Interactive Frontend Application** | 6 Screens | `docs/figures/frontend/` | Real-time React dashboard with Leaflet map explorer and dynamic ML simulator. |
 | **Enterprise Power BI Solution** | 6 Pages | `docs/figures/powerbi/` | 6-page interactive reporting suite with DAX measures and automated intervention triage matrix. |
-| **TOTAL VISUAL ASSETS** | **37 Figures** | Ready for Presentation & Viva Defense | Complete end-to-end data intelligence narrative. |
+| **Decision-Support Impact** | **37 Visualizations** | Urban Infrastructure & Traffic Planning | Empowers road safety engineers and municipal planners with targeted intervention intelligence. |
