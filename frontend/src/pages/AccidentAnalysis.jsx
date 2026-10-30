@@ -9,6 +9,7 @@ import {
   Info,
   ShieldCheck,
   Bike,
+  Users,
 } from 'lucide-react';
 import { useFilters } from '../context/FilterContext';
 import { api } from '../services/api';
@@ -118,13 +119,13 @@ export function AccidentAnalysis() {
       '#8B5CF6', // Purple (Snow)
       '#EF4444', // Red (Snow + high winds)
     ],
-    surface: [
-      '#0284C7', // Dry (Sky blue)
-      '#0D9488', // Wet or damp (Teal)
-      '#6366F1', // Frost or ice (Indigo)
-      '#8B5CF6', // Snow (Purple)
-      '#EF4444', // Flood (Rose)
-    ],
+    surface: {
+      'Dry': '#0284C7',                // Ocean Blue
+      'Wet or damp': '#0D9488',        // Teal
+      'Frost or ice': '#A855F7',       // Vivid Purple
+      'Snow': '#FACC15',               // Bright Fluorescent Yellow / Gold (highly distinct)
+      'Flood over 3cm. deep': '#EF4444' // Bright Red / Crimson (emergency flood alert)
+    },
     light: [
       '#F59E0B', // Daylight (Amber / Sun)
       '#0284C7', // Darkness - lights lit (Sky blue)
@@ -146,13 +147,13 @@ export function AccidentAnalysis() {
 
   const surfacePieData =
     environmentData?.road_surface
-      ?.filter((s) => s.condition !== 'Unknown' && s.total_collisions > 50)
+      ?.filter((s) => s.condition !== 'Unknown' && s.total_collisions > 10)
       .map((s, idx) => ({
         name: s.condition,
         value: s.total_collisions,
         severe_collisions: s.severe_collisions,
         severe_percentage: s.severe_percentage,
-        color: ENV_PALETTES.surface[idx % ENV_PALETTES.surface.length],
+        color: ENV_PALETTES.surface[s.condition] || ['#0284C7', '#0D9488', '#A855F7', '#FACC15', '#EF4444'][idx % 5],
       })) || [];
 
   const lightPieData =
@@ -199,7 +200,33 @@ export function AccidentAnalysis() {
     vehicleData?.top_vehicle_categories?.map((v) => ({
       name: v.vehicle_type,
       'Vehicles Involved': v.vehicle_count,
+      'Collisions Linked': v.collision_count,
+      'Severe %': v.severe_percentage,
+      'Fatal %': v.fatal_percentage,
     })) || [];
+
+  const vehicleSeverityData =
+    vehicleData?.top_vehicle_categories
+      ?.slice()
+      .sort((a, b) => b.severe_percentage - a.severe_percentage)
+      .map((v) => ({
+        name: v.vehicle_type,
+        'Severe %': v.severe_percentage,
+        'Fatal %': v.fatal_percentage,
+        'Total Collisions': v.collision_count,
+      })) || [];
+
+  const casualtySeverityData =
+    vehicleData?.casualty_user_severity
+      ?.slice()
+      .sort((a, b) => b.severe_percentage - a.severe_percentage)
+      .map((c) => ({
+        name: c.user_group,
+        'Severe %': c.severe_percentage,
+        'Serious %': c.serious_percentage,
+        'Fatal %': c.fatal_percentage,
+        'Total Casualties': c.total_casualties,
+      })) || [];
 
   return (
     <div className="space-y-6">
@@ -318,7 +345,7 @@ export function AccidentAnalysis() {
             <BarChartCard
               title="Day-of-Week Collision Distribution & Severe % (C3)"
               question="Which days of the week experience the highest accident frequency and severity?"
-              caveat="Caveat: Friday experiences the peak absolute collision volume, while Saturday and Sunday exhibit higher percentage severity."
+              caveat="Caveat: Friday experiences the peak absolute collision volume (commuter rush + weekend travel), while Saturday and Sunday exhibit higher percentage severity."
               data={weekdayBarData}
               bars={[{ key: 'Total Collisions', name: 'Collisions', color: '#0072B2' }]}
               lineKey="Severe %"
@@ -327,6 +354,10 @@ export function AccidentAnalysis() {
               xAxisKey="name"
               xAxisLabel="Day of Week"
               yAxisLabel="Collisions"
+              highlightKey="name"
+              highlightValue="Fri"
+              highlightColor="#F59E0B"
+              yAxisDomain={[8000, 18000]}
               height={300}
             />
           </div>
@@ -362,6 +393,7 @@ export function AccidentAnalysis() {
               innerRadius={0}
               outerRadius="80%"
               paddingAngle={2}
+              minAngle={6}
               height={340}
             />
 
@@ -550,6 +582,9 @@ export function AccidentAnalysis() {
               <div className="text-2xl font-bold text-slate-100 font-mono">
                 {formatNumber(vehicleData?.vulnerable_user_rates?.motorcycle?.collisions)}
               </div>
+              <div className="text-[11px] text-slate-400 font-medium">
+                Collisions ({formatNumber(vehicleData?.vulnerable_user_rates?.motorcycle?.vehicles)} vehicles)
+              </div>
               <div className="mt-2 text-xs text-slate-400 space-y-1">
                 <div className="flex justify-between">
                   <span>Severe Rate:</span>
@@ -574,6 +609,9 @@ export function AccidentAnalysis() {
               </div>
               <div className="text-2xl font-bold text-slate-100 font-mono">
                 {formatNumber(vehicleData?.vulnerable_user_rates?.cyclist?.collisions)}
+              </div>
+              <div className="text-[11px] text-slate-400 font-medium">
+                Collisions ({formatNumber(vehicleData?.vulnerable_user_rates?.cyclist?.vehicles)} vehicles)
               </div>
               <div className="mt-2 text-xs text-slate-400 space-y-1">
                 <div className="flex justify-between">
@@ -600,6 +638,9 @@ export function AccidentAnalysis() {
               <div className="text-2xl font-bold text-slate-100 font-mono">
                 {formatNumber(vehicleData?.vulnerable_user_rates?.hgv?.collisions)}
               </div>
+              <div className="text-[11px] text-slate-400 font-medium">
+                Collisions ({formatNumber(vehicleData?.vulnerable_user_rates?.hgv?.vehicles)} vehicles)
+              </div>
               <div className="mt-2 text-xs text-slate-400 space-y-1">
                 <div className="flex justify-between">
                   <span>Severe Rate:</span>
@@ -617,36 +658,54 @@ export function AccidentAnalysis() {
             </div>
           </div>
 
-          {/* C12: Top Vehicle Types Involved */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <BarChartCard
-                title="Top Vehicle Categories in STATS19 (C12)"
-                question="Which types of vehicles are most frequently involved in recorded collisions?"
-                caveat="Caveat: Passenger cars comprise 68% of all involved vehicles. However, two-wheelers suffer disproportionately higher casualty severity upon impact."
-                data={topVehiclesData}
-                layout="vertical"
-                xAxisKey="name"
-                bars={[{ key: 'Vehicles Involved', name: 'Vehicles Involved', color: '#0072B2' }]}
-                height={340}
-              />
-            </div>
+          {/* C12: Top Vehicle Types Involved & Vehicle Severity Rate Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Top Vehicle Types Involved Volume */}
+            <BarChartCard
+              title="Top Vehicle Categories in STATS19 (C12)"
+              question="Which types of vehicles are most frequently involved in recorded collisions?"
+              caveat="Caveat: Passenger cars comprise 68% of all involved vehicles. However, two-wheelers suffer disproportionately higher casualty severity upon impact."
+              data={topVehiclesData}
+              layout="vertical"
+              xAxisKey="name"
+              bars={[{ key: 'Vehicles Involved', name: 'Vehicles Involved', color: '#0072B2' }]}
+              height={360}
+            />
 
-            <div className="lg:col-span-1">
-              <div className="glass-panel rounded-xl p-6 h-full flex flex-col justify-between border-slate-800">
-                <div>
-                  <h3 className="text-base font-bold text-slate-100 mb-2">
-                    Vulnerable User Impact
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Motorcyclists exhibit the highest severe injury rate across all vehicle categories (<strong className="text-amber-400">33.83%</strong>), being nearly <strong className="text-white">1.5× more likely</strong> to suffer fatal or serious injury than car occupants in a collision.
-                  </p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400">
-                  <span>STATS19 Vehicle Records • Dynamic filtered count</span>
-                </div>
-              </div>
-            </div>
+            {/* Vehicle Type vs Severe & Fatal Percentage */}
+            <BarChartCard
+              title="Collision Severity Proportion by Vehicle Type"
+              question="Which vehicle categories appear in crashes with severe or fatal outcomes?"
+              caveat="Caveat: Measures whole-collision severity. In multi-vehicle impacts between cars and vulnerable users, the severe rating is attributed to both involved vehicles."
+              data={vehicleSeverityData}
+              layout="vertical"
+              xAxisKey="name"
+              bars={[
+                { key: 'Severe %', name: 'Severe %', color: '#E69F00' },
+                { key: 'Fatal %', name: 'Fatal %', color: '#D55E00' },
+              ]}
+              height={360}
+              tooltipFormatter={(val, name) => `${val}% (${name})`}
+            />
+          </div>
+
+          {/* Vulnerable Road User (VRU) Casualty Injury Severity Breakdown */}
+          <div className="grid grid-cols-1 gap-6">
+            <BarChartCard
+              title="Individual Injury Severity by Road User Group (Casualty Level)"
+              question="What proportion of casualties suffer fatal or serious injuries across pedestrians, cyclists, motorcyclists, and vehicle occupants?"
+              caveat="Direct casualty-level analysis: Evaluates injury trauma outcome for individual road users involved in collisions. Compares vulnerable road users against sheltered vehicle occupants."
+              data={casualtySeverityData}
+              layout="vertical"
+              xAxisKey="name"
+              bars={[
+                { key: 'Severe %', name: 'Total Severe %', color: '#D55E00' },
+                { key: 'Serious %', name: 'Serious %', color: '#E69F00' },
+                { key: 'Fatal %', name: 'Fatal %', color: '#CC79A7' },
+              ]}
+              height={340}
+              tooltipFormatter={(val, name) => `${val}% (${name})`}
+            />
           </div>
         </div>
       )}

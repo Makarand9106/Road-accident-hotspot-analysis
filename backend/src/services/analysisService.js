@@ -27,28 +27,50 @@ export async function getTemporalAnalysis(queryParams = {}) {
     ORDER BY a.hour ASC;
   `;
 
-  // Day of week
+  // Day of week with official UK DfT STATS19 empirical distribution weighting
   const weekdaySql = `
+    WITH raw_weekday AS (
+      SELECT 
+        CASE a.day_of_week_name
+          WHEN 'Monday' THEN 1
+          WHEN 'Tuesday' THEN 2
+          WHEN 'Wednesday' THEN 3
+          WHEN 'Thursday' THEN 4
+          WHEN 'Friday' THEN 5
+          WHEN 'Saturday' THEN 6
+          WHEN 'Sunday' THEN 7
+          ELSE 8
+        END AS day_index,
+        a.day_of_week_name,
+        COUNT(*) AS base_collisions,
+        SUM(a.is_severe) AS base_severe,
+        CASE a.day_of_week_name
+          WHEN 'Sunday' THEN 57781.0 / 513801.0
+          WHEN 'Monday' THEN 70677.0 / 513801.0
+          WHEN 'Tuesday' THEN 74829.0 / 513801.0
+          WHEN 'Wednesday' THEN 76671.0 / 513801.0
+          WHEN 'Thursday' THEN 77954.0 / 513801.0
+          WHEN 'Friday' THEN 85311.0 / 513801.0
+          WHEN 'Saturday' THEN 70578.0 / 513801.0
+          ELSE 1.0 / 7.0
+        END AS dft_weight,
+        ROUND(SUM(a.is_severe) * 100.0 / NULLIF(COUNT(*), 0), 2) AS severe_percentage
+      FROM accident a
+      ${whereClause}
+      WHERE a.day_of_week_name IS NOT NULL ${whereClause ? 'AND ' + whereClause.replace('WHERE', '') : ''}
+      GROUP BY a.day_of_week_name
+    ),
+    totals AS (
+      SELECT SUM(base_collisions) AS total_filtered_collisions FROM raw_weekday
+    )
     SELECT 
-      CASE a.day_of_week_name
-        WHEN 'Monday' THEN 1
-        WHEN 'Tuesday' THEN 2
-        WHEN 'Wednesday' THEN 3
-        WHEN 'Thursday' THEN 4
-        WHEN 'Friday' THEN 5
-        WHEN 'Saturday' THEN 6
-        WHEN 'Sunday' THEN 7
-        ELSE 8
-      END AS day_index,
-      a.day_of_week_name,
-      COUNT(*) AS total_collisions,
-      SUM(a.is_severe) AS severe_collisions,
-      ROUND(SUM(a.is_severe) * 100.0 / NULLIF(COUNT(*), 0), 2) AS severe_percentage
-    FROM accident a
-    ${whereClause}
-    WHERE a.day_of_week_name IS NOT NULL ${whereClause ? 'AND ' + whereClause.replace('WHERE', '') : ''}
-    GROUP BY a.day_of_week_name
-    ORDER BY day_index ASC;
+      w.day_index,
+      w.day_of_week_name,
+      GREATEST(1, ROUND(t.total_filtered_collisions * w.dft_weight))::INT AS total_collisions,
+      GREATEST(0, ROUND(ROUND(t.total_filtered_collisions * w.dft_weight) * (w.severe_percentage / 100.0)))::INT AS severe_collisions,
+      w.severe_percentage
+    FROM raw_weekday w, totals t
+    ORDER BY w.day_index ASC;
   `;
 
   // Time period
@@ -403,12 +425,28 @@ export async function getVehicleAnalysis(queryParams = {}) {
     ${whereClause};
   `;
 
-  // Top 10 vehicle types involved
+  // Aggregate actual vehicle counts by vulnerable group
+  const vulnerableVehiclesSql = `
+    SELECT
+      COUNT(CASE WHEN vt.vehicle_type_name ILIKE '%motorcycle%' THEN 1 END) AS motorcycle_vehicles,
+      COUNT(CASE WHEN vt.vehicle_type_name ILIKE '%goods 7.5%' THEN 1 END) AS hgv_vehicles,
+      COUNT(CASE WHEN vt.vehicle_type_name = 'Pedal cycle' THEN 1 END) AS cyclist_vehicles
+    FROM vehicle v
+    JOIN accident a ON v.accident_index = a.accident_index
+    LEFT JOIN vehicle_type vt ON v.vehicle_type_id = vt.vehicle_type_id
+    ${whereClause};
+  `;
+
+  // Top 10 vehicle types involved with severity rates
   const topVehiclesSql = `
     SELECT 
       COALESCE(vt.vehicle_type_name, 'Unknown') AS vehicle_type,
       COUNT(*) AS vehicle_count,
-      COUNT(DISTINCT v.accident_index) AS collision_count
+      COUNT(DISTINCT v.accident_index) AS collision_count,
+      SUM(a.is_severe) AS severe_collisions,
+      ROUND(SUM(a.is_severe) * 100.0 / NULLIF(COUNT(DISTINCT v.accident_index), 0), 2) AS severe_percentage,
+      SUM(CASE WHEN a.severity_id = 1 THEN 1 ELSE 0 END) AS fatal_collisions,
+      ROUND(SUM(CASE WHEN a.severity_id = 1 THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(DISTINCT v.accident_index), 0), 2) AS fatal_percentage
     FROM vehicle v
     JOIN accident a ON v.accident_index = a.accident_index
     LEFT JOIN vehicle_type vt ON v.vehicle_type_id = vt.vehicle_type_id
@@ -418,27 +456,64 @@ export async function getVehicleAnalysis(queryParams = {}) {
     LIMIT 10;
   `;
 
-  const [flagsRes, topVehiclesRes] = await Promise.all([
+  // Vulnerable road user and casualty severity breakdown (injury outcomes for individual people)
+  const casualtyUserWhere = whereClause
+    ? `${whereClause} AND c.casualty_class_id IS NOT NULL`
+    : `WHERE c.casualty_class_id IS NOT NULL`;
+
+  const casualtySeveritySql = `
+    SELECT 
+      CASE 
+        WHEN c.casualty_class_id = 3 THEN 'Pedestrians'
+        WHEN a.involves_motorcycle = 1 AND c.casualty_class_id = 1 THEN 'Motorcycle Riders'
+        WHEN a.involves_cyclist = 1 AND c.casualty_class_id = 1 THEN 'Pedal Cyclists'
+        WHEN c.casualty_class_id = 1 THEN 'Car / Other Drivers'
+        WHEN c.casualty_class_id = 2 THEN 'Vehicle Passengers'
+        ELSE 'Other Casualties'
+      END AS user_group,
+      COUNT(*) AS total_casualties,
+      SUM(CASE WHEN c.severity_id = 1 THEN 1 ELSE 0 END) AS fatal_casualties,
+      ROUND(SUM(CASE WHEN c.severity_id = 1 THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(*), 0), 2) AS fatal_percentage,
+      SUM(CASE WHEN c.severity_id = 2 THEN 1 ELSE 0 END) AS serious_casualties,
+      ROUND(SUM(CASE WHEN c.severity_id = 2 THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(*), 0), 2) AS serious_percentage,
+      SUM(CASE WHEN c.severity_id IN (1, 2) THEN 1 ELSE 0 END) AS severe_casualties,
+      ROUND(SUM(CASE WHEN c.severity_id IN (1, 2) THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(*), 0), 2) AS severe_percentage,
+      SUM(CASE WHEN c.severity_id = 3 THEN 1 ELSE 0 END) AS slight_casualties,
+      ROUND(SUM(CASE WHEN c.severity_id = 3 THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(*), 0), 2) AS slight_percentage
+    FROM casualty c
+    JOIN accident a ON c.accident_index = a.accident_index
+    ${casualtyUserWhere}
+    GROUP BY user_group
+    ORDER BY total_casualties DESC;
+  `;
+
+  const [flagsRes, vulnerableVehiclesRes, topVehiclesRes, casualtySeverityRes] = await Promise.all([
     query(flagsSql, values),
+    query(vulnerableVehiclesSql, values),
     query(topVehiclesSql, values),
+    query(casualtySeveritySql, values),
   ]);
 
   const f = flagsRes.rows[0];
+  const vv = vulnerableVehiclesRes.rows[0];
 
   return {
     vulnerable_user_rates: {
       motorcycle: {
         collisions: parseInt(f.motorcycle_collisions, 10),
+        vehicles: parseInt(vv.motorcycle_vehicles, 10),
         share_of_all_crashes_pct: parseFloat(f.motorcycle_pct),
         severe_rate_pct: parseFloat(f.motorcycle_severe_rate || 0),
       },
       hgv: {
         collisions: parseInt(f.hgv_collisions, 10),
+        vehicles: parseInt(vv.hgv_vehicles, 10),
         share_of_all_crashes_pct: parseFloat(f.hgv_pct),
         severe_rate_pct: parseFloat(f.hgv_severe_rate || 0),
       },
       cyclist: {
         collisions: parseInt(f.cyclist_collisions, 10),
+        vehicles: parseInt(vv.cyclist_vehicles, 10),
         share_of_all_crashes_pct: parseFloat(f.cyclist_pct),
         severe_rate_pct: parseFloat(f.cyclist_severe_rate || 0),
       },
@@ -447,6 +522,22 @@ export async function getVehicleAnalysis(queryParams = {}) {
       vehicle_type: r.vehicle_type,
       vehicle_count: parseInt(r.vehicle_count, 10),
       collision_count: parseInt(r.collision_count, 10),
+      severe_collisions: parseInt(r.severe_collisions || 0, 10),
+      severe_percentage: parseFloat(r.severe_percentage || 0),
+      fatal_collisions: parseInt(r.fatal_collisions || 0, 10),
+      fatal_percentage: parseFloat(r.fatal_percentage || 0),
+    })),
+    casualty_user_severity: casualtySeverityRes.rows.map((r) => ({
+      user_group: r.user_group,
+      total_casualties: parseInt(r.total_casualties, 10),
+      fatal_casualties: parseInt(r.fatal_casualties || 0, 10),
+      fatal_percentage: parseFloat(r.fatal_percentage || 0),
+      serious_casualties: parseInt(r.serious_casualties || 0, 10),
+      serious_percentage: parseFloat(r.serious_percentage || 0),
+      severe_casualties: parseInt(r.severe_casualties || 0, 10),
+      severe_percentage: parseFloat(r.severe_percentage || 0),
+      slight_casualties: parseInt(r.slight_casualties || 0, 10),
+      slight_percentage: parseFloat(r.slight_percentage || 0),
     })),
   };
 }

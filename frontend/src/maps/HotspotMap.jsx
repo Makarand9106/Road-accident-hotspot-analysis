@@ -75,7 +75,6 @@ export function HotspotMap({
   const [layers, setLayers] = useState({
     hotspots: true,
     accidents: false,
-    gridDensity: false,
   });
 
   // Visible bounds data
@@ -83,10 +82,6 @@ export function HotspotMap({
   const [accidents, setAccidents] = useState([]);
   const [accidentMeta, setAccidentMeta] = useState({ total: 0, is_truncated: false, count: 0 });
   const [isLoadingAccidents, setIsLoadingAccidents] = useState(false);
-
-  // 500m Grid Density data
-  const [gridCells, setGridCells] = useState([]);
-  const [isLoadingGrid, setIsLoadingGrid] = useState(false);
 
   // Quick navigation cities
   const CITIES = [
@@ -153,40 +148,6 @@ export function HotspotMap({
       clearTimeout(timer);
     };
   }, [layers.accidents, currentBounds, globalFilters]);
-
-  // Fetch grid density cells when layer is active
-  useEffect(() => {
-    if (!layers.gridDensity || !currentBounds) return;
-
-    let isMounted = true;
-    const fetchGrid = async () => {
-      try {
-        setIsLoadingGrid(true);
-        const res = await api.getHotspotGrid({
-          min_lat: currentBounds.min_lat,
-          max_lat: currentBounds.max_lat,
-          min_lon: currentBounds.min_lon,
-          max_lon: currentBounds.max_lon,
-          min_collisions: 10,
-          limit: 800,
-        });
-
-        if (isMounted && res.grid) {
-          setGridCells(res.grid);
-        }
-      } catch (err) {
-        console.error('Failed to fetch 500m grid density:', err);
-      } finally {
-        if (isMounted) setIsLoadingGrid(false);
-      }
-    };
-
-    const timer = setTimeout(fetchGrid, 350);
-    return () => {
-      isMounted = false;
-      clearTimeout(timer);
-    };
-  }, [layers.gridDensity, currentBounds]);
 
   const toggleLayer = (layerKey) => {
     setLayers((prev) => ({ ...prev, [layerKey]: !prev[layerKey] }));
@@ -289,24 +250,6 @@ export function HotspotMap({
               {isLoadingAccidents && <Loader2 className="w-3 h-3 animate-spin text-amber-400 ml-1" />}
             </div>
             {layers.accidents ? <Eye className="w-3.5 h-3.5 text-amber-400" /> : <EyeOff className="w-3.5 h-3.5 text-slate-500" />}
-          </button>
-
-          {/* 500m Grid Density Toggle */}
-          <button
-            type="button"
-            onClick={() => toggleLayer('gridDensity')}
-            className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              layers.gridDensity
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                : 'bg-slate-900/60 text-slate-400 border border-slate-800 hover:bg-slate-800/60'
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-sm bg-emerald-400" />
-              <span>500m Grid Density</span>
-              {isLoadingGrid && <Loader2 className="w-3 h-3 animate-spin text-emerald-400 ml-1" />}
-            </div>
-            {layers.gridDensity ? <Eye className="w-3.5 h-3.5 text-emerald-400" /> : <EyeOff className="w-3.5 h-3.5 text-slate-500" />}
           </button>
         </div>
 
@@ -475,31 +418,6 @@ export function HotspotMap({
               </CircleMarker>
             );
           })}
-
-        {/* LAYER 3: 500m British National Grid Density Cells */}
-        {layers.gridDensity &&
-          gridCells.map((g, idx) => (
-            <CircleMarker
-              key={`grid-${idx}-${g.grid_easting_500m}`}
-              center={[g.approx_lat, g.approx_lon]}
-              radius={Math.min(Math.max(Math.sqrt(g.total_collisions) * 1.5, 3), 16)}
-              pathOptions={{
-                color: '#10b981',
-                fillColor: g.severe_percentage > 30 ? '#ef4444' : g.severe_percentage > 20 ? '#f59e0b' : '#10b981',
-                fillOpacity: 0.55,
-                weight: 1,
-              }}
-            >
-              <Tooltip direction="top" opacity={0.9}>
-                <div className="text-xs p-1">
-                  <strong className="text-slate-900">500m Grid Cell</strong>
-                  <p className="text-slate-700">Total Collisions: <strong>{g.total_collisions}</strong></p>
-                  <p className="text-slate-700">Severe: <strong>{g.severe_collisions}</strong> ({g.severe_percentage}%)</p>
-                  <p className="text-slate-500 text-[10px]">OSGR: E{g.grid_easting_500m} N{g.grid_northing_500m}</p>
-                </div>
-              </Tooltip>
-            </CircleMarker>
-          ))}
       </MapContainer>
     </div>
   );

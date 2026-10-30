@@ -56,6 +56,10 @@ export function BarChartCard({
   lineColor = '#D55E00',
   extraHeader,
   className = '',
+  yAxisDomain = null,
+  highlightKey = null,
+  highlightValue = null,
+  highlightColor = null,
 }) {
   const isVertical = layout === 'vertical';
 
@@ -99,6 +103,7 @@ export function BarChartCard({
                   fontSize={11}
                   tickLine={false}
                   width={isVertical ? 90 : 45}
+                  domain={!isVertical && yAxisDomain ? yAxisDomain : undefined}
                   tickFormatter={!isVertical ? (val) => (val >= 1000 ? `${(val / 1000).toFixed(0)}k` : val) : undefined}
                   label={yAxisLabel ? { value: yAxisLabel, angle: -90, position: 'insideLeft', fill: '#94A3B8', fontSize: 11, offset: 10 } : undefined}
                 />
@@ -122,7 +127,19 @@ export function BarChartCard({
                     fill={bar.color || '#0072B2'}
                     stackId={bar.stackId}
                     radius={bar.stackId ? undefined : [4, 4, 0, 0]}
-                  />
+                  >
+                    {highlightKey &&
+                      data.map((entry, entryIdx) => (
+                        <Cell
+                          key={`cell-${entryIdx}`}
+                          fill={
+                            entry[highlightKey] === highlightValue
+                              ? (highlightColor || '#F59E0B')
+                              : (bar.color || '#0072B2')
+                          }
+                        />
+                      ))}
+                  </Bar>
                 ))}
                 <Line
                   yAxisId="right"

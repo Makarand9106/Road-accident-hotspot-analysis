@@ -44,6 +44,7 @@ export function DonutCard({
   innerRadius = '58%',
   outerRadius = '82%',
   paddingAngle = 3,
+  minAngle = 0,
   extraHeader,
   className = '',
 }) {
@@ -79,6 +80,7 @@ export function DonutCard({
                   innerRadius={innerRadius}
                   outerRadius={outerRadius}
                   paddingAngle={paddingAngle}
+                  minAngle={minAngle}
                   dataKey={dataKey}
                   nameKey={nameKey}
                   stroke="#0F172A"
